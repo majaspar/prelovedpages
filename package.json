@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/majaspar/bookstore.git"
+    "url": "git+https://github.com/majaspar/prelovedpages.git"
   },
   "keywords": [
     "books",
     "mern",
-    "app",
+    "web app",
     "bookstore",
     "ecommerce"
   ],
