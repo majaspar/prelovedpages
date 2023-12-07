@@ -1,0 +1,41 @@
+{
+  "name": "bookshop",
+  "version": "1.0.0",
+  "proxy": "http://127.0.0.1:5000",
+  "description": "An online bookstore for pre-owned books.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "client": "npm run dev --prefix bookshop",
+    "dev": "concurrently \"nodemon server/app.js\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/majaspar/bookstore.git"
+  },
+  "keywords": [
+    "books",
+    "mern",
+    "app",
+    "bookstore",
+    "ecommerce"
+  ],
+  "author": "Lena Esposito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/majaspar/bookstore/issues"
+  },
+  "homepage": "https://github.com/majaspar/bookstore#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.0.2",
+    "nodemon": "^3.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

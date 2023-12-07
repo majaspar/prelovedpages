@@ -1,0 +1,4 @@
+node_modules
+.env
+bookshop/node_modules
+bookshop/.env
