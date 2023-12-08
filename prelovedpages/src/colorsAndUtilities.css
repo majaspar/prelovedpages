@@ -8,20 +8,36 @@
     /* colors */
     --clr-white: rgb(255, 255, 255);
     --clr-white-rgb: 255, 255, 255;
+    --clr-off-white: rgb(245, 245, 245);
+    --clr-black: rgb(0, 0, 0);
+    --clr-black-rgb: 0, 0, 0;
+    --clr-grey-dark: rgb(66, 61, 61);
+    --clr-grey-dark-rgb: 66, 61, 61;
+    --clr-grey-light: rgb(108, 107, 117);
+    --clr-grey-light-rgb: 108, 107, 117;
+    --clr-green-pastel: rgb(183, 235, 173);
+    --clr-pink-pastel: rgb(237, 171, 183);
+    --clr-blue-pastel: rgb(158, 213, 245);
+    --clr-yellow-pastel: rgb(247, 219, 115);
+    --clr-purple-dark: rgb(73, 61, 153);
+    --clr-purple-dark-rgb: 73, 61, 153;
+
+    /* colors */
+    /* --clr-white: rgb(255, 255, 255);
+    --clr-white-rgb: 255, 255, 255;
     --clr-black: rgb(0, 0, 0);
     --clr-black-rgb: 0, 0, 0;
     --clr-grey-dark: rgb(66, 61, 61);
     --clr-grey-dark-rgb: 66, 61, 61;
     --clr-off-white: rgb(245, 245, 245);
-    --clr-green-pastel: rgb(183, 235, 173);
-    --clr-pink-pastel: rgb(237, 171, 183);
-    --clr-blue-pastel: rgb(158, 213, 245);
+    --clr-green-pastel: #b7ebad;
+    --clr-pink-pastel: #edabb7;
+    --clr-blue-pastel: #9ed5f5;
     --clr-yellow-pastel: rgb(247, 219, 115);
     --clr-grey-light: rgb(108, 107, 117);
     --clr-grey-light-rgb: 108, 107, 117;
     --clr-purple-dark: rgb(73, 61, 153);
-    --clr-purple-dark-rgb: 73, 61, 153;
-
+    --clr-purple-dark-rgb: 73, 61, 153; */
 
     /* gradients */
     --linear-rainbow: linear-gradient(75deg, var(--clr-pink-pastel) 7%, var(--clr-yellow-pastel) 59%, var(--clr-blue-pastel) 95%);

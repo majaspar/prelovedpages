@@ -7,10 +7,12 @@
     background: var(--linear-rainbow);
     box-shadow: inset 2px 2px 45px -3px rgba(39, 37, 117, 0.5);
 }
+
 .hero__wrapper {
     min-height: 500px;
     position: relative;
 }
+
 .hero__book-card {
     position: absolute;
     width: min(400px, 90%);
@@ -28,15 +30,18 @@
     font-size: 1.7rem;
     margin-bottom: 0.3rem;
 }
+
 .hero__book-card--author {
     color: var(--clr-off-white);
     font-size: 1rem;
     color: rgba(var(--clr-white-rgb), 0.65)
 }
+
 .hero__book-card--series {
     color: rgba(var(--clr-white-rgb), 0.85);
     margin-top: 1rem;
 }
+
 .hero__book-card--series-title {
     color: var(--clr-white);
 }
@@ -56,10 +61,114 @@
     font-weight: 500;
     border-color: var(--clr-purple-dark);
 }
+
 .SectionTitle button:hover {
-    color: var(--clr-purple-dark);
-    border-color: rgba(var(--clr-purple-dark-rgb), 0.8);
+    color: var(--clr-white);
+    background-color: var(--clr-purple-dark);
 }
+
 .SectionTitle hr {
     color: rgba(var(--clr-grey-light-rgb), 0.5);
+}
+
+/**************************/
+/***   LatestBooks      ***/
+/**************************/
+.LatestBooks {
+    position: relative;
+    height: 20rem;
+}
+
+.LatestBooks__bg-rect {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    height: 14rem;
+    bottom: 0;
+    background: var(--clr-yellow-pastel);
+}
+
+.LatestBooks__wrapper {
+    position: relative;
+    z-index: 2;
+    height: 20rem;
+}
+
+.LatestBooks__articles-grid {
+    position: absolute;
+    bottom: 2rem;
+    z-index: 3;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/**************************/
+/***   LatestBook       ***/
+/**************************/
+article.LatestBook {
+    border: 2px solid;
+    background-color: var(--clr-off-white);
+    height: 15rem;
+    width: max(320px, 32%);
+    box-shadow: var(--shadow-dark);
+}
+
+.LatestBook__hr {
+    color: rgba(var(--clr-grey-light-rgb), 0.2);
+}
+
+.LatestBook__cover {
+    position: relative;
+    width: 190px;
+    height: 14rem;
+}
+
+.LatestBook__cover img {
+    position: absolute;
+    bottom: 0;
+    left: 0.8rem;
+    height: 270px;
+    width: 180px;
+}
+
+.LatestBook__book {
+    padding: 0.8rem;
+    justify-content: space-between;
+}
+
+.LatestBook__desc {
+    font-size: 0.8rem;
+}
+
+.LatestBook__buttons {
+    padding-block: 0.1rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+}
+.LatestBook__buttons button {
+    border-width: 2px;
+    color: var(--clr-white);
+}
+.LatestBook .see-book {
+    padding: 0.2rem 0.4rem;
+    width: 100%;
+}
+.LatestBook .options {
+    height: 100%;
+}
+
+.LatestBook .shopping-basket {
+    padding: 0.1rem 0.5rem;
+    background: var(--clr-yellow-pastel);
+}
+
+.LatestBook__desc {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
