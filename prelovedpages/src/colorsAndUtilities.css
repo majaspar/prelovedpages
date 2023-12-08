@@ -59,7 +59,7 @@ li {
 }
 
 body {
-    color: var(--clr-dark);
+    color: var(--clr-grey-dark);
     font-family: 'Poppins', sans-serif;
     background-color: var(--clr-off-white);
 }
@@ -70,6 +70,11 @@ button {
 
 a {
     text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    color: inherit;
 }
 input,
 button,
@@ -229,7 +234,7 @@ html {
 }
 
 /* * * * * *  */
-/*    font    */
+/*    font and align    */
 /* * * * * *  */
 
 .bold {
@@ -246,6 +251,20 @@ html {
 .uppercase {
     text-transform: uppercase;
 }
+.center {
+text-align: center;
+}
+.right {
+text-align: right;
+}
+.left {
+text-align: left;
+}
+
+.justify {
+text-align: justify;
+}
+
 /* * * * * *  */
 /* selectors  */
 /* * * * * *  */

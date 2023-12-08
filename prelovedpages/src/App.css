@@ -58,11 +58,14 @@ nav {
 /**************************/
 /***        FOOTER      ***/
 /**************************/
-
 .Footer {
-    display: flex;
-    align-items: center;
     min-height: 4rem;
     width: 100%;
     box-shadow: 4px -4px 3px 0px rgba(var(--clr-black-rgb), 0.1);
+}
+.Footer__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
