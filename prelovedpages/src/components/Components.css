@@ -181,3 +181,15 @@ article.LatestBook {
 /***   CategoriesGrid   ***/
 /**************************/
 
+.CategoriesGrid {
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.Category {
+    padding: 1rem 2rem;
+    border: 1px solid var(--clr-white);
+    background-color: var(--clr-pink-pastel);
+    box-shadow: var(--shadow-light);
+
+}

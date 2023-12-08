@@ -1,5 +1,4 @@
 import './Pages.css'
-import Book from "./Book"
 import Hero from "../components/Hero"
 import SectionTitle from '../components/SectionTitle'
 import LatestBooks from '../components/LatestBooks'
@@ -10,9 +9,9 @@ export default function HomePage() {
   return (<>
    
       <Hero />
-      <SectionTitle title="Latest books" link="/book"/>
+      <SectionTitle title="Latest books" link="/latest"/>
       <LatestBooks/>
-      <SectionTitle title="Browse categories" link="/book"/>
+      <SectionTitle title="Popular categories" link="/categories"/>
       <CategoriesGrid/>
       <SectionTitle title="Poplar authors" link="/book"/>
       <PopularAuthors/>
