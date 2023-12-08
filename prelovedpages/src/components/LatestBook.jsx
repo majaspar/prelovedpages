@@ -2,7 +2,6 @@ import './Components.css'
 import options from '../assets/options.svg'
 import shopingBaket from '../assets/shopping-basket-white.svg'
 
-
 export default function LatestBook({ color, title, author, description, cover, seeBook }) {
     return (
 
@@ -10,7 +9,7 @@ export default function LatestBook({ color, title, author, description, cover, s
         <article className='LatestBook flex' style={{ borderColor: color }}>
             <div className="LatestBook__cover--wrapper">
                 <div className='LatestBook__cover'>
-                    <img src={cover} alt="" />
+                    <img src={cover} alt="book cover" />
                 </div>
             </div>
             <div className='LatestBook__book flex-column'>
@@ -22,9 +21,9 @@ export default function LatestBook({ color, title, author, description, cover, s
                 <div>
                     <hr className='LatestBook__hr' />
                     <div className='LatestBook__buttons flex'>
-                        <button className='btn see-book'  style={{ borderColor: color, backgroundColor: color }}>See book</button>
+                        <button className='uppercase see-book' style={{ borderColor: color, backgroundColor: color }}>See book</button>
                         <button className='shopping-basket'><img src={shopingBaket} alt="" /></button>
-                        <button  className='options'><img src={options} alt="" /></button>
+                        <button className='options'><img src={options} alt="" /></button>
                     </div>
                 </div>
             </div>

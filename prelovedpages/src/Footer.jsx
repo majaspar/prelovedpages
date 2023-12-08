@@ -1,5 +1,6 @@
 import './App.css'
 import { Link } from 'react-router-dom'
+import { colors } from './components/LatestBooks'
 
 export default function Footer() {
   return (
@@ -7,6 +8,7 @@ export default function Footer() {
       <div className="Footer__wrapper margins mt1">
         <div>
           <h5 className='mb1'>Navigaton</h5>
+          <div className='Footer__hr' style={{ backgroundColor: colors.pink }} />
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/stylespage">Selcetor Styles</Link></li>
@@ -15,11 +17,16 @@ export default function Footer() {
         </div>
         <div>
           <h5 className='mb1'>Contact</h5>
-          </div>
+          <div className='Footer__hr' style={{ backgroundColor: colors.yellow }} />
+        </div>
         <div>
-          <h5 className='mb1'>Social</h5></div>
+          <h5 className='mb1'>Social</h5>
+          <div className='Footer__hr' style={{ backgroundColor: colors.blue }} />
+        </div>
+
       </div>
-        <div className='center mb1 mt1'>&copy; <Link to='https://lenaesposito.co.uk' target="_blank">Lena Esposito</Link> 2023</div>
+      <div className='hr mt1 margins'><hr /></div>
+      <div className='center mb1 mt1'>&copy; <Link to='https://lenaesposito.co.uk' target="_blank">Lena Esposito</Link> 2023</div>
     </footer>
   )
 }

@@ -22,7 +22,7 @@
     --clr-purple-dark: rgb(73, 61, 153);
     --clr-purple-dark-rgb: 73, 61, 153;
 
-    /* colors */
+
     /* --clr-white: rgb(255, 255, 255);
     --clr-white-rgb: 255, 255, 255;
     --clr-black: rgb(0, 0, 0);
@@ -33,7 +33,7 @@
     --clr-green-pastel: #b7ebad;
     --clr-pink-pastel: #edabb7;
     --clr-blue-pastel: #9ed5f5;
-    --clr-yellow-pastel: rgb(247, 219, 115);
+    --clr-yellow-pastel: #f7db73;
     --clr-grey-light: rgb(108, 107, 117);
     --clr-grey-light-rgb: 108, 107, 117;
     --clr-purple-dark: rgb(73, 61, 153);
@@ -44,7 +44,8 @@
 
     /* shadows */
     --shadow-dark: 2px 2px 7px 2px rgba(var(--clr-black-rgb), 0.25);
-    --shadow-light: 0px 4px 14px 0px rgba(var(--clr-black-rgba), 0.25);
+    --shadow-light: 0px 4px 14px 0px rgba(var(--clr-black-rgb), 0.25);
+    --shadow-medium: 2px 2px 7px 2px rgba(var(--clr-grey-light-rgb), 0.3);
 
 }
 
@@ -79,7 +80,11 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--clr-off-white);
 }
-
+*::selection {
+    color: var(--clr-white);
+    background-color: var(--clr-pink-pastel);
+  }
+  
 button {
     transition: all 300ms;
 }
@@ -315,6 +320,7 @@ h4 {
 h5 {
     font-size: 1.2rem;
     color: rgba(var(--clr-grey-light-rgb), 0.8);
+    margin-bottom: 1rem;
 }
 
 p {
