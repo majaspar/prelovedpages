@@ -6,19 +6,30 @@
 /**************************/
 :root {
     /* colors */
-    --clr-white: #ffffff;
-    --clr-dark: #423e3e;
-    --clr-off-white: #F6F6F6;
-    --clr-green-pastel: #B5EBAC;
-    --clr-pink-pastel: #EEABB6;
-    --clr-blue-pastel: #A1D6F4;
-    --clr-yellow-pastel: #F8DB73;
-    --clr-grey-dark: #6B6A74;
-    --clr-purple-dark: #4A3D9B;
+    --clr-white: rgb(255, 255, 255);
+    --clr-white-rgb: 255, 255, 255;
+    --clr-black: rgb(0, 0, 0);
+    --clr-black-rgb: 0, 0, 0;
+    --clr-grey-dark: rgb(66, 61, 61);
+    --clr-grey-dark-rgb: 66, 61, 61;
+    --clr-off-white: rgb(245, 245, 245);
+    --clr-green-pastel: rgb(183, 235, 173);
+    --clr-pink-pastel: rgb(237, 171, 183);
+    --clr-blue-pastel: rgb(158, 213, 245);
+    --clr-yellow-pastel: rgb(247, 219, 115);
+    --clr-grey-light: rgb(108, 107, 117);
+    --clr-grey-light-rgb: 108, 107, 117;
+    --clr-purple-dark: rgb(73, 61, 153);
+    --clr-purple-dark-rgb: 73, 61, 153;
 
 
     /* gradients */
-    --linear-rainbow: linear-gradient(80deg, var(--clr-pink-pastel) 10%, var(--clr-yellow-pastel) 61%, var(--clr-blue-pastel) 91%);
+    --linear-rainbow: linear-gradient(75deg, var(--clr-pink-pastel) 7%, var(--clr-yellow-pastel) 59%, var(--clr-blue-pastel) 95%);
+
+    /* shadows */
+    --shadow-dark: 2px 2px 7px 2px rgba(var(--clr-black-rgb), 0.25);
+    --shadow-light: 0px 4px 14px 0px rgba(var(--clr-black-rgba), 0.25);
+
 }
 
 /**************************/
@@ -57,6 +68,9 @@ button {
     transition: all 300ms;
 }
 
+a {
+    text-decoration: none;
+}
 input,
 button,
 textarea,
@@ -98,8 +112,6 @@ html {
 /***   UTILITY CLASSES  ***/
 /**************************/
 
-
-
 .flex {
     display: flex;
 }
@@ -129,102 +141,14 @@ html {
     display: grid;
 }
 
-
-.mt1 {
-    margin-top: 1rem;
+.btn {
+    padding: 0.3rem 1rem;
+    border-radius: 1.5rem;;
+    border: 1px solid;
 }
-
-.mt2 {
-    margin-top: 2rem;
-}
-
-.mt3 {
-    margin-top: 3rem;
-}
-
-.mt4 {
-    margin-top: 4rem;
-}
-
-.mt5 {
-    margin-top: 5rem;
-}
-
-.mt7 {
-    margin-top: 7rem;
-}
-
-.mb1 {
-    margin-bottom: 1rem;
-}
-
-.mb2 {
-    margin-bottom: 2rem;
-}
-
-.mb3 {
-    margin-bottom: 3rem;
-}
-
-.mb4 {
-    margin-bottom: 4rem;
-}
-
-.mb5 {
-    margin-bottom: 5rem;
-}
-
-.mb7 {
-    margin-bottom: 7rem;
-}
-
-
-
-.bold {
-    font-weight: bold;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-.ff-title {
-    font-family: cursive;
-}
-
-
-.flex {
-    display: flex;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.flex-align-center {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.flex-align-start {
-    display: flex;
-    align-items: flex-start;
-}
-
-.flex-row-reverse {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.grid {
-    display: grid;
-}
-
+/* * * * * *  */
+/* margin top */
+/* * * * * *  */
 
 .mt1 {
     margin-top: 1rem;
@@ -254,6 +178,9 @@ html {
     margin-top: 7rem;
 }
 
+/* * * * * * * * */
+/* margin-bottom */
+/* * * * * * * * */
 .mb1 {
     margin-bottom: 1rem;
 }
@@ -283,19 +210,6 @@ html {
 }
 
 
-
-.bold {
-    font-weight: bold;
-}
-
-.italic {
-    font-style: italic;
-}
-
-.ff-title {
-    font-family: cursive;
-}
-
 .margins {
     margin-left: auto;
     margin-right: auto;
@@ -314,6 +228,28 @@ html {
     }
 }
 
+/* * * * * *  */
+/*    font    */
+/* * * * * *  */
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.ff-title {
+    font-family: cursive;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+/* * * * * *  */
+/* selectors  */
+/* * * * * *  */
+
 li {
     list-style-type: none;
 }
@@ -326,28 +262,27 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
-    margin-top: 1.8rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--clr-purple-dark);
 }
 
 h3 {
-    font-size: 1.8rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: Var(--clr-grey-dark);
+    font-weight: normal;
 }
 h4 {
-    font-size: 1.6rem;
-    margin-top: 1.2rem;
-    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    font-weight: normal;
+    color: rgba(var(--clr-grey-light-rgb), 0.8);
 }
 h5 {
     font-size: 1.4rem;
-    margin-top: 1.2rem;
-    margin-bottom: 0.5rem;
 }
 
 p {
     font-size: 1rem;
     line-height: 1.25rem;
 }
+
