@@ -6,6 +6,7 @@ import Author from './pages/Author';
 import HomePage from './pages/HomePage';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Styles from './admin/Styles';
 
 function App() {
 
@@ -13,7 +14,9 @@ function App() {
     <>
 
       <Navbar />
+      <main className='mt4 mb2'>
       <Routes>
+
         {/* Pages */}
         <Route path="/" element={<HomePage />} />
         <Route path="/book" element={<Book />} />
@@ -21,9 +24,10 @@ function App() {
 
         {/* Admin */}
         <Route path="/newbook" element={<Create />} />
+        <Route path="/stylespage" element={<Styles />} />
 
       </Routes>
-
+      </main>
       <Footer />
     </>
   )
