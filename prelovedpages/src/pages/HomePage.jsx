@@ -1,13 +1,10 @@
 import './Pages.css'
-import Footer from "../components/Footer"
-import Navbar from "../components/Navbar"
 import Book from "./Book"
 import Hero from "../components/Hero"
 import SectionTitle from '../components/SectionTitle'
 
 export default function HomePage() {
   return (<>
-    <Navbar />
     <main className="mt4">
       <Hero />
       <SectionTitle title="Latest books" link="/book"/>
@@ -37,7 +34,6 @@ export default function HomePage() {
         <Book />
       </div>
     </main>
-    <Footer />
   </>
   )
 }
