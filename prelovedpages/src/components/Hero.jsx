@@ -1,14 +1,14 @@
 import React from 'react'
-
+import FeaturedBooks from './FeaturedBooks'
 export default function Hero() {
     return (
         <section className='Hero'>
             <div className="hero__wrapper margins">
 
+<div className="Hero__featured-books">
+                <FeaturedBooks />
 
-
-
-
+</div>
 
 
                 <div className="hero__book-card">
