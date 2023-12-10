@@ -5,10 +5,10 @@ export default function Hero() {
         <section className='Hero'>
             <div className="hero__wrapper margins">
 
-<div className="Hero__featured-books">
-                <FeaturedBooks />
+                <div className="Hero__featured-books">
+                    <FeaturedBooks />
 
-</div>
+                </div>
 
 
                 <div className="hero__book-card">

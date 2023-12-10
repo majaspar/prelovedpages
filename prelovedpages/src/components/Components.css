@@ -3,13 +3,13 @@
 /**************************/
 
 .Hero {
-    min-height: 500px;
+    height: min(70vh, 600px);
     background: var(--linear-rainbow);
     box-shadow: inset 2px 2px 45px -3px rgba(39, 37, 117, 0.5);
 }
 
 .hero__wrapper {
-    min-height: 500px;
+    height: 100%;
     position: relative;
 }
 
@@ -21,7 +21,7 @@
     border: 1px solid var(--clr-off-white);
     padding: 1rem;
     color: var(--clr-white);
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(0.5rem);
     background-color: rgba(var(--clr-grey-light-rgb), 0.5);
     box-shadow: var(--shadow-dark);
 }
@@ -46,7 +46,26 @@
     color: var(--clr-white);
 }
 
+.Hero__featured-books {
+   padding-block: 3rem;
+}
 
+/**************************/
+/***   FeaturedBooks     ***/
+/**************************/
+.swiper {
+height: 100%;
+}
+.FeaturedBooks {
+    width: 100%;
+    height: min(60vh, 490px);
+    overflow-y: hidden;
+}
+.swiper-slide {
+}
+.swiper-slide img {
+    height: 100%;
+}
 /**************************/
 /***   SectionTitle     ***/
 /**************************/
@@ -172,6 +191,7 @@ article.LatestBook {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
 .LatestBook__info--author {
     overflow: hidden;
     display: -webkit-box;
@@ -203,6 +223,7 @@ article.LatestBook {
 .CategoriesGrid {
     justify-content: space-between;
 }
+
 .Categories__wrapper {
     width: 100%;
     gap: 1rem;
@@ -210,6 +231,7 @@ article.LatestBook {
     /* grid-template-rows: 1fr 1fr; */
 
 }
+
 .Category {
     display: grid;
     place-items: center;

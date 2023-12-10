@@ -10,7 +10,7 @@ export default function HomePage() {
    
       <Hero />
       <SectionTitle title="Latest books" link="/latest"/>
-      <LatestBooks/>
+      {/* <LatestBooks/> */}
       <SectionTitle title="Popular categories" link="/categories"/>
       <CategoriesGrid/>
       <SectionTitle title="Poplar authors" link="/book"/>
