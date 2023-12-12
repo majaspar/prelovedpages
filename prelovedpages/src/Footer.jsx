@@ -16,8 +16,12 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h5 className='mb1'>Contact</h5>
+          <h5 className='mb1'>Admin</h5>
           <div className='Footer__hr' style={{ backgroundColor: colors.yellow }} />
+          <ul>
+            <li><Link to="/newbook">New Book</Link></li>
+            <li><Link to="/newauthor">New Author</Link></li>
+          </ul>
         </div>
         <div>
           <h5 className='mb1'>Social</h5>

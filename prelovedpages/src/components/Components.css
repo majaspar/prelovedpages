@@ -61,8 +61,7 @@ height: 100%;
     height: min(60vh, 490px);
     overflow-y: hidden;
 }
-.swiper-slide {
-}
+
 .swiper-slide img {
     height: 100%;
 }

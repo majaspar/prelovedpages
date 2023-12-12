@@ -6,6 +6,7 @@ import { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper/module
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
+import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 
 

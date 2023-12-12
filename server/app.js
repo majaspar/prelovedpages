@@ -16,13 +16,14 @@ connectMongoDB();       //connect DB
 dotenv.config();        // make .env work
 const app = express();
 
+app.use(express.json());
+
 app.use(cors());
 //creating api
+app.use('/api/authors', authorRoutes)
 app.use('/api/books', bookRoutes)
 
 const port = process.env.PORT || 5000;
-
-app.use(express.json());
 
 
 app.get("/", (req, res) => {
