@@ -1,4 +1,10 @@
-
+form {
+    display: flex;
+    flex-direction: column;
+}
+form button {
+    align-self: end;
+}
 .btn:hover {
     color: var(--clr-white);
     border-color: rgba(var(--clr-grey-light-rgb), 0.3);
@@ -6,16 +12,26 @@
     cursor: pointer;
 }
 
-.admin form input {
+.admin form input,
+.admin form textarea {
     padding: 0.2rem;
     border-bottom: 1px solid rgba(var(--clr-grey-light-rgb), 0.6);
     max-width: 100%;
     margin-bottom: 0.5rem;
 }
-.admin form input:focus {
+.admin form input:focus,
+.admin form textarea:focus {
     outline: 3px solid var(--clr-blue-pastel);
 }
+
 .admin form label {
     display: inline-block;
-    width: 100px;
+    min-width: 100px;
+}
+
+.admin form textarea {
+    border: 1px solid rgba(var(--clr-grey-light-rgb), 0.6);
+}
+.NewBook__genre {
+    flex-wrap: wrap;
 }

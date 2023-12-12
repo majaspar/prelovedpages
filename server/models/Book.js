@@ -18,8 +18,8 @@ const BookSchema = new Schema({
             'Science Fiction',
             'Horror', 'Foreign',
             'Mystery', 'Contemporary',
-            'Young Adult',
-            'Historical Fiction']
+            'Young Adult', 'Childrens',
+            'Historical Fiction', 'Non-Fiction']
     }],
     availableCopies: [{ type: Schema.Types.ObjectId, ref: 'AvailableCopy' }],
 }, {
