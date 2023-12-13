@@ -8,13 +8,13 @@ export default function LatestBook({ color, title, author, description, cover, s
 
 
         <article className='LatestBook grid' style={{ borderColor: color }}>
+            
             <div className="LatestBook__cover--wrapper">
-                
                 <div className='LatestBook__cover'>
                     <img src={cover} alt="book cover" />
                 </div>    
-
             </div>
+
             <div className='LatestBook__book flex-column'>
                 <div className='LatestBook__info'>
                     <h3 className='LatestBook__info--title'>{title}</h3>
@@ -30,6 +30,7 @@ export default function LatestBook({ color, title, author, description, cover, s
                     </div>
                 </div>
             </div>
+            
         </article>
 
     )

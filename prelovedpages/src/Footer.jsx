@@ -13,6 +13,7 @@ export default function Footer() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/stylespage">Selcetor Styles</Link></li>
             <li><Link to="/categories">Categories</Link></li>
+            <li><Link to="/allauthors">List of Authors</Link></li>
           </ul>
         </div>
         <div>

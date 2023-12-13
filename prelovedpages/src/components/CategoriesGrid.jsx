@@ -5,7 +5,7 @@ export default function CategoriesGrid() {
     return (
         <section>
             <div className="center CategoriesGrid margins">
-                <div className="Categories__wrapper grid">
+                <div className="Categories__wrapper">
                     <Category name="Historical fiction" link="" />
                     <Category name="Romance" link="" />
                     <Category name="Contemporary" link="" />

@@ -1,12 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Admin.css'
-//import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
-
-import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 
 export default function NewBook() {
@@ -37,30 +34,31 @@ export default function NewBook() {
   });
 
 
+  const baseURL = 'http://localhost:5000/api/:authors'
   // Genre Checkboxes
   const handleChange = (event) => {
     setGenre({
       ...genre,
       [event.target.name]: event.target.checked,
     });
-
-
   };
 
   const { romance, thriller, fiction, fantasy, sciencefiction, horror, foreign, mystery, contemporary, youngadult, historicalfiction, childrens, nonfiction } = genre;
 
   //add book model form submit
-  const postBookData = () => {
-    console.log(title)
-    console.log(publishedYear)
-    console.log(synopsis)
-    console.log(cover)
-    console.log('isFeatured:', isFeatured)
-    console.log('isPartOfSeries:', isPartOfSeries)
-    console.log('series:', series)
-    console.log('volume:', volume)
-    console.log('genre:', genre)
+  function postBookData() {
+    axios
+      .post(`${baseURL}/addbook`, {
+        title, lastName, isAlive, originalLanguage
+      })
+      .then((response) => {
+        setAuthor(response.data);
+      })
+      .catch(error => console.log(error));
+      navigate('/newauthor')
+
   }
+
   return (<section className='admin margins mt2'>
 
     <h2>Create a Book Model</h2>
@@ -115,13 +113,13 @@ export default function NewBook() {
             <input
               type="text" id="series" placeholder="Enter series name"
               onChange={(e) => setSeries(e.target.value)} /></p>
-              {series !== null &&   
-              <p><label className='mr1' htmlFor="volume">Volume: </label>
-            <input
-              required
-              type="number" id="volume" placeholder="Volume number"
-              onChange={(e) => setVolume(e.target.value)} /></p>}
-        
+          {series !== null &&
+            <p><label className='mr1' htmlFor="volume">Volume: </label>
+              <input
+                required
+                type="number" id="volume" placeholder="Volume number"
+                onChange={(e) => setVolume(e.target.value)} /></p>}
+
         </div>
         :
         <></>}

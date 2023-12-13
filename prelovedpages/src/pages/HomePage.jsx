@@ -8,11 +8,11 @@ export default function HomePage() {
   return (<>
    
       <Hero />
-      <SectionTitle title="Latest books" link="/latest"/>
+      <SectionTitle title="Latest books" link="/latest" btn="See All"/>
       <LatestBooks/>
-      <SectionTitle title="Popular categories" link="/categories"/>
+      <SectionTitle title="Popular categories" link="/categories" btn="See All"/>
       <CategoriesGrid/>
-      <SectionTitle title="Poplar authors" link="/book"/>
+      <SectionTitle title="Poplar authors" link="/book" btn="See All"/>
       <PopularAuthors/>
    
   </>

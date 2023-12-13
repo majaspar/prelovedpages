@@ -3,20 +3,23 @@ const Author = require('../models/Author');
 const asyncHandler = require('express-async-handler');
 
 const getBook = asyncHandler(async (req, res) => {
-
-  const book = await Book.findOne({ _id: req.params.id })
+  const book = await Book.findOne({ id: req.params.id })
     .populate('author')
     .exec();
   res.json(book)
 })
+
+
 const getBooks = asyncHandler(async (req, res) => {
-  const books = await Book.find()
+  const books = await Book.find().sort({createdAt: -1})
   res.json(books)
 })
+
+
 const addBook = async (req, res) => {
   const authorId = req.params
   const { title, publishedYear, date, cover, synopsis, genre, availableCopies } = req.body;
-  
+
   const theAuthor = Author.findOne({ id: authorId })
 
   const newBookModel = new Book({
@@ -31,7 +34,7 @@ const addBook = async (req, res) => {
   });
 
   await newBookModel.save()
-  
+
   theAuthor.writtenBooks.push(newBookModel)
 
   theAuthor.save()
