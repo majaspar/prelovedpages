@@ -5,8 +5,9 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
+import axios from 'axios'
 
-export default function NewBook() {
+export default function NewBook({ authorid }) {
 
   const [title, setTitle] = useState('');
   const [publishedYear, setPublishedYear] = useState();
@@ -16,54 +17,49 @@ export default function NewBook() {
   const [isPartOfSeries, setIsPartOfSeries] = useState(false);
   const [series, setSeries] = useState(null);
   const [volume, setVolume] = useState(null);
+  const [genre, setGenre] = useState([])
 
-  const [genre, setGenre] = useState({
-    romance: false,
-    thriller: false,
-    fiction: false,
-    fantasy: false,
-    sciencefiction: false,
-    horror: false,
-    foreign: false,
-    mystery: false,
-    contemporary: false,
-    youngadult: false,
-    historicalfiction: false,
-    childrens: false,
-    nonfiction: false
-  });
+  // const [genreObj, setGenreObj] = useState([{
+  //   romance: false, thriller: false, fiction: false, fantasy: false, sciencefiction: false, horror: false, foreign: false, mystery: false, contemporary: false, youngadult: false, historicalfiction: false, childrens: false, nonfiction: false
+  // }]);
 
 
-  const baseURL = 'http://localhost:5000/api/:authors'
+  const navigate = useNavigate();
+
   // Genre Checkboxes
-  const handleChange = (event) => {
-    setGenre({
-      ...genre,
-      [event.target.name]: event.target.checked,
-    });
+  const handleGenreChange = (e) => {
+    const value = e.target.value;
+    const checked = e.target.checked;
+    if(checked) {
+      setGenre([
+        ...genre, value
+      ])
+    } else {
+      setGenre(genre.filter(e => (e !== value)))
+    }
   };
 
-  const { romance, thriller, fiction, fantasy, sciencefiction, horror, foreign, mystery, contemporary, youngadult, historicalfiction, childrens, nonfiction } = genre;
-
+  const baseURL = '/api/books'
   //add book model form submit
   function postBookData() {
     axios
-      .post(`${baseURL}/addbook`, {
-        title, lastName, isAlive, originalLanguage
+      .post(`${baseURL}/${authorid}/addbook`, {
+        title, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre
       })
       .then((response) => {
         setAuthor(response.data);
       })
       .catch(error => console.log(error));
-      navigate('/newauthor')
 
+    navigate(`/allauthors/${authorid}`)
   }
 
   return (<section className='admin margins mt2'>
 
     <h2>Create a Book Model</h2>
+    <h2>{authorid}</h2>
 
-    <form className='mt2'>
+    <div className='mt2 form'>
 
       <p><label className='mr1' htmlFor="title">Title: </label>
         <input
@@ -125,70 +121,39 @@ export default function NewBook() {
         <></>}
 
       <div className='mt1 flex'>
-
         <label>Genre</label>
-        <FormControl component="fieldset" variant="standard">
-          <FormGroup>
-            <div className='NewBook__genre flex'>
-              <FormControlLabel
-                control={<Checkbox checked={romance} onChange={handleChange} name="romance" />}
-                label="Romance"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={thriller} onChange={handleChange} name="thriller" />}
-                label="Thriller"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={fiction} onChange={handleChange} name="fiction" />}
-                label="Fiction"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={fantasy} onChange={handleChange} name="fantasy" />}
-                label="Fantasy"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={sciencefiction} onChange={handleChange} name="sciencefiction" />}
-                label="Science Fiction"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={horror} onChange={handleChange} name="horror" />}
-                label="Horror"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={foreign} onChange={handleChange} name="foreign" />}
-                label="Foreign"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={mystery} onChange={handleChange} name="mystery" />}
-                label="Mystery"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={contemporary} onChange={handleChange} name="contemporary" />}
-                label="Contemporary"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={youngadult} onChange={handleChange} name="youngadult" />}
-                label="Young Adult"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={historicalfiction} onChange={handleChange} name="historicalfiction" />}
-                label="Historical Fiction"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={childrens} onChange={handleChange} name="childrens" />}
-                label="Childrens"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={nonfiction} onChange={handleChange} name="nonfiction" />}
-                label="Non-Fiction"
-              />
-            </div>
-          </FormGroup>
-        </FormControl>
+        <div>
+          <input type="checkbox" id="romance" name="genre" value="Romance" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="romance">Romance</label>
+          <input type="checkbox" id="fiction" name="genre" value="Fiction" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="fiction">Fiction</label>
+          <input type="checkbox" id="contemporary" name="genre" value="Contemporary" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="contemporary">Contemporary</label>
+          <input type="checkbox" id="thriller" name="genre" value="Thriller"onChange={handleGenreChange} />
+          <label className='mr2' htmlFor="thriller">Thriller</label>
+          <input type="checkbox" id="fantasy" name="genre" value="Fantasy" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="fantasy">Fantasy</label>
+          <input type="checkbox" id="sciencefiction" name="genre" value="Science Fiction" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="sciencefiction">Science Fiction</label>
+          <input type="checkbox" id="horror" name="genre" value="Horror" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="horror">Horror</label>
+          <input type="checkbox" id="foreign" name="genre" value="Foreign" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="foreign">Foreign</label>
+          <input type="checkbox" id="mystery" name="genre" value="Mystery" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="mystery">Mystery</label>
+          <input type="checkbox" id="youngadult" name="genre" value="Young Adult" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="youngadult">Young Adult</label>
+          <input type="checkbox" id="childrens" name="genre" value="Childrens" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="childrens">Childrens</label>
+          <input type="checkbox" id="historicalfiction" name="genre" value="Historical Fiction" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="historicalfiction">Historical Fiction</label>
+          <input type="checkbox" id="nonfiction" name="genre" value="Non-Fiction" onChange={handleGenreChange}/>
+          <label className='mr2' htmlFor="nonfiction">Non-Fiction</label>
+        </div>
       </div>
-      <button onClick={postBookData} type='submit' className='btn mt1'>Add Book Model</button>
-    </form>
-
+      <button onClick={postBookData} type='submit' className='btn mt3'>Add Book Model</button>
+    </div>
+    {/* End of form */}
   </section>
   )
 }

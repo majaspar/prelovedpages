@@ -137,7 +137,9 @@ html {
 /**************************/
 /***   UTILITY CLASSES  ***/
 /**************************/
-
+.show {
+    display: block;
+}
 .flex {
     display: flex;
 }

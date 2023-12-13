@@ -11,37 +11,33 @@ const getBook = asyncHandler(async (req, res) => {
 
 
 const getBooks = asyncHandler(async (req, res) => {
-  const books = await Book.find().sort({createdAt: -1})
+  const books = await Book.find().sort({ createdAt: -1 })
   res.json(books)
 })
 
 
 const addBook = async (req, res) => {
-  const authorId = req.params
-  const { title, publishedYear, date, cover, synopsis, genre, availableCopies } = req.body;
+  try {
+    const theAuthor = await Author.findById(req.params.id)
 
-  const theAuthor = Author.findOne({ id: authorId })
+    const { title, isFeatured, isPartOfSeries, series, volume, publishedYear, date, cover, synopsis, genre, availableCopies } = req.body;
 
-  const newBookModel = new Book({
-    title,
-    author: authorId,
-    publishedYear,
-    date,
-    cover,
-    synopsis,
-    genre,
-    availableCopies
-  });
+    const newBookModel = new Book({
+      title, author: theAuthor,
+      publishedYear, date,
+      cover, isFeatured, isPartOfSeries,
+      synopsis, series, volume,
+      genre, availableCopies
+    });
 
-  await newBookModel.save()
+    theAuthor.writtenBooks.push(newBookModel)
+    await newBookModel.save()
+    await theAuthor.save()
 
-  theAuthor.writtenBooks.push(newBookModel)
-
-  theAuthor.save()
-
-  res.json(newBookModel)
+    console.log('Book Model added successfully!')
+  } catch (error) {
+    console.log(error)
+  }
 }
-// const { title, author, description, createdAt, publishedYear, editionYear } = req.body;
-
 
 module.exports = { addBook, getBooks, getBook }

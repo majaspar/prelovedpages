@@ -12,7 +12,7 @@ export default function HomePage() {
       <LatestBooks/>
       <SectionTitle title="Popular categories" link="/categories" btn="See All"/>
       <CategoriesGrid/>
-      <SectionTitle title="Poplar authors" link="/book" btn="See All"/>
+      <SectionTitle title="Popular authors" link="/book" btn="See All"/>
       <PopularAuthors/>
    
   </>

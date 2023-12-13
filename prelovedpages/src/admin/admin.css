@@ -29,3 +29,11 @@
 .NewBook__genre {
     flex-wrap: wrap;
 }
+
+
+.new-book-form {
+    display: none;
+}
+.show {
+    display: block;
+}
