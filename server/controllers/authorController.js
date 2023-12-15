@@ -5,13 +5,17 @@ const asyncHandler = require('express-async-handler')
 
 // Pages
 
+
+// /api/authors/
 const allAuthors = asyncHandler(async (req, res) => {
    const authors = await Author.find({}).sort({ createdAt: -1 })
    res.json(authors)
 })
 
+// /api/authors/:id 
 const oneAuthor = asyncHandler(async (req, res) => {
    const author = await Author.findOne({ _id: req.params.id })
+   .populate('writtenBooks').exec()
    res.json(author)
 })
 

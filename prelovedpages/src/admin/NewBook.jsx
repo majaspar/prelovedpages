@@ -51,13 +51,12 @@ export default function NewBook({ authorid }) {
       })
       .catch(error => console.log(error));
 
-    navigate(`/allauthors/${authorid}`)
+    navigate(`/allauthors`)
   }
 
   return (<section className='admin margins mt2'>
 
     <h2>Create a Book Model</h2>
-    <h2>{authorid}</h2>
 
     <div className='mt2 form'>
 
