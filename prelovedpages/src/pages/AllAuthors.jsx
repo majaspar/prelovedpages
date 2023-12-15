@@ -18,14 +18,17 @@ export default function AllAuthors() {
 
 
     return (<>
-     <SectionTitle title="List of Authors" link="/allbooks" btn="See All Books" />
+        <SectionTitle title="List of Authors" link="/allbooks" btn="See All Books" />
 
         <section className='margins mt2'>
-        
+
             <ul>
                 {authors.map(author => {
-                    return <Link to={`/allauthors/${author._id}`}><li key={author._id}>{author.firstName} {author.lastName}</li></Link>
-
+                    return (
+                        <li key={author._id}><Link to={`/allauthors/${author._id}`}>
+                            {author.firstName} {author.lastName}
+                        </Link></li>
+                    )
                 })}
             </ul>
 

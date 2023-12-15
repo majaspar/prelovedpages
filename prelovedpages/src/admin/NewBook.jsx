@@ -30,7 +30,7 @@ export default function NewBook({ authorid }) {
   const handleGenreChange = (e) => {
     const value = e.target.value;
     const checked = e.target.checked;
-    if(checked) {
+    if (checked) {
       setGenre([
         ...genre, value
       ])
@@ -119,35 +119,61 @@ export default function NewBook({ authorid }) {
         :
         <></>}
 
-      <div className='mt1 flex'>
-        <label>Genre</label>
-        <div>
-          <input type="checkbox" id="romance" name="genre" value="Romance" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="romance">Romance</label>
-          <input type="checkbox" id="fiction" name="genre" value="Fiction" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="fiction">Fiction</label>
-          <input type="checkbox" id="contemporary" name="genre" value="Contemporary" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="contemporary">Contemporary</label>
-          <input type="checkbox" id="thriller" name="genre" value="Thriller"onChange={handleGenreChange} />
-          <label className='mr2' htmlFor="thriller">Thriller</label>
-          <input type="checkbox" id="fantasy" name="genre" value="Fantasy" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="fantasy">Fantasy</label>
-          <input type="checkbox" id="sciencefiction" name="genre" value="Science Fiction" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="sciencefiction">Science Fiction</label>
-          <input type="checkbox" id="horror" name="genre" value="Horror" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="horror">Horror</label>
-          <input type="checkbox" id="foreign" name="genre" value="Foreign" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="foreign">Foreign</label>
-          <input type="checkbox" id="mystery" name="genre" value="Mystery" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="mystery">Mystery</label>
-          <input type="checkbox" id="youngadult" name="genre" value="Young Adult" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="youngadult">Young Adult</label>
-          <input type="checkbox" id="childrens" name="genre" value="Childrens" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="childrens">Childrens</label>
-          <input type="checkbox" id="historicalfiction" name="genre" value="Historical Fiction" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="historicalfiction">Historical Fiction</label>
-          <input type="checkbox" id="nonfiction" name="genre" value="Non-Fiction" onChange={handleGenreChange}/>
-          <label className='mr2' htmlFor="nonfiction">Non-Fiction</label>
+      <div className='NewBook__genre--wrapper mt1 flex'>
+        <label>Genre:</label>
+        <div className='NewBook__genre'>
+
+          <div className="genre__item flex">
+            <input type="checkbox" id="romance" name="genre" value="Romance" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="romance">Romance</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="fiction" name="genre" value="Fiction" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="fiction">Fiction</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="contemporary" name="genre" value="Contemporary" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="contemporary">Contemporary</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="thriller" name="genre" value="Thriller" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="thriller">Thriller</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="fantasy" name="genre" value="Fantasy" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="fantasy">Fantasy</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="sciencefiction" name="genre" value="Science Fiction" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="sciencefiction">Science Fiction</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="horror" name="genre" value="Horror" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="horror">Horror</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="foreign" name="genre" value="Foreign" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="foreign">Foreign</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="mystery" name="genre" value="Mystery" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="mystery">Mystery</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="youngadult" name="genre" value="Young Adult" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="youngadult">Young Adult</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="childrens" name="genre" value="Childrens" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="childrens">Childrens</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="historicalfiction" name="genre" value="Historical Fiction" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="historicalfiction">Historical Fiction</label>
+          </div>
+          <div className="genre__item flex">
+            <input type="checkbox" id="nonfiction" name="genre" value="Non-Fiction" onChange={handleGenreChange} />
+            <label className='mr2' htmlFor="nonfiction">Non-Fiction</label></div>
         </div>
       </div>
       <button onClick={postBookData} type='submit' className='btn mt3'>Add Book Model</button>

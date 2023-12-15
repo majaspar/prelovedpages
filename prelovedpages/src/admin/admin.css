@@ -26,13 +26,31 @@
 .admin .form textarea {
     border: 1px solid rgba(var(--clr-grey-light-rgb), 0.6);
 }
-.NewBook__genre {
-    flex-wrap: wrap;
-}
 
+/*****************************/
+/***        NewBook        ***/
+/*****************************/
+.NewBook__genre--wrapper {
+    row-gap: 0.5rem;
+}
+.NewBook__genre {
+    width: 100%;
+    display: grid;
+    row-gap: 0.5rem;
+    align-items: start;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
 .new-book-form {
     display: none;
 }
 .show {
     display: block;
+}
+.genre__item {
+    flex: 1;
+    align-items: start;
+}
+
+.genre__item input {
+    margin-right: 0.4rem;
 }

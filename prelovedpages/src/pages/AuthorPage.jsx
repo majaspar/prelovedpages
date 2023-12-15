@@ -1,8 +1,10 @@
+import './Pages.css'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useParams } from "react-router-dom"
 import SectionTitle from '../components/SectionTitle'
 import NewBook from '../admin/NewBook'
+import Loading from '../components/Loading'
 
 export default function AuthorPage() {
     const { id } = useParams()
@@ -35,16 +37,20 @@ export default function AuthorPage() {
         <section className='AuthorPage margins mt2'>
             <h4 className='mt1 mb1'>Books available by this author:</h4>
 
-
-             
+            
              {author.writtenBooks ? (
                     <ul>
                         {author.writtenBooks.map((book) => (
-                            <li key={book._id}>&rarr; {book.title}</li>
+                            <li key={book._id}>
+                                <img src={book.cover} alt="" className="AuthorPage__book-cover--img"/>
+                                &rarr; {book.title}
+                            
+                            
+                            </li>
                         ))}
                     </ul>
                 ) : (
-                    <p>Loading...</p>
+                    <Loading />
                 )}
 
             <button onClick={showNewBookForm} className="mt4 mb2 btn">Add new book</button>
