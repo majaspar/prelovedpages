@@ -3,7 +3,7 @@ const Author = require('../models/Author');
 const asyncHandler = require('express-async-handler');
 
 const getBook = asyncHandler(async (req, res) => {
-  const book = await Book.findOne({ id: req.params.id })
+  const book = await Book.findById(req.params.id)
     .populate('author')
     .exec();
   res.json(book)

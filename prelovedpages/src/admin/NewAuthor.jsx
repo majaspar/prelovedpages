@@ -30,7 +30,7 @@ export default function NewAuthor() {
 
   return (<section className='admin mt2 margins'>
 
-    <h2>Create an Author</h2>
+    <h2 className='mb2'>Create an Author</h2>
 
     <div className="form">
       <p><label className='mr1' htmlFor="firstName">First name: </label>

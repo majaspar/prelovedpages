@@ -70,7 +70,7 @@ picture,
 button,
 img,
 ul,
-li {
+li, a {
     margin: 0;
     padding: 0;
 }

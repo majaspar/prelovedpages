@@ -67,7 +67,7 @@ nav {
 .Footer {
     min-height: 4rem;
     width: 100%;
-    box-shadow: 4px -4px 3px 0px rgba(var(--clr-black-rgb), 0.1);
+    box-shadow: 4px -4px 6px 3px rgba(var(--clr-black-rgb), 0.1);
 }
 
 .Footer__wrapper {

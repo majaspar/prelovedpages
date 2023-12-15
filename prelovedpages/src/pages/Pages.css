@@ -5,3 +5,21 @@
 .AuthorPage__book-cover--img {
     height: 150px;
 }
+.AuthorPage__writtenBooks--li {
+border: 1px solid red;
+}
+.AuthorPage__writtenBooks--li:hover {
+border: 1px solid red;
+}
+
+/***********************************/
+/***        BookModelPage        ***/
+/***********************************/
+
+.BookModelPage {
+    gap: 2rem;
+}
+
+.BookModelPage img {
+height: 350px;
+}

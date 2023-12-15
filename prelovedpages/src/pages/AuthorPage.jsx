@@ -5,6 +5,8 @@ import { Link, useParams } from "react-router-dom"
 import SectionTitle from '../components/SectionTitle'
 import NewBook from '../admin/NewBook'
 import Loading from '../components/Loading'
+import Tooltip from '@mui/material/Tooltip';
+import Zoom from '@mui/material/Zoom';
 
 export default function AuthorPage() {
     const { id } = useParams()
@@ -37,21 +39,20 @@ export default function AuthorPage() {
         <section className='AuthorPage margins mt2'>
             <h4 className='mt1 mb1'>Books available by this author:</h4>
 
-            
-             {author.writtenBooks ? (
-                    <ul>
-                        {author.writtenBooks.map((book) => (
-                            <li key={book._id}>
-                                <img src={book.cover} alt="" className="AuthorPage__book-cover--img"/>
-                                &rarr; {book.title}
-                            
-                            
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <Loading />
-                )}
+
+            {author.writtenBooks ? (
+                <ul className='AuthorPage__writtenBooks--ul flex'>
+                    {author.writtenBooks.map((book) => (
+                        <li className='AuthorPage__writtenBooks--li' key={book._id}>
+                            <Tooltip TransitionComponent={Zoom} title={book.title} followCursor={true}>
+                                <Link to={`/books/${book._id}`}><img src={book.cover} alt={`${book.title} cover`} className="AuthorPage__book-cover--img" /></Link>
+                            </Tooltip>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <Loading />
+            )}
 
             <button onClick={showNewBookForm} className="mt4 mb2 btn">Add new book</button>
             <div className={`new-book-form ${checkState}`}>
@@ -87,15 +88,15 @@ export default function AuthorPage() {
 //             <section className='AuthorPage margins mt2'>
 //                 <h4 className='mt1 mb1'>Books available by this author:</h4>
 
-                // {author.writtenBooks ? (
-                //     <ul>
-                //         {author.writtenBooks.map((book) => (
-                //             <li key={book._id}>&rarr; {book.title}</li>
-                //         ))}
-                //     </ul>
-                // ) : (
-                //     <p>Loading...</p>
-                // )}
+// {author.writtenBooks ? (
+//     <ul>
+//         {author.writtenBooks.map((book) => (
+//             <li key={book._id}>&rarr; {book.title}</li>
+//         ))}
+//     </ul>
+// ) : (
+//     <p>Loading...</p>
+// )}
 //             </section>
 //         </>
 //     );

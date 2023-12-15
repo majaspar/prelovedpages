@@ -39,11 +39,10 @@ export default function NewBook({ authorid }) {
     }
   };
 
-  const baseURL = '/api/books'
   //add book model form submit
   function postBookData() {
     axios
-      .post(`${baseURL}/${authorid}/addbook`, {
+      .post(`/api/books/${authorid}/addbook`, {
         title, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre
       })
       .then((response) => {
@@ -56,9 +55,9 @@ export default function NewBook({ authorid }) {
 
   return (<section className='admin margins mt2'>
 
-    <h2>Create a Book Model</h2>
+    <h2 className='mb2'>Create a Book Model</h2>
 
-    <div className='mt2 form'>
+    <div className='form'>
 
       <p><label className='mr1' htmlFor="title">Title: </label>
         <input
