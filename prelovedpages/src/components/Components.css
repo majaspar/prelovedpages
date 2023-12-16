@@ -288,18 +288,19 @@ article.LatestBook:last-of-type {
 
 .Categories__wrapper {
     padding-block: 1rem;
-    display: grid;
+    display: flex;
     width: 100%;
     gap: 1rem;
-    grid-auto-flow: column;
+   grid-auto-flow: column;
     overflow-x: scroll;
-    /* Hide scrollbar for I IE and Edge*/
+     /*Hide scrollbar for I IE and Edge
     -ms-overflow-style: none;
-    /* Hide scrollbar for Firefox*/
-    scrollbar-width: none;
+    Hide scrollbar for Firefox
+    scrollbar-width: none; */
 }
 
 .Category {
+    height: 5rem;
     display: grid;
     place-items: center;
     padding: 1rem 1.5rem;
@@ -307,6 +308,5 @@ article.LatestBook:last-of-type {
     background-color: var(--clr-pink-pastel);
     box-shadow: var(--shadow-light);
     color: var(--clr-white);
-    height: 5rem;
 
 }
