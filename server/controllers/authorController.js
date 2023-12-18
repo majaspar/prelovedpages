@@ -5,7 +5,6 @@ const asyncHandler = require('express-async-handler')
 
 // Pages
 
-
 // /api/authors/
 const allAuthors = asyncHandler(async (req, res) => {
    const authors = await Author.find({}).sort({ createdAt: -1 })

@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const AvailableCopySchema = new Schema ({
     bookModel: { type: Schema.Types.ObjectId, ref: 'Book' },
-    photo: { type: String },
+    author: { type: Schema.Types.ObjectId, ref: 'Author' },
+    photo: [{ type: String }],
     publishingHouse:  { type: String },
     thisCopyDescription: { type: String },
     isAvailable: { type: Boolean },

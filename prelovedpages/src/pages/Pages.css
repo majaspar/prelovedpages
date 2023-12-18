@@ -23,3 +23,23 @@ border: 1px solid red;
 .BookModelPage img {
 height: 350px;
 }
+
+
+/***********************************/
+/***     AvailableCopies         ***/
+/***********************************/
+
+.AvailableCopies__wrapper {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.AvailableCopies__wrapper img {
+    height: 200px;
+    border: 1px solid transparent;
+}
+
+.AvailableCopies__wrapper img:hover {
+    border: 1px solid var(--clr-purple-dark);
+
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom"
 import axios from 'axios'
 import Loading from '../components/Loading';
+import cover from '../assets/cover2.jpg'
 
 //import { useNavigate } from "react-router";
 
@@ -24,7 +25,7 @@ export default function BookModelPage() {
     }, [id]); // Include id as a dependency
 
     console.log(book.author)
-    return (
+    return (<>
         <section className='BookModelPage flex mt2 margins'>
 
             <div className=''><img src={book.cover} alt="" /></div>
@@ -34,9 +35,9 @@ export default function BookModelPage() {
                 <div className=''>
                     <h2 className=''>{book.title}</h2>
                     <Link to={`/allauthors/${book.author._id}`}><h4>{book.author.firstName} {book.author.lastName}</h4></Link>
-                    <hr/>
+                    <hr />
                     <p className='mb1'>Publication date: {book.publishedYear}</p>
-                    
+
                     <p className='mb1'>{book.isPartOfSeries ? <span>{book.series}, book {book.volume}</span> : 'A standalone novel'}</p>
                     <p className='mb1'>Genre: {book.genre.join(', ')}</p>
                     <p className='mb1'>{book.synopsis}</p>
@@ -47,7 +48,34 @@ export default function BookModelPage() {
                 <Loading />
             )}
 
-
         </section>
+        <hr className='margins mt2 mb2'/>
+        <section className="margins">
+            <h2 className='mb2'>Available Copies</h2>
+                <ul className="AvailableCopies__wrapper">
+                   
+                        <li>
+                            <Link><img src={cover} alt="" /></Link>
+                        </li>
+                    
+                        <li>
+                            <img src={cover} alt="" />
+                        </li>
+                    
+                        <li>
+                            <img src={cover} alt="" />
+                        </li>
+                    
+                        <li>
+                            <img src={cover} alt="" />
+                        </li>
+                    
+                        <li>
+                            <img src={cover} alt="" />
+                        </li>
+                    
+                </ul>
+        </section>
+        </>
     )
 }
