@@ -11,40 +11,51 @@ const asyncHandler = require('express-async-handler')
 
 // /api/copies/
 const getCopies = asyncHandler(async (req, res) => {
-    const allCopies = await AvailableCopy.find({}).sort({ createdAt: -1 })
-    res.json(allCopies)
+  const allCopies = await AvailableCopy.find({}).sort({ createdAt: -1 })
+  res.json(allCopies)
 })
 
-// /api/copies/:id/
+// /api/copies/:copyid/
 const oneCopy = asyncHandler(async (req, res) => {
-    const copy = await AvailableCopy.findById(req.params.id)
-        .populate('bookModel')
-        .populate('author')
-        .exec()
-    res.json(copy)
+  const copy = await AvailableCopy.findById(req.params.copyid)
+    .populate('bookModel')
+    .populate('author')
+    .exec()
+  res.json(copy)
 })
 
 // /api/copies/add/
 const addCopy = async (req, res) => {
 
-    //const theBookModel = await Book.findById(req.params.id)
-    //.populate().exec()
-
-    // const author = req.body;
-    // const theAuthor = await Author.find({ _id: author })
-    // .populate().exec()
   try {
-     const { bookModel, author, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN} = req.body;
+    const { bookModelId, authorId, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN } = req.body;
+
+    const theAuthor = await Author.findOne({ _id: authorId })
+      .populate().exec()
+
+    const theBookModel = await Book.findOne({ _id: bookModelId })
+      .populate().exec()
 
     const newAvailableCopy = new AvailableCopy({
-        bookModel, author, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
+      bookModel: bookModelId, author: authorId, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
     })
     await newAvailableCopy.save()
     console.log('Available Copy added successfully!')
-    
+
+    theAuthor.availableCopies.push(newAvailableCopy);
+    await theAuthor.save()
+
+    console.log('The Author saved successfully!')
+    theBookModel.availableCopies.push(newAvailableCopy);
+    await theBookModel.save()
+    console.log('The Book Model saved successfully!')
+
+
+
+
   } catch (error) {
     console.log(error)
-  } 
+  }
 
 }
 

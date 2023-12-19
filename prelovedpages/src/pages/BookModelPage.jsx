@@ -9,7 +9,6 @@ import cover from '../../../copies/seagate.png'
 export default function BookModelPage() {
 
     const { id } = useParams()
-
     const [book, setBook] = useState({});
 
     useEffect(() => {
@@ -24,7 +23,6 @@ export default function BookModelPage() {
         getData();
     }, [id]); // Include id as a dependency
 
-    console.log(book.author)
     return (<>
         <section className='BookModelPage flex mt2 margins'>
 

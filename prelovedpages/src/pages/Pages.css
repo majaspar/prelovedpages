@@ -45,3 +45,17 @@ height: 350px;
     border: 1px solid var(--clr-purple-dark);
 
 }
+
+/***********************************/
+/***        AvailableCopyPage        ***/
+/***********************************/
+
+.AvailableCopyPage {
+}
+.AvailableCopyPage_wrapper {
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.AvailableCopyPage img {
+height: 350px;
+}

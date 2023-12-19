@@ -2,6 +2,7 @@ import React from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import SectionTitle from '../components/SectionTitle'
 import Loading from '../components/Loading'
+import Error from '../components/Error'
 import axios from 'axios'
 
 export default function BookModelsList() {
@@ -21,7 +22,7 @@ export default function BookModelsList() {
     // })
 
   if (isError) {
-    return <div className='mt2 margins'><Error message="error"/></div>
+    return <div className='mt2 margins'><Error message={isError.message}/></div>
   }
 
   if (isLoading) {

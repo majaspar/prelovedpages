@@ -28,7 +28,7 @@ export default function AuthorsList() {
                     columns={[{ field: '_id', headerName: 'ID', width: 230 },
                     { field: 'firstName', headerName: 'First name', editable: true, width: 150 },
                     { field: 'lastName', headerName: 'Last name', editable: true, width: 150 },
-                    { field: 'originalLanguage', headerName: 'Language', editable: true, width: 100 },
+                    
                     { field: 'country', headerName: 'Country', editable: true, width: 100 },
                     { field: 'availableCopies', headerName: 'Copies', width: 150 }]}
                     initialState={{

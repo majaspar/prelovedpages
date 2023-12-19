@@ -1,6 +1,7 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 {/* Components */ }
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -15,6 +16,7 @@ import BookModelsList from './admin/BookModelsList';
 import AvailableCopiesList from './admin/AvailableCopiesList';
 import Styles from './admin/Styles';
 {/* Pages */ }
+import AvailableCopyPage from './pages/AvailableCopyPage';
 import BookModelPage from './pages/BookModelPage';
 import FourOhFour from './pages/FourOhFour';
 import HomePage from './pages/HomePage';
@@ -38,6 +40,7 @@ function App() {
           {/* Pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:id" element={<BookModelPage />} />
+          <Route path="/copies/:copyid" element={<AvailableCopyPage />} />
           <Route path="/allauthors/:id" element={<AuthorPage />} />
           <Route path="/allauthors" element={<AllAuthors />} />
           <Route path="/allbooks" element={<AllAvailableBooks />} />
