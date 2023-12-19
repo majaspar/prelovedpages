@@ -6,15 +6,15 @@ import PopularAuthors from '../components/PopularAuthors'
 
 export default function HomePage() {
   return (<>
-   
-      <Hero />
-      <SectionTitle title="Latest books" link="/latest" btn="Browse"/>
-      <LatestBooks/>
-      <SectionTitle title="Popular categories" link="/categories" btn="Explore"/>
-      <CategoriesGrid/>
-      <SectionTitle title="Popular authors" link="/book" btn="See All"/>
-      <PopularAuthors/>
-   
+
+    <Hero />
+    <SectionTitle title="Latest books" link="/latest" btn="Browse" />
+    <LatestBooks />
+    <SectionTitle title="Popular categories" link="/genre" btn="Explore" />
+    <CategoriesGrid />
+    <SectionTitle title="Popular authors" link="/allauthors" btn="See All" />
+    <PopularAuthors />
+
   </>
   )
 }

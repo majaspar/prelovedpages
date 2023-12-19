@@ -7,7 +7,7 @@ const asyncHandler = require('express-async-handler')
 
 // /api/authors/
 const allAuthors = asyncHandler(async (req, res) => {
-   const authors = await Author.find({}).sort({ createdAt: -1 })
+   const authors = await Author.find({}).sort({ lastName: 1 })
    res.json(authors)
 })
 

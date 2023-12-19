@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom"
 import axios from 'axios'
 import Loading from '../components/Loading';
-import cover from '../assets/cover2.jpg'
+import cover from '../../../copies/seagate.png'
 
 //import { useNavigate } from "react-router";
 
@@ -55,7 +55,7 @@ export default function BookModelPage() {
                 <ul className="AvailableCopies__wrapper">
                    
                         <li>
-                            <Link><img src={cover} alt="" /></Link>
+                            <Link to="/availableCopyId"><img src={cover} alt="" /></Link>
                         </li>
                     
                         <li>

@@ -8,7 +8,7 @@ const AvailableCopySchema = new Schema ({
     publishingHouse:  { type: String },
     thisCopyDescription: { type: String },
     isAvailable: { type: Boolean },
-    price: { type: Number.toFixed(2) },
+    price: { type: Number },
     ISBN: { type: Number },
 }, {
     timestamps: true,

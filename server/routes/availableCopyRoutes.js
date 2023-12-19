@@ -7,6 +7,6 @@ const { addCopy, getCopies, oneCopy } = require('../controllers/availableCopyCon
 router.route('/').get(getCopies);
 router.route('/:id').get(oneCopy);
 
-router.route('/add').get(addCopy);
+router.route('/add').post(addCopy);
 
 module.exports = router;

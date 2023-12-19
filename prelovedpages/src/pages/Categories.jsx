@@ -1,6 +1,6 @@
 
 export default function Categories() {
   return (
-    <div>Categories</div>
+    <div>Page where you browse all books by genre</div>
   )
 }

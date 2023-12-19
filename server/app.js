@@ -10,6 +10,7 @@ const connectMongoDB = require('./config/db')   // require DB connection
 const userRoutes = require('./routes/userRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const authorRoutes = require('./routes/authorRoutes');
+const availableCopyRoutes = require('./routes/availableCopyRoutes');
 
 
 connectMongoDB();       //connect DB
@@ -22,6 +23,7 @@ app.use(cors());
 //creating api
 app.use('/api/authors', authorRoutes)
 app.use('/api/books', bookRoutes)
+app.use('/api/copies', availableCopyRoutes)
 
 const port = process.env.PORT || 5000;
 

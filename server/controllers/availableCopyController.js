@@ -1,8 +1,8 @@
 const Book = require('../models/Book')
 const Author = require('../models/Author')
+const AvailableCopy = require('../models/AvailableCopy')
 
 const asyncHandler = require('express-async-handler')
-const AvailableCopy = require('../models/AvailableCopy')
 // /api/authors/
 // const allAuthors = asyncHandler(async (req, res) => {
 //     const authors = await Author.find({}).sort({ createdAt: -1 })
@@ -25,17 +25,28 @@ const oneCopy = asyncHandler(async (req, res) => {
 })
 
 // /api/copies/add/
-const addCopy = asyncHandler(async (req, res) => {
+const addCopy = async (req, res) => {
 
-    const theBookModel = await Book.findById(req.params.id)
-    .populate().exec()
+    //const theBookModel = await Book.findById(req.params.id)
+    //.populate().exec()
 
-    // const authorId = req.body;
-    // const theAuthor = await Author.find({ _id: authorId })
+    // const author = req.body;
+    // const theAuthor = await Author.find({ _id: author })
     // .populate().exec()
-    const { photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN} = req.body;
+  try {
+     const { bookModel, author, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN} = req.body;
 
-})
+    const newAvailableCopy = new AvailableCopy({
+        bookModel, author, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
+    })
+    await newAvailableCopy.save()
+    console.log('Available Copy added successfully!')
+    
+  } catch (error) {
+    console.log(error)
+  } 
+
+}
 
 
 module.exports = { addCopy, oneCopy, getCopies }

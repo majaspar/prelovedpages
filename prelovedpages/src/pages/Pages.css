@@ -31,8 +31,10 @@ height: 350px;
 
 .AvailableCopies__wrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.7rem;
 }
+.AvailableCopies__wrapper li {}
 
 .AvailableCopies__wrapper img {
     height: 200px;

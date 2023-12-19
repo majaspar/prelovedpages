@@ -14,6 +14,7 @@ export default function Footer() {
             <li><Link to="/stylespage">Selcetor Styles</Link></li>
             <li><Link to="/categories">Categories</Link></li>
             <li><Link to="/allauthors">List of Authors</Link></li>
+            <li><Link to="/allbooks">List of Books</Link></li>
           </ul>
         </div>
         <div>
@@ -21,7 +22,6 @@ export default function Footer() {
           <div className='Footer__hr' style={{ backgroundColor: colors.yellow }} />
           <ul>
             <li><Link to="/admin">Dashboard</Link></li>
-            <li><Link to="/newbook">New Book</Link></li>
             <li><Link to="/newauthor">New Author</Link></li>
           </ul>
         </div>
