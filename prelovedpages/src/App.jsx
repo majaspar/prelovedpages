@@ -1,9 +1,10 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
-  {/* Components */}
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+{/* Components */ }
 import Navbar from './Navbar';
 import Footer from './Footer';
-  {/* Admin */}
+{/* Admin */ }
 import AdminDashboard from './admin/AdminDashboard';
 import NewBook from './admin/NewBook'
 import NewAuthor from './admin/NewAuthor'
@@ -13,7 +14,7 @@ import UsersList from './admin/UsersList';
 import BookModelsList from './admin/BookModelsList';
 import AvailableCopiesList from './admin/AvailableCopiesList';
 import Styles from './admin/Styles';
-  {/* Pages */}
+{/* Pages */ }
 import BookModelPage from './pages/BookModelPage';
 import FourOhFour from './pages/FourOhFour';
 import HomePage from './pages/HomePage';
@@ -23,11 +24,12 @@ import AllAvailableBooks from './pages/AllAvailableBooks';
 import Categories from './pages/Categories';
 
 
-
 function App() {
 
+  const queryClient = new QueryClient();
+
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
 
       <Navbar />
       <main className='mt4 mb2'>
@@ -44,7 +46,7 @@ function App() {
           <Route path="*" element={<FourOhFour />} />
 
           {/* Admin */}
-          
+
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/authorslist" element={<AuthorsList />} />
           <Route path="/admin/userslist" element={<UsersList />} />
@@ -59,7 +61,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </QueryClientProvider>
   )
 }
 

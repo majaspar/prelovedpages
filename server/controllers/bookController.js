@@ -3,17 +3,18 @@ const Author = require('../models/Author');
 const asyncHandler = require('express-async-handler');
 
 const getBook = asyncHandler(async (req, res) => {
-  const book = await Book.findById(req.params.id)
+  const bookModel = await Book.findById(req.params.id)
     .populate('author')
     .exec();
-  res.json(book)
+  res.json(bookModel)
 })
 
 
 const getBooks = asyncHandler(async (req, res) => {
-  const books = await Book.find().sort({ createdAt: -1 })
-  res.json(books)
+  const bookModels = await Book.find().sort({ createdAt: -1 })
+  res.json(bookModels)
 })
+
 
 
 const addBook = async (req, res) => {

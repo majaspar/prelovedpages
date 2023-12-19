@@ -8,7 +8,7 @@ const AuthorSchema = new Schema({
     country: { type: String, required: false },
     isAlive: { type: Boolean, default: true },
     writtenBooks: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
-    //booksAvailable: [{ type: Schema.Types.ObjectId, ref: 'AvailableCopy' }]
+    availableCopies: [{ type: Schema.Types.ObjectId, ref: 'AvailableCopy' }]
 }, {
     timestamps: true,
 })

@@ -17,18 +17,6 @@ export default function AuthorsList() {
         getAuthorsData()
     }, []);
 
-    const rows = []
-
-    const columns = [
-        { field: '_id', headerName: 'ID', width: 230 },
-        { field: 'firstName', headerName: 'First name', width: 150 },
-        { field: 'lastName', headerName: 'Last name', width: 150 },
-        { field: 'originalLanguage', headerName: 'Language', width: 100 },
-        { field: 'country', headerName: 'Country', width: 100 },
-        { field: 'availableCopies', headerName: 'Copies', width: 150 },
-    ];
-
-
     return (
         <>
             <SectionTitle title="List of Authors" link="/admin" btn="Go to Admin Dashboard" />
@@ -37,7 +25,12 @@ export default function AuthorsList() {
                 <DataGrid
                     getRowId={(row) => row._id}
                     rows={authors}
-                    columns={columns}
+                    columns={[{ field: '_id', headerName: 'ID', width: 230 },
+                    { field: 'firstName', headerName: 'First name', editable: true, width: 150 },
+                    { field: 'lastName', headerName: 'Last name', editable: true, width: 150 },
+                    { field: 'originalLanguage', headerName: 'Language', editable: true, width: 100 },
+                    { field: 'country', headerName: 'Country', editable: true, width: 100 },
+                    { field: 'availableCopies', headerName: 'Copies', width: 150 }]}
                     initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 25 },

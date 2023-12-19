@@ -1,5 +1,6 @@
 const Author = require('../models/Author')
 const Book = require('../models/Book')
+const AvailableCopy = require('../models/AvailableCopy')
 const asyncHandler = require('express-async-handler')
 
 
