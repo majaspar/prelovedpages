@@ -18,7 +18,7 @@ export default function NewAuthor() {
   function postAuthorData() {
     axios
       .post(`${baseURL}/add`, {
-        firstName, lastName, isAlive, originalLanguage
+        firstName, lastName, isAlive, originalLanguage, country
       })
       .then((response) => {
         setAuthor(response.data);

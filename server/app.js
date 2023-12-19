@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 
 //required files
 const connectMongoDB = require('./config/db')   // require DB connection
+
 const userRoutes = require('./routes/userRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const authorRoutes = require('./routes/authorRoutes');
@@ -24,6 +25,7 @@ app.use(cors());
 app.use('/api/authors', authorRoutes)
 app.use('/api/books', bookRoutes)
 app.use('/api/copies', availableCopyRoutes)
+app.use('/api/users', userRoutes)
 
 const port = process.env.PORT || 5000;
 
