@@ -42,7 +42,7 @@ export default function BookModelsList() {
           <tr>
             <th>Title</th>
             <th>Author</th>
-            <th>published</th>
+            <th>pub-lished</th>
             <th>synopsis</th>
             <th>coverLink</th>
             <th>isSeries?</th>
@@ -59,17 +59,17 @@ export default function BookModelsList() {
             return <tr key={book._id}>
               <td className='BookModelsList__td--title'>{book.title}</td>
               <td><Link to="">{book.author.firstName} {book.author.lastName}</Link></td>
-              <td>{book.publishedYear}</td>
+              <td className='center'>{book.publishedYear}</td>
               <td className='BookModelsList__td--synopsis'>{book.synopsis}</td>
               <td className='BookModelsList__td--cover'>{book.cover}</td>
-              <td>{book.isPartOfSeries ? "Yes" : "No"}</td>
+              <td className='center'>{book.isPartOfSeries ? "Yes" : "No"}</td>
               <td>{!book.series ? "-" : book.series}</td>
-              <td>{!book.volume ? "-" : book.volume}</td>
+              <td className='center'>{!book.volume ? "-" : book.volume}</td>
               <td>{book.genre.join(', ')}</td>
-              <td>{book.isAvailable ? "Yes" : "No"}</td>
-              <td>{book.isFeatured ? "Yes" : "No"}</td>
-              <td><Link to=""><EditIcon /></Link></td>
-              <td><Link to=""><DeleteIcon /></Link></td>
+              <td className='center'>{book.isAvailable ? "Yes" : "No"}</td>
+              <td className='center'>{book.isFeatured ? "Yes" : "No"}</td>
+              <td className='center'><Link to=""><EditIcon /></Link></td>
+              <td className='center'><Link to=""><DeleteIcon /></Link></td>
 
             </tr>
           })}

@@ -101,6 +101,7 @@ th {
 td {
     border: 1px solid var(--clr-grey-light);
     height: 100%;
+    padding: 0.2rem;
 }
 
 tr:hover {

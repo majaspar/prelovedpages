@@ -1,5 +1,5 @@
 import './App.css'
-import menuOpen from './assets/menu-open.svg'
+import menuOpen from './assets/hamburger.png'
 import shoppingBasket from './assets/shopping-basket.svg'
 import userIcon from './assets/user-icon.svg'
 import SearchBar from './components/SearchBar'
