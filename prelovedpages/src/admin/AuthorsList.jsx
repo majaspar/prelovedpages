@@ -36,6 +36,7 @@ export default function AuthorsList() {
                         { field: 'country', headerName: 'Country', editable: true, width: 100 },
                         { field: 'availableCopies', headerName: 'Copies', width: 150 }
                     ]}
+                    onCellEditCommit={(params) => setRowId(params.id)}
                     initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 25 },
