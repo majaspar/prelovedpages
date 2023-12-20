@@ -13,6 +13,7 @@ const getBook = asyncHandler(async (req, res) => {
 // Pages    /api/books/
 const getBooks = asyncHandler(async (req, res) => {
   const bookModels = await Book.find().sort({ createdAt: -1 })
+  .populate('author').exec()
   res.json(bookModels)
 })
 
