@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useParams } from "react-router-dom"
 import SectionTitle from '../components/SectionTitle'
-import NewBook from '../admin/NewBook'
+import NewBook from '../admin/bookModel/NewBook'
 import Loading from '../components/Loading'
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';

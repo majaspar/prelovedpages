@@ -1,4 +1,3 @@
-
 .btn:hover {
     color: var(--clr-white);
     border-color: rgba(var(--clr-grey-light-rgb), 0.3);
@@ -13,6 +12,7 @@
     max-width: 100%;
     margin-bottom: 0.5rem;
 }
+
 .admin .form input:focus,
 .admin .form textarea:focus {
     outline: 3px solid var(--clr-blue-pastel);
@@ -30,15 +30,17 @@
 /*****************************/
 /***        AuthorPage     ***/
 /*****************************/
-.AuthorPage__writtenBooks--ul{
+.AuthorPage__writtenBooks--ul {
     gap: 0.7rem;
 }
+
 /*****************************/
 /***        NewBook        ***/
 /*****************************/
 .NewBook__genre--wrapper {
     row-gap: 0.5rem;
 }
+
 .NewBook__genre {
     width: 100%;
     display: grid;
@@ -46,12 +48,15 @@
     align-items: start;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
+
 .new-book-form {
     display: none;
 }
+
 .show {
     display: block;
 }
+
 .genre__item {
     flex: 1;
     align-items: start;
@@ -66,29 +71,38 @@
 /*****************************/
 .BookModelsList__td--title {
     min-width: 150px;
-}.BookModelsList__td--synopsis{
+}
+
+.BookModelsList__td--synopsis {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     width: 200px;
 }
+
 .BookModelsList__td--cover {
     width: 100px;
     overflow: hidden;
 }
 
 table {
+    font-size: 0.8rem;
     border: 1px solid var(--clr-grey-light);
     height: 100%;
     width: 100%;
+    border-collapse: collapse;
 }
+
 th {
     background-color: var(--clr-green-pastel);
 }
+
 td {
-    border-top: 1px solid black;
+    border: 1px solid var(--clr-grey-light);
+    height: 100%;
 }
+
 tr:hover {
     background-color: rgba(var(--clr-black-rgb), 0.1);
     height: 100%;

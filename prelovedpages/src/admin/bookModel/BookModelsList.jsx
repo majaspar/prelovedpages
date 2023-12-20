@@ -1,10 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import SectionTitle from '../components/SectionTitle'
-import Loading from '../components/Loading'
-import Error from '../components/Error'
 import axios from 'axios'
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit'
+
+import SectionTitle from '../../components/SectionTitle'
+import Loading from '../../components/Loading'
+import Error from '../../components/Error'
 
 export default function BookModelsList() {
 
@@ -64,8 +68,8 @@ export default function BookModelsList() {
               <td>{book.genre.join(', ')}</td>
               <td>{book.isAvailable ? "Yes" : "No"}</td>
               <td>{book.isFeatured ? "Yes" : "No"}</td>
-              <td><Link to="">Edit icon</Link></td>
-              <td><Link to="">Delete</Link></td>
+              <td><Link to=""><EditIcon /></Link></td>
+              <td><Link to=""><DeleteIcon /></Link></td>
 
             </tr>
           })}

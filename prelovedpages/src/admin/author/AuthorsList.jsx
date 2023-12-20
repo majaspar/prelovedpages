@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SectionTitle from '../components/SectionTitle'
+import SectionTitle from '../../components/SectionTitle'
 import axios from 'axios'
 
 import { DataGrid } from '@mui/x-data-grid';
@@ -31,7 +31,7 @@ export default function AuthorsList() {
                         { field: '_id', headerName: 'ID', width: 230 },
                         { field: 'firstName', headerName: 'First name', editable: true, width: 150 },
                         { field: 'lastName', headerName: 'Last name', editable: true, width: 150 },
-                        { field: 'actions', headerName: 'Actions', type: 'actions', renderCell: (params) => <AuthorActions {...{params, rowId, setRowId}} /> },
+                        { field: 'actions', headerName: 'Actions', type: 'actions', renderCell: (params) => <AuthorActions {...{ params, rowId, setRowId }} /> },
 
                         { field: 'country', headerName: 'Country', editable: true, width: 100 },
                         { field: 'availableCopies', headerName: 'Copies', width: 150 }
