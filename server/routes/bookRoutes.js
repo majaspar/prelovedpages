@@ -1,13 +1,15 @@
 const router = require('express').Router();
 
-const { addBook, getBooks, getBook } = require('../controllers/bookController')
+const { addBook, updateBook, deleteBook, getBooks, getBook } = require('../controllers/bookController')
 
 
 // Pages    /api/books
 router.route('/').get(getBooks);
 router.route('/:id').get(getBook);
 
-// Pages    /api/books
+// CRUD    /api/books
 router.route('/:id/addbook').post(addBook);
+router.route('/:id/delete').delete(deleteBook);
+router.route('/:id/update').put(updateBook);
 
 module.exports = router;

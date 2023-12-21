@@ -49,7 +49,6 @@
     --shadow-small: 2px 2px 1px 0px rgba(var(--clr-grey-light-rgb), 0.3);
 
 }
-
 /**************************/
 /***         RESET      ***/
 /**************************/
@@ -138,6 +137,15 @@ html {
 /**************************/
 /***   UTILITY CLASSES  ***/
 /**************************/
+
+
+.danger {
+    border-color: rgb(177, 60, 60);
+    color: rgb(177, 60, 60);
+}
+.danger:hover {
+    
+}
 .show {
     display: block;
 }

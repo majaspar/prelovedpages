@@ -43,4 +43,23 @@ const addBook = async (req, res) => {
   }
 }
 
-module.exports = { addBook, getBooks, getBook }
+//delete /api/books/:id/
+const deleteBook = async (req, res) => {
+  
+  try {
+    console.log('Book deleted successfully.')
+    res.status(201)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const updateBook = async (res, req) => {
+  try {    
+    const book = await Book.findByIdAndUpdate(req.params.id)
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+module.exports = { addBook, getBooks, getBook, deleteBook, updateBook }

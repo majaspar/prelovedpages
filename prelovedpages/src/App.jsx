@@ -6,8 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Navbar from './Navbar';
 import Footer from './Footer';
 {/* Admin */ }
-import AdminDashboard from './admin/AdminDashboard';
-import NewBook from './admin/bookModel/NewBook'
+import AdminDashboard from './admin/AdminDashboard'
 import NewAuthor from './admin/author/NewAuthor'
 import NewAvailableCopy from './admin/availableCopy/NewAvailableCopy'
 import AuthorsList from './admin/author/AuthorsList';
@@ -56,7 +55,7 @@ function App() {
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
 
-          <Route path="/newbook" element={<NewBook />} />
+{/*        <Route path="/newbook" element={<NewBook />} /> */}
           <Route path="/newauthor" element={<NewAuthor />} />
           <Route path="/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/stylespage" element={<Styles />} />
