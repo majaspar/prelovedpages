@@ -13,7 +13,7 @@ const getBook = asyncHandler(async (req, res) => {
 // Pages    /api/books/
 const getBooks = asyncHandler(async (req, res) => {
   const bookModels = await Book.find().sort({ createdAt: -1 })
-  .populate('author').exec()
+    .populate('author').exec()
   res.json(bookModels)
 })
 
@@ -43,10 +43,11 @@ const addBook = async (req, res) => {
   }
 }
 
-//delete /api/books/:id/
+//delete /api/books/:id/delete
 const deleteBook = async (req, res) => {
-  
+
   try {
+    await Book.findByIdAndDelete(req.params.id)
     console.log('Book deleted successfully.')
     res.status(201)
   } catch (error) {
@@ -55,9 +56,10 @@ const deleteBook = async (req, res) => {
 }
 
 const updateBook = async (res, req) => {
-  try {    
-    const book = await Book.findByIdAndUpdate(req.params.id)
-    
+  try {
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id)
+    res.json(updatedBook)
+    console.log('Book updated successfully.')
   } catch (error) {
     console.log(error)
   }

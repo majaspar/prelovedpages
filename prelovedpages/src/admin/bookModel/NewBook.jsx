@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import '../Admin.css'
 import { useNavigate } from "react-router";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+
+import '../Admin.css'
 import axios from 'axios'
 
 export default function NewBook({ authorid }) {
 
   const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState(authorid);
   const [publishedYear, setPublishedYear] = useState();
   const [synopsis, setSynopsis] = useState('');
   const [cover, setCover] = useState('');
@@ -15,13 +18,20 @@ export default function NewBook({ authorid }) {
   const [volume, setVolume] = useState(null);
   const [genre, setGenre] = useState([])
 
-  // const [genreObj, setGenreObj] = useState([{
-  //   romance: false, thriller: false, fiction: false, fantasy: false, sciencefiction: false, horror: false, foreign: false, mystery: false, contemporary: false, youngadult: false, historicalfiction: false, childrens: false, nonfiction: false
-  // }]);
-
-
   const navigate = useNavigate();
 
+  const queryClient = useQueryClient()
+  // function postBookData() {
+  //   axios
+  //     .post(`/api/books/${authorid}/addbook`, {
+  //       title, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre
+  //     })
+  //     .then((response) => {
+  //       setAuthor(response.data);
+  //     })
+  //     .catch(error => console.log(error));
+
+  // }
   // Genre Checkboxes
   const handleGenreChange = (e) => {
     const value = e.target.value;
@@ -35,18 +45,33 @@ export default function NewBook({ authorid }) {
     }
   };
 
-  //add book model form submit
-  function postBookData() {
-    axios
-      .post(`/api/books/${authorid}/addbook`, {
-        title, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre
-      })
-      .then((response) => {
-        setAuthor(response.data);
-      })
-      .catch(error => console.log(error));
+  //fetch
+  const mutation = useMutation({
+    mutationFn: (newBookModel) => {
+      return axios.post(`/api/books/${authorid}/addbook`, newBookModel)
+      .then(navigate('/admin/bookmodelslist'))
+      .then(console.log('Book added successfully :)'))
+    },
+    // onSuccess: () => {
+    //   queryClient.invalidateQueries(['bookModels'])
+    // }
+  })
 
-    navigate(`/allauthors`)
+  //add book model form submit
+  const submitNewBookModel = () => {
+    mutation.mutate({ title, author, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre })
+
+  }
+  if (mutation.isLoading) {
+    return <span>Submitting...</span>;
+  }
+
+  if (mutation.isError) {
+    return <span>Error: {mutation.error.message}</span>;
+  }
+
+  if (mutation.isSuccess) {
+    return <span>Post submitted!</span>;
   }
 
   return (<section className='admin margins mt2'>
@@ -60,6 +85,7 @@ export default function NewBook({ authorid }) {
           required
           type="text" id="title" placeholder="Enter title"
           onChange={(e) => setTitle(e.target.value)} /></p>
+
 
       <p><label className='mr1' htmlFor="publishedYear">Year: </label>
         <input
@@ -171,7 +197,7 @@ export default function NewBook({ authorid }) {
             <label className='mr2' htmlFor="nonfiction">Non-Fiction</label></div>
         </div>
       </div>
-      <button onClick={postBookData} type='submit' className='btn mt3'>Add Book Model</button>
+      <button onClick={submitNewBookModel} type='submit' className='btn mt3'>Add Book Model</button>
     </div>
     {/* End of form */}
   </section>

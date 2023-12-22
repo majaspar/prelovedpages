@@ -1,17 +1,20 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 {/* Components */ }
 import Navbar from './Navbar';
 import Footer from './Footer';
 {/* Admin */ }
 import AdminDashboard from './admin/AdminDashboard'
+import NewBook from './admin/BookModel/NewBook';
 import NewAuthor from './admin/author/NewAuthor'
 import NewAvailableCopy from './admin/availableCopy/NewAvailableCopy'
 import AuthorsList from './admin/author/AuthorsList';
 import UsersList from './admin/user/UsersList';
 import BookModelsList from './admin/bookModel/BookModelsList';
+import UpdateBookModel from './admin/bookModel/UpdateBookModel';
 import AvailableCopiesList from './admin/availableCopy/AvailableCopiesList';
 import Styles from './admin/Styles';
 {/* Pages */ }
@@ -50,18 +53,24 @@ function App() {
           {/* Admin */}
 
           <Route path="/admin" element={<AdminDashboard />} />
+
+          {/* Author */}
           <Route path="/admin/authorslist" element={<AuthorsList />} />
+          <Route path="/admin/newauthor" element={<NewAuthor />} />
           <Route path="/admin/userslist" element={<UsersList />} />
+           {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
+          <Route path="/admin/newbook" element={<NewBook />} />
+          <Route path="/admin/bookmodel/:id/edit" element={<UpdateBookModel />} />
+           {/* Available Copy */}
+          <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
 
-{/*        <Route path="/newbook" element={<NewBook />} /> */}
-          <Route path="/newauthor" element={<NewAuthor />} />
-          <Route path="/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/stylespage" element={<Styles />} />
 
         </Routes>
       </main>
+      <ReactQueryDevtools />
       <Footer />
     </QueryClientProvider>
   )

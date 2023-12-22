@@ -19,7 +19,8 @@ export default function DeleteModal({id}) {
         axios.delete(`/api/books/${id}/delete`)
             .then((res) => console.log(res))
             .catch((error) => console.error("Error deleting book data:", error))
-            navigate('/admin/bookmodelslist')
+            handleClose()
+            
     }
 
     return (<>

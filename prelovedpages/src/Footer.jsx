@@ -22,7 +22,7 @@ export default function Footer() {
           <div className='Footer__hr' style={{ backgroundColor: colors.yellow }} />
           <ul>
             <li><Link to="/admin">Dashboard</Link></li>
-            <li><Link to="/newauthor">New Author</Link></li>
+            <li><Link to="/admin/newauthor">New Author</Link></li>
           </ul>
         </div>
         <div>
