@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NewAvailableCopy({ authorId, bookModelId }) {
+export default function NewAvailableCopy({ authorid, bookModelId }) {
   return (
     <div>
       NewAvailableCopy

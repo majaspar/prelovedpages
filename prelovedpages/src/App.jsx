@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 {/* Components */ }
 import Navbar from './Navbar';
 import Footer from './Footer';
+
 {/* Admin */ }
 import AdminDashboard from './admin/AdminDashboard'
 import NewBook from './admin/BookModel/NewBook';
@@ -13,10 +14,11 @@ import NewAuthor from './admin/author/NewAuthor'
 import NewAvailableCopy from './admin/availableCopy/NewAvailableCopy'
 import AuthorsList from './admin/author/AuthorsList';
 import UsersList from './admin/user/UsersList';
-import BookModelsList from './admin/bookModel/BookModelsList';
+import BookModelsList from './admin/BookModel/BookModelsList';
 import UpdateBookModel from './admin/bookModel/UpdateBookModel';
 import AvailableCopiesList from './admin/availableCopy/AvailableCopiesList';
 import Styles from './admin/Styles';
+
 {/* Pages */ }
 import AvailableCopyPage from './pages/AvailableCopyPage';
 import BookModelPage from './pages/BookModelPage';
@@ -43,8 +45,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:id" element={<BookModelPage />} />
           <Route path="/copies/:copyid" element={<AvailableCopyPage />} />
-          <Route path="/allauthors/:id" element={<AuthorPage />} />
-          <Route path="/allauthors" element={<AllAuthors />} />
+          <Route path="/authors/:id" element={<AuthorPage />} />
+          <Route path="/authors" element={<AllAuthors />} />
           <Route path="/allbooks" element={<AllAvailableBooks />} />
           <Route path="/genre" element={<Categories />} />
 
@@ -61,7 +63,7 @@ function App() {
            {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
           <Route path="/admin/newbook" element={<NewBook />} />
-          <Route path="/admin/bookmodel/:id/edit" element={<UpdateBookModel />} />
+          <Route path="/books/:id/update" element={<UpdateBookModel />} />
            {/* Available Copy */}
           <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />

@@ -28,16 +28,16 @@ const oneCopy = asyncHandler(async (req, res) => {
 const addCopy = async (req, res) => {
 
   try {
-    const { bookModelId, authorId, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN } = req.body;
+    const { bookModelId, authorid, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN } = req.body;
 
-    const theAuthor = await Author.findOne({ _id: authorId })
+    const theAuthor = await Author.findOne({ _id: authorid })
       .populate().exec()
 
     const theBookModel = await Book.findOne({ _id: bookModelId })
       .populate().exec()
 
     const newAvailableCopy = new AvailableCopy({
-      bookModel: bookModelId, author: authorId, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
+      bookModel: bookModelId, author: authorid, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
     })
     await newAvailableCopy.save()
     console.log('Available Copy added successfully!')

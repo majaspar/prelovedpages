@@ -57,8 +57,22 @@ const deleteBook = async (req, res) => {
 
 const updateBook = async (res, req) => {
   try {
-    const updatedBook = await Book.findByIdAndUpdate(req.params.id)
-    res.json(updatedBook)
+    const updatedBook = await Book.findOneAndUpdate({_id: req.params.id})
+const { title, author, publishedYear, cover, isFeatured, isPartOfSeries, synopsis, series, volume, genre} = req.body
+    
+    updatedBook.title = title
+    updatedBook.author = author
+    updatedBook.publishedYear = publishedYear
+    updatedBook.cover = cover
+    updatedBook.isFeatured = isFeatured
+    updatedBook.isPartOfSeries = isPartOfSeries
+    updatedBook.synopsis = synopsis
+    updatedBook.series = series
+    updatedBook.volume = volume
+    updatedBook.genre = genre
+
+  await updatedBook.save()
+    res.json(updatedBook).send('You have successfully updated this book model.')
     console.log('Book updated successfully.')
   } catch (error) {
     console.log(error)

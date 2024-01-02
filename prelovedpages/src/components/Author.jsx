@@ -4,8 +4,8 @@
 // import axios from 'axios'
 
 
-// export default function Author({authorId, firstName, lastName}) {
+// export default function Author({authorid, firstName, lastName}) {
 //   return (
-//     <Link to={`/author/${authorId}`}><li key={authorId}>{firstName} {lastName}</li></Link>
+//     <Link to={`/author/${authorid}`}><li key={authorid}>{firstName} {lastName}</li></Link>
 //   )
 // }

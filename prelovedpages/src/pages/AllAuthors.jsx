@@ -25,7 +25,7 @@ export default function AllAuthors() {
             <ul>
                 {authors.map(author => {
                     return (
-                        <li key={author._id}><Link to={`/allauthors/${author._id}`}>
+                        <li key={author._id}><Link to={`/authors/${author._id}`}>
                             {author.firstName} {author.lastName}
                         </Link></li>
                     )

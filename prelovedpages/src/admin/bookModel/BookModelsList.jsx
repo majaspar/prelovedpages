@@ -7,15 +7,14 @@ import DeleteModal from './DeleteModal'
 import SectionTitle from '../../components/SectionTitle'
 import Loading from '../../components/Loading'
 import Error from '../../components/Error'
-import {fetchBookModelsData} from '../api/fetchData'
+import { fetchBookModelsData } from '../../api/fetchData'
 
 export default function BookModelsList() {
 
   const { data: bookModels, isLoading, isError } = useQuery({
-    queryKey: ["bookModels"],
+    queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
   })
-
 
   if (isError) {
     return <div className='mt2 margins'><Error message={isError.message} /></div>
@@ -50,8 +49,8 @@ export default function BookModelsList() {
           <tbody>
             {bookModels?.map((book) => {
               return <tr key={book._id}>
-                <td className='BookModelsList__td--title'>{book.title}</td>
-                <td><Link to="">{book.author.firstName} {book.author.lastName}</Link></td>
+                <td className='BookModelsList__td--title'><Link to={`/books/${book._id}`}>{book.title}</Link></td>
+                <td><Link to={`/authors/${book.author._id}`}>{book.author.firstName} {book.author.lastName}</Link></td>
                 <td className='center'>{book.publishedYear}</td>
                 <td className='BookModelsList__td--synopsis'><p>{book.synopsis}</p></td>
                 <td className='BookModelsList__td--cover'><p>{book.cover}</p></td>
@@ -63,8 +62,7 @@ export default function BookModelsList() {
                 <td className='center'>{book.isFeatured ? "Yes" : "No"}</td>
                 <td className='center'>{book._id}</td>
                 <td className='BookModelsList__td--edit center'>
-                  <Link to={`/admin/bookmodel/${book._id}/edit`}
-                    state={{ authorId: book.author._id, bookId: book._id }}>
+                  <Link to={`/books/${book._id}/update`}>
                     <EditIcon />
                   </Link>
                 </td>

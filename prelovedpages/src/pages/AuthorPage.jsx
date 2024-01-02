@@ -34,7 +34,7 @@ export default function AuthorPage() {
 
 
     return (<>
-        <SectionTitle title={`${author.firstName} ${author.lastName}`} link="/allauthors" btn="Go Back" />
+        <SectionTitle title={`${author.firstName} ${author.lastName}`} link="/authors" btn="Go Back" />
 
         <section className='AuthorPage margins mt2'>
             <h4 className='mt1 mb1'>Books available by this author:</h4>
@@ -83,7 +83,7 @@ export default function AuthorPage() {
 
 //     return (
 //         <>
-//             <SectionTitle title={`${author.firstName} ${author.lastName}`} link="/allauthors" btn="Go Back" />
+//             <SectionTitle title={`${author.firstName} ${author.lastName}`} link="/authors" btn="Go Back" />
 
 //             <section className='AuthorPage margins mt2'>
 //                 <h4 className='mt1 mb1'>Books available by this author:</h4>

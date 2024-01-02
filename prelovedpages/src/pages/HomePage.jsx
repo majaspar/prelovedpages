@@ -10,9 +10,9 @@ export default function HomePage() {
     <Hero />
     <SectionTitle title="Latest books" link="/latest" btn="Browse" />
     <LatestBooks />
-    <SectionTitle title="Popular categories" link="/genre" btn="Explore" />
+    <SectionTitle title="Popular genre" link="/genre" btn="Explore" />
     <CategoriesGrid />
-    <SectionTitle title="Popular authors" link="/allauthors" btn="See All" />
+    <SectionTitle title="Popular authors" link="/authors" btn="See All" />
     <PopularAuthors />
 
   </>

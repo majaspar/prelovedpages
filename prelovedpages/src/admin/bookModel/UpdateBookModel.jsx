@@ -1,37 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import '../Admin.css'
 import axios from 'axios'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import Success from '../../components/Success';
 
 export default function UpdateBookModel() {
 
-  const location = useLocation()
-  const { bookId, authorId } = location.state
+  // const location = useLocation()
+  // const { id, bookTitle, authorid, bookPublishedYear, bookSynopsis, bookGenre, bookCover, bookVolume, bookIsPartOfSeries, bookSeries, bookIsFeatured} = location.state
 
-  const queryClient = useQueryClient()
+  // const queryClient = useQueryClient()
+
+  // const [bookid, setBookid] = useState(id)
+
+  // const [title, setTitle] = useState(bookTitle);
+  // const [author, setAuthor] = useState(authorid);
+  // const [publishedYear, setPublishedYear] = useState(bookPublishedYear);
+  // const [synopsis, setSynopsis] = useState(bookSynopsis);
+  // const [cover, setCover] = useState(bookCover);
+  // const [isFeatured, setIsFeatured] = useState(bookIsFeatured);
+  // const [isPartOfSeries, setIsPartOfSeries] = useState(bookIsPartOfSeries);
+  // const [series, setSeries] = useState(bookSeries);
+  // const [volume, setVolume] = useState(bookVolume);
+  // const [genre, setGenre] = useState(bookGenre)
+
+  const { id } = useParams()
 
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState(authorId);
+  const [author, setAuthor] = useState('');
   const [publishedYear, setPublishedYear] = useState();
   const [synopsis, setSynopsis] = useState('');
   const [cover, setCover] = useState('');
-  const [isFeatured, setIsFeatured] = useState(false);
-  const [isPartOfSeries, setIsPartOfSeries] = useState(false);
-  const [series, setSeries] = useState(null);
-  const [volume, setVolume] = useState(null);
+  const [isFeatured, setIsFeatured] = useState();
+  const [isPartOfSeries, setIsPartOfSeries] = useState();
+  const [series, setSeries] = useState();
+  const [volume, setVolume] = useState();
   const [genre, setGenre] = useState([])
 
-
 const fetchBookToUpdate = async () => {
-  axios.put(`/api/books/${bookId}/update`)
+  axios.put(`/api/books/${id}/update`)
 }
 
 const mutation = useMutation({
   mutationFn: fetchBookToUpdate,
-  onSuccess:() => {
-    queryClient.invalidateQueries({ queryKey: ['bookModels']})
-  }
+  // onSuccess:() => {
+  //   queryClient.invalidateQueries({ queryKey: ['bookModels']})
+  // }
 })
 
 //  const mutation = useMutation((updatedPost) => {
@@ -54,7 +69,7 @@ const mutation = useMutation({
   }
 
   if (mutation.isSuccess) {
-    return <span>Post updated!</span>;
+    return <Success message="Book Model updated successfully!"/>;
   }
 
   // Genre Checkboxes
@@ -79,7 +94,7 @@ const mutation = useMutation({
 
         <p><label className='mr1' htmlFor="title">Title: </label>
           <input
-            required
+            required value={title}
             type="text" id="title" placeholder="Enter title"
             onChange={(e) => setTitle(e.target.value)} /></p>
 

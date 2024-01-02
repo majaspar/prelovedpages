@@ -25,7 +25,7 @@ export default function NewAuthor() {
         setAuthor(response.data);
       })
       .catch(error => console.log(error));
-    navigate('/allauthors')
+    navigate('/authors')
 
   }
 

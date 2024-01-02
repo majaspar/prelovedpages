@@ -28,7 +28,7 @@ export default function AvailableCopyPage() {
         <div className='AvailableCopyPage_wrapper margins flex'>
           <div className=''><img src={copy.photo} alt="" /></div>
           <div>
-            <Link to={`/allauthors/${copy.author._id}`}><h4>{copy.author.firstName} {copy.author.lastName}</h4></Link>
+            <Link to={`/authors/${copy.author._id}`}><h4>{copy.author.firstName} {copy.author.lastName}</h4></Link>
           
             <p></p>
           </div>

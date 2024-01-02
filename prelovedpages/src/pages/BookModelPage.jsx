@@ -1,27 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom"
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Loading from '../components/Loading';
 import cover from '../../../copies/seagate.png'
+import { fetchBookModelData } from '../api/fetchData';
 
 //import { useNavigate } from "react-router";
 
 export default function BookModelPage() {
 
     const { id } = useParams()
-    const [book, setBook] = useState({});
+ 
+      const { data: book, isLoading, isError } = useQuery({
+        queryKey: ["book"],
+        queryFn: () => fetchBookModelData(id)
+      })
+    
+      if (isError) {
+        return <div className='mt2 margins'><Error message={isError.message} /></div>
+      }
+    
+      if (isLoading) {
+        return <div className='mt2 margins'><Loading /></div>
+      }
+    
 
-    useEffect(() => {
-        async function getData() {
-            try {
-                const response = await axios.get(`/api/books/${id}`);
-                setBook(response.data);
-            } catch (error) {
-                console.error("Error fetching book data:", error);
-            }
-        }
-        getData();
-    }, [id]); // Include id as a dependency
 
     return (<>
         <section className='BookModelPage flex mt2 margins'>
@@ -32,7 +36,7 @@ export default function BookModelPage() {
 
                 <div className=''>
                     <h2 className=''>{book.title}</h2>
-                    <Link to={`/allauthors/${book.author._id}`}><h4>{book.author.firstName} {book.author.lastName}</h4></Link>
+                    <Link to={`/authors/${book.author._id}`}><h4>{book.author.firstName} {book.author.lastName}</h4></Link>
                     <hr />
                     <p className='mb1'>Publication date: {book.publishedYear}</p>
 
@@ -45,8 +49,8 @@ export default function BookModelPage() {
             ) : (
                 <Loading />
             )}
-
         </section>
+        <div className='margins'><Link to={`/books/${book._id}/update`}><button className='btn mt1'>Edit Book Model</button></Link></div>
         <hr className='margins mt2 mb2'/>
         <section className="margins">
             <h2 className='mb2'>Available Copies</h2>
