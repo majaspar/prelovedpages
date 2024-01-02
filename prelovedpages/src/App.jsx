@@ -11,6 +11,7 @@ import Footer from './Footer';
 import AdminDashboard from './admin/AdminDashboard'
 import NewBook from './admin/BookModel/NewBook';
 import NewAuthor from './admin/author/NewAuthor'
+import UpdateAuthor from './admin/author/UpdateAuthor';
 import NewAvailableCopy from './admin/availableCopy/NewAvailableCopy'
 import AuthorsList from './admin/author/AuthorsList';
 import UsersList from './admin/user/UsersList';
@@ -59,14 +60,16 @@ function App() {
           {/* Author */}
           <Route path="/admin/authorslist" element={<AuthorsList />} />
           <Route path="/admin/newauthor" element={<NewAuthor />} />
-          <Route path="/admin/userslist" element={<UsersList />} />
+          <Route path="/authors/:id/update" element={<UpdateAuthor />} />
            {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
-          <Route path="/admin/newbook" element={<NewBook />} />
           <Route path="/books/:id/update" element={<UpdateBookModel />} />
+          <Route path="/authors/:authorid/addbook" element={<NewBook />} />
            {/* Available Copy */}
           <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
+           {/* Users */}
+          <Route path="/admin/userslist" element={<UsersList />} />
 
           <Route path="/stylespage" element={<Styles />} />
 

@@ -9,6 +9,7 @@ const asyncHandler = require('express-async-handler')
 // /api/authors/
 const allAuthors = asyncHandler(async (req, res) => {
    const authors = await Author.find({}).sort({ lastName: 1 })
+   .populate('writtenBooks').exec()
    res.json(authors)
 })
 

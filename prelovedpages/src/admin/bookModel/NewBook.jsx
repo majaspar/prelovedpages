@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
+import { useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import '../Admin.css'
 import axios from 'axios'
 
-export default function NewBook({ authorid }) {
+export default function NewBook() {
+
+  const { authorid } = useParams()
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState(authorid);
@@ -22,18 +25,6 @@ export default function NewBook({ authorid }) {
 
   const queryClient = useQueryClient()
   
-  // function postBookData() {
-  //   axios
-  //     .post(`/api/books/${authorid}/addbook`, {
-  //       title, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre
-  //     })
-  //     .then((response) => {
-  //       setAuthor(response.data);
-  //     })
-  //     .catch(error => console.log(error));
-
-  // }
-
   // Genre Checkboxes
   const handleGenreChange = (e) => {
     const value = e.target.value;
@@ -62,8 +53,8 @@ export default function NewBook({ authorid }) {
   //add book model form submit
   const submitNewBookModel = () => {
     mutation.mutate({ title, author, publishedYear, synopsis, cover, isFeatured, isPartOfSeries, series, volume, genre })
-
   }
+
   if (mutation.isLoading) {
     return <span>Submitting...</span>;
   }
@@ -87,6 +78,13 @@ export default function NewBook({ authorid }) {
           required
           type="text" id="title" placeholder="Enter title"
           onChange={(e) => setTitle(e.target.value)} /></p>
+
+      <p><label className='mr1' htmlFor="author">Author: </label>
+        <input
+          required id='author' value={authorid}
+          onChange={(e) => setAuthor(e.target.value)}
+          type="text"
+          /></p>
 
 
       <p><label className='mr1' htmlFor="publishedYear">Year: </label>

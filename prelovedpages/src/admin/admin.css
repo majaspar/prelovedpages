@@ -69,7 +69,12 @@
 /*****************************/
 /***     BookModelsList    ***/
 /*****************************/
-
+.td-scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 150px;
+    padding-bottom: 1rem;
+}
 .BookModelsList__td--title {
     min-width: 150px;
 }
@@ -100,13 +105,15 @@
 }
 
 table {
-    font-size: 0.8rem;
     border: 1px solid var(--clr-grey-light);
     height: 100%;
     width: 100%;
     border-collapse: collapse;
 }
+table, table td, table td p {
+    font-size: 0.8rem;
 
+}
 th {
     background-color: var(--clr-green-pastel);
 }
