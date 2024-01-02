@@ -13,7 +13,7 @@ export default function BookModelPage() {
     const { id } = useParams()
  
       const { data: book, isLoading, isError } = useQuery({
-        queryKey: ["book"],
+        queryKey: ["bookmodels", id],
         queryFn: () => fetchBookModelData(id)
       })
     

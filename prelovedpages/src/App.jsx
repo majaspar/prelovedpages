@@ -72,7 +72,7 @@ function App() {
 
         </Routes>
       </main>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
       <Footer />
     </QueryClientProvider>
   )

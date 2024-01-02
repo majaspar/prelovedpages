@@ -10,16 +10,18 @@ export default function NewAuthor() {
   const [author, setAuthor] = useState(null)
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [isAlive, setIsAlive] = useState(true);
+  const [born, setBorn] = useState(true);
   const [originalLanguage, setOriginalLanguage] = useState('');
   const [country, setCountry] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [photoSource, setPhotoSource] = useState('');
 
   const navigate = useNavigate();
 
   function postAuthorData() {
     axios
       .post(`${baseURL}/add`, {
-        firstName, lastName, isAlive, originalLanguage, country
+        firstName, lastName, originalLanguage, country, born, photo, photoSource
       })
       .then((response) => {
         setAuthor(response.data);
@@ -47,6 +49,12 @@ export default function NewAuthor() {
               type="text" id="lastName" placeholder="Enter last name"
               onChange={(e) => setLastName(e.target.value)} /></p>
 
+<p><label className='mr1' htmlFor="lastName">Born in: </label>
+            <input
+              required
+              type="number" id="lastName" placeholder="Enter date"
+              onChange={(e) => setBorn(e.target.value)} /></p>
+
 
           <p><label className='mr1' htmlFor="originalLanguage">Language: </label>
             <input
@@ -57,17 +65,18 @@ export default function NewAuthor() {
 
           <p><label className='mr1' htmlFor="country">Country: </label>
             <input
-              type="text" id="country" placeholder="Where do they live?"
+              type="text" id="country" placeholder="Where do/did they live?"
               onChange={(e) => setCountry(e.target.value)} /></p>
 
-          <p><label className='mr1' htmlFor="isAlive">Is alive? </label>
-            <select
-              required
-              name="isAlive" id="isAlive" defaultValue="Yes"
-              onChange={(e) => setIsAlive(e.target.value)}>
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </select></p>
+  <p><label className='mr1' htmlFor="photo">Photo: </label>
+            <input
+              type="text" id="photo" placeholder="Enter link"
+              onChange={(e) => setPhoto(e.target.value)} /></p>
+
+<p><label className='mr1' htmlFor="photoSource">Photo Source: </label>
+            <input
+              type="text" id="photoSource" placeholder="Enter source"
+              onChange={(e) => setPhotoSource(e.target.value)} /></p>
 
 
           <button onClick={postAuthorData} type='submit' className='btn mt1'>Add Author</button>

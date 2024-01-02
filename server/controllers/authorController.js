@@ -25,10 +25,10 @@ const oneAuthor = asyncHandler(async (req, res) => {
 
 const addAuthor = async (req, res) => {
    try {
-      const { firstName, lastName, originalLanguage, isAlive, country } = req.body;
+      const { firstName, lastName, originalLanguage, born, country, photo, photoSource } = req.body;
 
       const newAuthorModel = new Author({
-         firstName, lastName, originalLanguage, isAlive, country
+         firstName, lastName, originalLanguage, born, country, photo, photoSource
       });
 
       await newAuthorModel.save()

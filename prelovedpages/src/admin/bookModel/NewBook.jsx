@@ -21,6 +21,7 @@ export default function NewBook({ authorid }) {
   const navigate = useNavigate();
 
   const queryClient = useQueryClient()
+  
   // function postBookData() {
   //   axios
   //     .post(`/api/books/${authorid}/addbook`, {
@@ -32,6 +33,7 @@ export default function NewBook({ authorid }) {
   //     .catch(error => console.log(error));
 
   // }
+
   // Genre Checkboxes
   const handleGenreChange = (e) => {
     const value = e.target.value;

@@ -32,7 +32,7 @@ export default function Footer() {
 
       </div>
       <div className='hr mt1 margins'><hr /></div>
-      <div className='center mb1 mt1'>&copy; <Link to='https://lenaesposito.co.uk' target="_blank">Lena Esposito</Link> 2023</div>
+      <div className='center mb1 mt1'>&copy; <Link to='https://lenaesposito.co.uk' target="_blank">Lena Esposito</Link> {new Date().getFullYear()}</div>
     </footer>
   )
 }

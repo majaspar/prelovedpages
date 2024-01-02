@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import SectionTitle from '../../components/SectionTitle'
 import axios from 'axios'
-
-import { DataGrid } from '@mui/x-data-grid';
-import AuthorActions from './AuthorActions';
+import DeleteModal from '../BookModel/DeleteModal';
 
 export default function AuthorsList() {
 
@@ -18,35 +17,45 @@ export default function AuthorsList() {
         getAuthorsData()
     }, []);
 
-    const [rowId, setRowId] = useState(null)
     return (
         <>
             <SectionTitle title="List of Authors" link="/admin" btn="Go to Admin Dashboard" />
-            <section className='margins'>
+            <section className='BookModelsList table__wrapper margins'>
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Born</th>
+              <th>Country</th>
+              <th>Book Models</th>  
+              <th>Available Copies</th>        
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {authors?.map((author) => {
+              return <tr key={author._id}>
+                <td className='BookModelsList__td--title'>{author._id}</td>
+                <td><Link to={`/authors/${author._id}`}>{author.firstName}</Link></td>
+                <td><Link to={`/authors/${author._id}`}>{author.lastName}</Link></td>
+                <td className='center'>{author.born}</td>
+                <td className='center'>{author.country}</td>
+                <td><p>{author.writtenBooks.join(', ')}</p></td>
+                <td><p>{author.availableCopies}</p></td>
+                <td className='BookModelsList__td--edit center'>
+                  <Link to={`/authors/${author._id}/edit`}>Edit</Link>
+                </td>
+                <td className='BookModelsList__td--delete center'> <DeleteModal/></td>
 
-                <DataGrid
-                    getRowId={(row) => row._id}
-                    rows={authors}
-                    columns={[
-                        { field: '_id', headerName: 'ID', width: 230 },
-                        { field: 'firstName', headerName: 'First name', editable: true, width: 150 },
-                        { field: 'lastName', headerName: 'Last name', editable: true, width: 150 },
-                        { field: 'actions', headerName: 'Actions', type: 'actions', renderCell: (params) => <AuthorActions {...{ params, rowId, setRowId }} /> },
+              </tr>
+            })}
+          </tbody>
+        </table>
 
-                        { field: 'country', headerName: 'Country', editable: true, width: 100 },
-                        { field: 'availableCopies', headerName: 'Copies', width: 150 }
-                    ]}
-                    onCellEditCommit={(params) => setRowId(params.id)}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 25 },
-                        },
-                    }}
-                    pageSizeOptions={[25, 50, 100]}
-                    checkboxSelection
-                />
-
-            </section>
+      </section>
 
         </>
     )

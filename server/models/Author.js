@@ -5,8 +5,10 @@ const AuthorSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     originalLanguage: { type: String, required: false },
+    born: { type: Number, required: false },
     country: { type: String, required: false },
-    isAlive: { type: Boolean, default: true },
+    photo: { type: String, required: false },
+    photoSource: { type: String, required: false },
     writtenBooks: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
     availableCopies: [{ type: Schema.Types.ObjectId, ref: 'AvailableCopy' }]
 }, {
