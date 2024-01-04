@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+
+// BookModel
 export async function fetchBookModelsData() {
   return axios
     .get("/api/books")
@@ -22,16 +24,16 @@ export async function getAuthorsData() {
     .catch((error) => console.error("Error fetching author data:", error));
 }
 
-export async function createBookModel(authorid, newBookModel) {
+export async function createBookModel(authorid) {
   return axios
-    .post(`/api/books/${authorid}/addbook`, newBookModel)
+    .post(`/api/books/${authorid}/addbook`, authorid)
     .then(console.log("success sis!"))
     .then(navigate("/admin/bookmodelslist"));
 }
 
-export async function fetchBookToUpdate(id) {
+export async function updateBookModel(updatedBookModel) {
   return await axios
-    .put(`/api/books/${id}/update`)
+    .put(`/api/books/${id}/update`, updatedBookModel)
     .then((response) => response.data)
     .catch((error) =>
       console.error("Error while updating a book model:", error)

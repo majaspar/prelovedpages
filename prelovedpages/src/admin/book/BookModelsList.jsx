@@ -11,10 +11,12 @@ import { fetchBookModelsData } from '../../api/fetchData'
 
 export default function BookModelsList() {
 
-  const { data: bookModels, isLoading, isError } = useQuery({
+  const { data: bookModels, error, isLoading, isError } = useQuery({
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
-  })
+  })  
+  // const { data: bookModels, error, isLoading, isError } = useQuery('bookmodels', fetchBookModelsData)
+
 
   if (isError) {
     return <div className='mt2 margins'><Error message={isError.message} /></div>

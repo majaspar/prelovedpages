@@ -58,9 +58,8 @@ const deleteBook = async (req, res) => {
 //update /api/books/:id/update
 const updateBook = async (req, res) => {
   try {
-
     const updatedBook = await Book.findByIdAndUpdate(req.params.id)
-    
+
     const { title, author, publishedYear, cover, isFeatured, 
       isPartOfSeries, synopsis, series, volume, genre } = req.body
     
@@ -76,7 +75,7 @@ const updateBook = async (req, res) => {
     updatedBook.genre = genre
 
   await updatedBook.save()
-    res.json(updatedBook).send('You have successfully updated this book model.')
+    res.json(updatedBook)
     console.log('Book updated successfully.')
   } catch (error) {
     console.log(error)

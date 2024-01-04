@@ -46,7 +46,7 @@ export default function NewBook() {
       .then(navigate('/admin/bookmodelslist'))
 
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({queryKey: ['bookmodels']});
     }
   })
