@@ -1,71 +1,58 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import '../Admin.css'
-import axios from 'axios'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient} from '@tanstack/react-query'
 import Success from '../../components/Success';
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
+import { fetchBookToUpdate, fetchBookModelData } from '../../api/fetchData';
+import axios from 'axios'
+
+
 
 export default function UpdateBookModel() {
 
   // const location = useLocation()
   // const { id, bookTitle, authorid, bookPublishedYear, bookSynopsis, bookGenre, bookCover, bookVolume, bookIsPartOfSeries, bookSeries, bookIsFeatured} = location.state
 
-  // const queryClient = useQueryClient()
+  
 
-  // const [bookid, setBookid] = useState(id)
+const { id } = useParams()
 
-  // const [title, setTitle] = useState(bookTitle);
-  // const [author, setAuthor] = useState(authorid);
-  // const [publishedYear, setPublishedYear] = useState(bookPublishedYear);
-  // const [synopsis, setSynopsis] = useState(bookSynopsis);
-  // const [cover, setCover] = useState(bookCover);
-  // const [isFeatured, setIsFeatured] = useState(bookIsFeatured);
-  // const [isPartOfSeries, setIsPartOfSeries] = useState(bookIsPartOfSeries);
-  // const [series, setSeries] = useState(bookSeries);
-  // const [volume, setVolume] = useState(bookVolume);
-  // const [genre, setGenre] = useState(bookGenre)
+const queryClient = useQueryClient()
 
-  const { id } = useParams()
-
-  const [title, setTitle] = useState('');
+ 
+const { data: book, isLoading, isError } = useQuery({
+  queryKey: ["bookmodels", id],
+  queryFn: () => fetchBookModelData(id)
+})
+ const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishedYear, setPublishedYear] = useState();
   const [synopsis, setSynopsis] = useState('');
   const [cover, setCover] = useState('');
-  const [isFeatured, setIsFeatured] = useState();
-  const [isPartOfSeries, setIsPartOfSeries] = useState();
-  const [series, setSeries] = useState();
-  const [volume, setVolume] = useState();
+  const [isFeatured, setIsFeatured] = useState(false);
+  const [isPartOfSeries, setIsPartOfSeries] = useState(false);
+  const [series, setSeries] = useState(null);
+  const [volume, setVolume] = useState(null);
   const [genre, setGenre] = useState([])
 
-const fetchBookToUpdate = async () => {
-  axios.put(`/api/books/${id}/update`)
-}
-
-const mutation = useMutation({
-  mutationFn: fetchBookToUpdate,
-  // onSuccess:() => {
-  //   queryClient.invalidateQueries({ queryKey: ['bookModels']})
-  // }
-})
-
-//  const mutation = useMutation((updatedPost) => {
-//     axios.put(`/api/books/${bookId}/update`, updatedPost)
-//   })
+ const mutation = useMutation({
+  mutationFn: fetchBookToUpdate(id)
+ })
 
   const updateBookData = () => {
     mutation.mutate({
-      title, author, publishedYear, synopsis, cover, isFeatured,
-      isPartOfSeries, series, volume, genre
+      title, author, synopsis, cover, publishedYear, isFeatured, isPartOfSeries, series, volume, genre
     })
   }
 
   if (mutation.isLoading) {
-    return <span>Updating...</span>;
+    return <Loading/>;
   }
 
   if (mutation.isError) {
-    return <span>Error: {mutation.error.message}</span>;
+    return <Error message={mutation.error.message}/>;
   }
 
   if (mutation.isSuccess) {
@@ -89,19 +76,19 @@ const mutation = useMutation({
     <section className='admin margins mt2'>
 
       <h2 className='mb2'>Update a Book Model</h2>
-
+   
       <div className='form'>
 
         <p><label className='mr1' htmlFor="title">Title: </label>
           <input
             required value={title}
-            type="text" id="title" placeholder="Enter title"
+            type="text" id="title" name={title} placeholder="Enter title"
             onChange={(e) => setTitle(e.target.value)} /></p>
 
         <p><label className='mr1' htmlFor="author">Author: </label>
           <input
-            required
-            type="text" id="author" placeholder="Enter author" value={author}
+            required value={author}
+            type="text" id="author" placeholder="Enter author"
             onChange={(e) => setAuthor(e.target.value)} /></p>
 
         <p><label className='mr1' htmlFor="publishedYear">Year: </label>
@@ -133,23 +120,27 @@ const mutation = useMutation({
         <p className='mt1'><label className='mr1' htmlFor="isPartOfSeries">Is it a series?</label>
           <select
             required value={isPartOfSeries}
-            name="isPartOfSeries" id="isPartOfSeries" defaultValue={false}
+            name="isPartOfSeries" id="isPartOfSeries"
             onChange={(e) => setIsPartOfSeries(e.target.value)}>
             <option value={true} >Yes</option>
             <option value={false} >No</option>
-          </select></p>
+          </select>
+          </p> 
+          
+          {/* <p className='mt1'><span className="mr3">Genre:</span>
+          {book ? book.genre : ''} </p> */}
 
         {(isPartOfSeries)
           ?
           <div className='ml2 mt1'>
             <p><label className='mr1' htmlFor="series">Series: </label>
-              <input
-                type="text" id="series" placeholder="Enter series name" value={series}
+              <input value={series} 
+                type="text" id="series" placeholder="Enter series name"
                 onChange={(e) => setSeries(e.target.value)} /></p>
             {series !== null &&
               <p><label className='mr1' htmlFor="volume">Volume: </label>
                 <input
-                  required value={volume}
+                  required value={volume} 
                   type="number" id="volume" placeholder="Volume number"
                   onChange={(e) => setVolume(e.target.value)} /></p>}
 
@@ -216,6 +207,7 @@ const mutation = useMutation({
         </div>
         <button onClick={updateBookData} type='submit' className='btn mt3'>Edit Book Model</button>
       </div>
+      
       {/* End of form */}
     </section>
   )

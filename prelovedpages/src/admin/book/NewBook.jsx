@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import { useParams } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import '../Admin.css'
 import axios from 'axios'
@@ -42,12 +42,13 @@ export default function NewBook() {
   const mutation = useMutation({
     mutationFn: (newBookModel) => {
       return axios.post(`/api/books/${authorid}/addbook`, newBookModel)
+      .then(console.log('success sis!'))
       .then(navigate('/admin/bookmodelslist'))
-      .then(console.log('Book added successfully :)'))
+
     },
-    // onSuccess: () => {
-    //   queryClient.invalidateQueries(['bookModels'])
-    // }
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['bookmodels']});
+    }
   })
 
   //add book model form submit

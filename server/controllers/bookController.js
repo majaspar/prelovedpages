@@ -55,10 +55,14 @@ const deleteBook = async (req, res) => {
   }
 }
 
-const updateBook = async (res, req) => {
+//update /api/books/:id/update
+const updateBook = async (req, res) => {
   try {
-    const updatedBook = await Book.findOneAndUpdate({_id: req.params.id})
-const { title, author, publishedYear, cover, isFeatured, isPartOfSeries, synopsis, series, volume, genre} = req.body
+
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id)
+    
+    const { title, author, publishedYear, cover, isFeatured, 
+      isPartOfSeries, synopsis, series, volume, genre } = req.body
     
     updatedBook.title = title
     updatedBook.author = author
@@ -78,4 +82,5 @@ const { title, author, publishedYear, cover, isFeatured, isPartOfSeries, synopsi
     console.log(error)
   }
 }
+
 module.exports = { addBook, getBooks, getBook, deleteBook, updateBook }

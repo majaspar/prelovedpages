@@ -9,14 +9,14 @@ import Footer from './Footer';
 
 {/* Admin */ }
 import AdminDashboard from './admin/AdminDashboard'
-import NewBook from './admin/BookModel/NewBook';
+import NewBook from './admin/book/NewBook';
 import NewAuthor from './admin/author/NewAuthor'
 import UpdateAuthor from './admin/author/UpdateAuthor';
 import NewAvailableCopy from './admin/availableCopy/NewAvailableCopy'
 import AuthorsList from './admin/author/AuthorsList';
 import UsersList from './admin/user/UsersList';
-import BookModelsList from './admin/BookModel/BookModelsList';
-import UpdateBookModel from './admin/bookModel/UpdateBookModel';
+import BookModelsList from './admin/book/BookModelsList';
+import UpdateBookModel from './admin/book/UpdateBookModel';
 import AvailableCopiesList from './admin/availableCopy/AvailableCopiesList';
 import Styles from './admin/Styles';
 
@@ -61,13 +61,16 @@ function App() {
           <Route path="/admin/authorslist" element={<AuthorsList />} />
           <Route path="/admin/newauthor" element={<NewAuthor />} />
           <Route path="/authors/:id/update" element={<UpdateAuthor />} />
+ 
            {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
           <Route path="/books/:id/update" element={<UpdateBookModel />} />
           <Route path="/authors/:authorid/addbook" element={<NewBook />} />
+
            {/* Available Copy */}
           <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
+
            {/* Users */}
           <Route path="/admin/userslist" element={<UsersList />} />
 

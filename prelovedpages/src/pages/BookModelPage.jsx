@@ -31,7 +31,7 @@ export default function BookModelPage() {
         <section className='BookModelPage flex mt2 margins'>
 
             <div className=''><img src={book.cover} alt="" /></div>
-
+            
             {book.author ? (
 
                 <div className=''>
