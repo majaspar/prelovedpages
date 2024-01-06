@@ -60,8 +60,14 @@ const updateBook = async (req, res) => {
   try {
     const updatedBook = await Book.findByIdAndUpdate(req.params.id)
 
-    const { title, author, publishedYear, cover, isFeatured, 
-      isPartOfSeries, synopsis, series, volume, genre } = req.body
+    const { title, author, 
+      publishedYear, 
+      cover, isFeatured, 
+      isPartOfSeries, 
+      synopsis, 
+      series, 
+      volume, 
+      genre } = req.body
     
     updatedBook.title = title
     updatedBook.author = author

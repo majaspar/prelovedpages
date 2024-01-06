@@ -15,9 +15,7 @@ export default function BookModelsList() {
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
   })  
-  // const { data: bookModels, error, isLoading, isError } = useQuery('bookmodels', fetchBookModelsData)
-
-
+ 
   if (isError) {
     return <div className='mt2 margins'><Error message={isError.message} /></div>
   }
@@ -25,6 +23,7 @@ export default function BookModelsList() {
   if (isLoading) {
     return <div className='mt2 margins'><Loading /></div>
   }
+
   return (
     <>
       <SectionTitle title="List of Book Models" link="/admin" btn="Go to Admin Dashboard" />

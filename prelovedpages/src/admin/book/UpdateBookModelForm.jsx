@@ -37,46 +37,46 @@ export default function UpdateBookModelForm() {
     }
   };
 
-  //   const mutation = useMutation({
-  //     mutationFn: async (updatedBookModel) => {
-  //       await axios
-  //         .put(`/api/books/${id}/update`, updatedBookModel)
-  //         .then((response) => response.data)
-  //         .catch((error) =>
-  //           console.error("Error while updating a book model:", error)
-  //         );
-  //     },
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries(["bookmodels"], { exact: true });
-  //     },
-  //   });
+    const mutation = useMutation({
+      mutationFn: async (updatedBookModel) => {
+        await axios
+          .put(`/api/books/${id}/update`, updatedBookModel)
+          .then((response) => response.data)
+          .catch((error) =>
+            console.error("Error while updating a book model:", error)
+          );
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries(["bookmodels"], { exact: true });
+      },
+    });
 
-  //   const updateBookData = () => {
-  //     mutation.mutate({
-  //       title,
-  //       author,
-  //       synopsis,
-  //       cover,
-  //       publishedYear,
-  //       isFeatured,
-  //       isPartOfSeries,
-  //       series,
-  //       volume,
-  //       genre,
-  //     });
-  //   };
+    const updateBookData = () => {
+      mutation.mutate({
+        title,
+        author,
+        synopsis,
+        cover,
+        publishedYear,
+        isFeatured,
+        isPartOfSeries,
+        series,
+        volume,
+        genre,
+      });
+    };
 
-  //   if (mutation.isLoading) {
-  //     return <Loading />;
-  //   }
+    if (mutation.isLoading) {
+      return <Loading />;
+    }
 
-  //   if (mutation.isError) {
-  //     return <Error message={mutation.error.message} />;
-  //   }
+    if (mutation.isError) {
+      return <Error message={mutation.error.message} />;
+    }
 
-  //   if (mutation.isSuccess) {
-  //     return <Success message="Book Model updated successfully!" />;
-  //   }
+    if (mutation.isSuccess) {
+      return <Success message="Book Model updated successfully!" />;
+    }
 
   return (
     <section className="admin margins mt2">

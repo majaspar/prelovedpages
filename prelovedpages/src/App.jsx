@@ -31,7 +31,7 @@ import AllAvailableBooks from './pages/AllAvailableBooks';
 import Categories from './pages/Categories';
 
 
-function App() {
+export default function App() {
 
   const queryClient = new QueryClient();
 
@@ -84,4 +84,3 @@ function App() {
   )
 }
 
-export default App

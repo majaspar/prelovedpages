@@ -6,6 +6,7 @@ import axios from "axios";
 import { Modal, Fade, Backdrop } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../../components/Loading";
+import { deleteBookModel } from "../../api/fetchData";
 
 export default function DeleteModal({ id }) {
   const navigate = useNavigate();
@@ -14,11 +15,8 @@ export default function DeleteModal({ id }) {
   const handleClose = () => setOpenDeleteModal(false);
 
   const handleDelete = async (id) => {
-    await axios
-      .delete(`/api/books/${id}/delete`)
-      .then((res) => console.log(res))
-      .catch((error) => console.error("Error deleting book data:", error))
-      .then(handleClose());
+    deleteBookModel(id)
+    handleClose();
   };
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
