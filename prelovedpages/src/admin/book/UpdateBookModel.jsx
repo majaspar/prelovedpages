@@ -10,8 +10,19 @@ import axios from "axios";
 import UpdateBookModelForm from "./UpdateBookModelForm";
 
 export default function UpdateBookModel() {
+
+  
+
+   
+  const { data: book, error, isLoading, isError } = useQuery({
+    queryKey: ["bookmodels"],
+    queryFn: () => fetchBookModelData(id)
+  })  
+ console.log(book)
+
+
     return <div>
-      <UpdateBookModelForm/>
+      <UpdateBookModelForm initialValue={book}/>
       </div>
  
 }

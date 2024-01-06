@@ -75,7 +75,7 @@ export default function NewBook() {
   }
 
   if (addBookModelMutation.isError) {
-    return <Error message={mutation.error.message} />;
+    return <Error message={addBookModelMutation.error.message} />;
   }
 
   return (

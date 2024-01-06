@@ -15,6 +15,7 @@ export default function BookModelsList() {
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
   })  
+ console.log(bookModels)
  
   if (isError) {
     return <div className='mt2 margins'><Error message={isError.message} /></div>
@@ -31,6 +32,8 @@ export default function BookModelsList() {
         <table>
           <thead>
             <tr>
+              <th>Edit</th>
+              <th>Delete</th>
               <th>Title</th>
               <th>Author</th>
               <th>Year</th>
@@ -43,13 +46,17 @@ export default function BookModelsList() {
               <th>is available?</th>
               <th>is featured?</th>
               <th>Mongo Id</th>
-              <th>Edit</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {bookModels?.map((book) => {
               return <tr key={book._id}>
+                <td className='BookModelsList__td--edit center'>
+                  <Link to={`/books/${book._id}/update`}>
+                    <EditIcon />
+                  </Link>
+                </td>
+                <td className='BookModelsList__td--delete center'> <DeleteModal id={book._id} /></td>
                 <td className='BookModelsList__td--title'><Link to={`/books/${book._id}`}>{book.title}</Link></td>
                 <td><Link to={`/authors/${book.author._id}`}>{book.author.firstName} {book.author.lastName}</Link></td>
                 <td className='center'>{book.publishedYear}</td>
@@ -62,12 +69,6 @@ export default function BookModelsList() {
                 <td className='center'>{book.isAvailable ? "Yes" : "No"}</td>
                 <td className='center'>{book.isFeatured ? "Yes" : "No"}</td>
                 <td className='center'>{book._id}</td>
-                <td className='BookModelsList__td--edit center'>
-                  <Link to={`/books/${book._id}/update`}>
-                    <EditIcon />
-                  </Link>
-                </td>
-                <td className='BookModelsList__td--delete center'> <DeleteModal id={book._id} /></td>
 
               </tr>
             })}
