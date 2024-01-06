@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import { useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createBookModel } from '../../api/fetchData';
 
 import '../Admin.css'
 import axios from 'axios'
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
 
 export default function NewBook() {
 
@@ -40,14 +43,12 @@ export default function NewBook() {
 
   //fetch
   const mutation = useMutation({
-    mutationFn: (newBookModel) => {
-      return axios.post(`/api/books/${authorid}/addbook`, newBookModel)
-      .then(console.log('success sis!'))
-      .then(navigate('/admin/bookmodelslist'))
-
-    },
+    
+    mutationFn: createBookModel,
     onSuccess: (data) => {
       queryClient.invalidateQueries({queryKey: ['bookmodels']});
+      navigate('/admin/bookmodelslist')
+      console.log('success sis!')
     }
   })
 
@@ -57,11 +58,11 @@ export default function NewBook() {
   }
 
   if (mutation.isLoading) {
-    return <span>Submitting...</span>;
+    return <Loading/>;
   }
 
   if (mutation.isError) {
-    return <span>Error: {mutation.error.message}</span>;
+    return <Error message={mutation.error.message}/>;
   }
 
   if (mutation.isSuccess) {

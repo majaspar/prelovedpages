@@ -4,8 +4,6 @@ const api = axios.create({
   baseURL: "http://localhost:5000",
 });
 
-import { useParams } from "react-router-dom";
-
 // BookModel
 export async function fetchBookModelsData() {
   return api
@@ -28,17 +26,21 @@ export async function getAuthorsData() {
     .catch((error) => console.error("Error fetching author data:", error));
 }
 
-export async function createBookModel(authorid) {
-  return api
-    .post(`/api/books/${authorid}/addbook`, authorid)
-    .then(console.log("success sis!"))
-    .then(navigate("/admin/bookmodelslist"));
+// export async function createBookModel(authorid) {
+//   return api
+//     .post(`/api/books/${authorid}/addbook`, authorid)
+//     .then(console.log("success sis!"))
+//     .then(navigate("/admin/bookmodelslist"));
+// }
+
+export async function createBookModel(newBookModel) {
+  return api.post(`/api/books/${authorid}/addbook`, newBookModel)
 }
+
 
 export async function updateBookModel(updatedBookModel) {
   return await api
-    .put(`/api/books/${id}/update`, updatedBookModel)
-    .then((response) => response.data)
+    .patch(`/api/books/${id}/update`, updatedBookModel)
     .catch((error) =>
       console.error("Error while updating a book model:", error)
     );
