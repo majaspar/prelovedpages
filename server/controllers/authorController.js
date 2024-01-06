@@ -26,14 +26,20 @@ const oneAuthor = asyncHandler(async (req, res) => {
 
 const addAuthor = async (req, res) => {
    try {
-      const { firstName, lastName, originalLanguage, born, country, photo, photoSource } = req.body;
+      const { firstName, 
+         lastName, 
+         originalLanguage, 
+         born, 
+         country, 
+         photo, 
+         photoSource } = req.body;
 
-      const newAuthorModel = new Author({
+      const newAuthor = new Author({
          firstName, lastName, originalLanguage, born, country, photo, photoSource
       });
 
-      await newAuthorModel.save()
-      res.json(newAuthorModel)
+      await newAuthor.save()
+      res.json(newAuthor)
 
    } catch (error) {
       console.log(error)

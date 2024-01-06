@@ -1,6 +1,7 @@
 import './Components.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import shopingBaket from '../assets/shopping-basket-white.svg'
 
 export default function LatestBook({ color, title, author, description, cover, seeBook }) {
@@ -26,7 +27,7 @@ export default function LatestBook({ color, title, author, description, cover, s
                     <div className='LatestBook__buttons flex'>
                         <button className='uppercase see-book' style={{ borderColor: color, backgroundColor: color }}><Link to={seeBook}>See book</Link></button>
                         <button className='shopping-basket'><img src={shopingBaket} alt="" /></button>
-                        <button className='options'><FontAwesomeIcon icon="fa-solid fa-ellipsis-vertical" /></button>
+                        <button className='options'><FontAwesomeIcon icon={faEllipsisVertical} /></button>
                     </div>
                 </div>
             </div>

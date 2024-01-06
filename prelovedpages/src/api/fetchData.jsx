@@ -1,8 +1,4 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: "http://localhost:5000",
-});
+import api from 'axios'
 
 // BookModel
 export async function fetchBookModelsData() {
@@ -35,6 +31,8 @@ export async function getAuthorsData() {
 
 export async function createBookModel(newBookModel) {
   return api.post(`/api/books/${authorid}/addbook`, newBookModel)
+  .then((response) => response.data)
+  .catch((error) => console.error("Error fetching author data:", error));
 }
 
 
@@ -48,9 +46,7 @@ export async function updateBookModel(updatedBookModel) {
 
 export async function deleteBookModel(id) {
   return api
-    .delete(`/api/books/${id}/delete`)
+    .delete(`/api/books/${id}/delete`, id)
     .then((res) => console.log(res))
     .catch((error) => console.error("Error deleting book data:", error));
 }
-
-export default api;

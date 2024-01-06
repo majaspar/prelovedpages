@@ -13,18 +13,18 @@ export default function UpdateBookModelForm() {
   const { id } = useParams();
   const [bookModelData, setBookModelData] = useState([]);
 
-  const getBookModelData = () => {
-    axios
-      .get(`/api/books/${id}`)
-      .then((response) => {
-        setBookModelData(response.data);
-      })
-      .catch((error) =>
-        console.error("Error fetching book model data:", error)
-      );
-  };
+  // const getBookModelData = () => {
+  //   axios
+  //     .get(`/api/books/${id}`)
+  //     .then((response) => {
+  //       setBookModelData(response.data);
+  //     })
+  //     .catch((error) =>
+  //       console.error("Error fetching book model data:", error)
+  //     );
+  // };
 
-  const editField = (id) => {};
+  // const editField = (id) => {};
 
   // Genre Checkboxes
   const handleGenreChange = (e) => {

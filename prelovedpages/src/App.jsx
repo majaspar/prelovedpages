@@ -65,7 +65,7 @@ export default function App() {
            {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
           <Route path="/books/:id/update" element={<UpdateBookModel />} />
-          <Route path="/authors/:authorid/addbook" element={<NewBook />} />
+          <Route path="/books/:authorid/addbook" element={<NewBook />} />
 
            {/* Available Copy */}
           <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />

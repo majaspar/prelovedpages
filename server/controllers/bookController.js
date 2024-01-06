@@ -18,12 +18,18 @@ const getBooks = asyncHandler(async (req, res) => {
 })
 
 
-// Pages    /api/books/add
+// Pages    /api/books/:id/addbook
 const addBook = async (req, res) => {
   try {
     const theAuthor = await Author.findById(req.params.id)
 
-    const { title, isFeatured, isPartOfSeries, series, volume, publishedYear, date, cover, synopsis, genre, availableCopies } = req.body;
+    const { title, 
+      isFeatured, 
+      isPartOfSeries, 
+      series, volume, 
+      publishedYear, date, 
+      cover, synopsis, 
+      genre, availableCopies } = req.body;
 
     const newBookModel = new Book({
       title, author: theAuthor,

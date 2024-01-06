@@ -65,7 +65,7 @@ export default function AuthorsList() {
                     </Link>
                 </td>
                 <td>
-                  <Link to={`/authors/${author._id}/addbook`}>
+                  <Link to={`/books/${author._id}/addbook`}>
                   <AddCircleOutlineIcon/>
                     </Link>
                 </td>
