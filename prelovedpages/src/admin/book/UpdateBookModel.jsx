@@ -18,9 +18,17 @@ export default function UpdateBookModel() {
   const { data: book, error, isLoading, isError } = useQuery({
     queryKey: ["bookmodels", id],
     queryFn: () => fetchBookModelData(id)
-  })  
- console.log('Book in UpdateModel: ', book)
+  })
 
+ console.log('Book fetched in UpdateBookModel: ', book)
+
+ if (isLoading) {
+  return <Loading />;
+}
+
+if (isError) {
+  return <Error message={isError.message} />;
+}
 
     return <div>
       <UpdateBookModelForm initialValue={book}/>

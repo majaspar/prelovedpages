@@ -2,7 +2,6 @@ import "../Admin.css";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { Modal, Fade, Backdrop } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../../components/Loading";

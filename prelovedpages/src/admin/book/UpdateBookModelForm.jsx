@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "../Admin.css";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import Success from "../../components/Success";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import SectionTitle from "../../components/SectionTitle";
 import api from "axios";
-import { fetchBookModelData } from "../../api/fetchData";
-import { useForm } from "react-hook-form";
 
-export default function UpdateBookModelForm({initialValue}) {
+export default function UpdateBookModelForm({ initialValue }) {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-
-
-  const [title, setTitle] = useState(initialValue?.title || '');
+  const [title, setTitle] = useState(initialValue?.title || "");
   const [author, setAuthor] = useState(initialValue?.author._id);
-  const [publishedYear, setPublishedYear] = useState(initialValue?.publishedYear);
+  const [publishedYear, setPublishedYear] = useState(
+    initialValue?.publishedYear
+  );
   const [synopsis, setSynopsis] = useState(initialValue?.synopsis);
   const [cover, setCover] = useState(initialValue?.cover);
   const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured);
-  const [isPartOfSeries, setIsPartOfSeries] = useState(initialValue?.isPartOfSeries);
+  const [isPartOfSeries, setIsPartOfSeries] = useState(
+    initialValue?.isPartOfSeries
+  );
   const [series, setSeries] = useState(initialValue?.series);
   const [volume, setVolume] = useState(initialValue?.volume);
   const [genre, setGenre] = useState(initialValue?.genre);
@@ -223,7 +222,9 @@ export default function UpdateBookModelForm({initialValue}) {
           ) : (
             <></>
           )}
-        <div className="mt1">Genre: <span className="ml3">{genre?.join(', ')}</span></div>
+          <div className="mt1">
+            Genre: <span className="ml3">{genre?.join(", ")}</span>
+          </div>
           <div className="NewBook__genre--wrapper mt1 flex">
             <label>Genre:</label>
             <div className="NewBook__genre">

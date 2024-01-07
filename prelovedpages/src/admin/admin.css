@@ -68,12 +68,13 @@
 
 /*****************************/
 /***     BookModelsList    ***/
+/***       AuthorsList     ***/
 /*****************************/
 .td-scroll {
     white-space: nowrap;
     overflow-x: scroll;
     width: 150px;
-    padding-bottom: 1rem;
+    padding-bottom: 0.3rem;
 }
 .BookModelsList__td--title {
     min-width: 150px;
@@ -116,6 +117,7 @@ table, table td, table td p {
 }
 th {
     background-color: var(--clr-green-pastel);
+    padding-inline: 0.4rem;
 }
 
 td {

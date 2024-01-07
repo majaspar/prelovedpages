@@ -11,7 +11,7 @@ import { fetchBookModelsData } from '../../api/fetchData'
 
 export default function BookModelsList() {
 
-  const { data: bookModels, error, isLoading, isError } = useQuery({
+  const { data: bookModels, isLoading, isError } = useQuery({
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
   }) 

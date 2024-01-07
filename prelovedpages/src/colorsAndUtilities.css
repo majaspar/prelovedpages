@@ -334,7 +334,7 @@ text-align: justify;
 /* selectors  */
 /* * * * * *  */
 
-li {
+ul li {
     list-style-type: none;
 }
 

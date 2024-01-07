@@ -22,8 +22,7 @@ const oneAuthor = asyncHandler(async (req, res) => {
 
 
 
-// Admin
-
+// authors/:add
 const addAuthor = async (req, res) => {
    try {
       const { firstName, 
@@ -46,5 +45,36 @@ const addAuthor = async (req, res) => {
    }
 
 }
+// authors/:id/update
+const updateAuthor = async (req, res) => {
+   try {
+      const { firstName, 
+         lastName, 
+         originalLanguage, 
+         born, 
+         country, 
+         photo, 
+         photoSource } = req.body;
 
-module.exports = { addAuthor, allAuthors, oneAuthor }
+      const newAuthor = new Author({
+         firstName, lastName, originalLanguage, born, country, photo, photoSource
+      });
+
+      await newAuthor.save()
+      res.json(newAuthor)
+
+   } catch (error) {
+      console.log(error)
+   }
+
+}
+const deleteAuthor = async (req, res) => {
+   try {
+      await Author.findByIdAndDelete(req.params.id)
+      console.log('Author deleted successfully.')
+      res.status(201)
+    } catch (error) {
+      console.log(error)
+    }
+}
+module.exports = { addAuthor, allAuthors, oneAuthor, deleteAuthor, updateAuthor }

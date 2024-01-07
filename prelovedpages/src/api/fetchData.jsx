@@ -1,5 +1,36 @@
 import api from 'axios'
 
+// Author
+export async function getAuthorsData() {
+  return await api
+    .get("/api/authors")
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching authors data:", error));
+}
+
+export async function getAuthorData(id) {
+  return await api
+    .get(`/api/authors/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching author data:", error));
+}
+
+export async function updateAuthor(updatedAuthor) {
+  return await api
+    .patch(`/api/authors/${id}/update`, updatedAuthor)
+    .catch((error) =>
+      console.error("Error while updating a book model:", error)
+    );
+}
+
+export async function deleteAuthor(id) {
+  return api
+    .delete(`/api/authors/${id}/delete`, id)
+    .then((res) => console.log(res))
+    .catch((error) => console.error("Error deleting book data:", error));
+}
+
+
 // BookModel
 export async function fetchBookModelsData() {
   return api
@@ -14,20 +45,6 @@ export async function fetchBookModelData(id) {
     .then((response) => response.data)
     .catch((error) => console.error("Error fetching book model data:", error));
 }
-
-export async function getAuthorsData() {
-  return await api
-    .get("/api/authors")
-    .then((response) => response.data)
-    .catch((error) => console.error("Error fetching author data:", error));
-}
-
-// export async function createBookModel(authorid) {
-//   return api
-//     .post(`/api/books/${authorid}/addbook`, authorid)
-//     .then(console.log("success sis!"))
-//     .then(navigate("/admin/bookmodelslist"));
-// }
 
 export async function createBookModel(newBookModel) {
   return api.post(`/api/books/${authorid}/addbook`, newBookModel)
