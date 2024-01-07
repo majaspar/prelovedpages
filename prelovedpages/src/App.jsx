@@ -45,7 +45,8 @@ export default function App() {
           {/* Pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:id" element={<BookModelPage />} />
-          <Route path="/copies/:copyid" element={<AvailableCopyPage />} />
+          <Route path="/books/:id/:copyid" element={<AvailableCopyPage />} />
+          {/* <Route path="/books/:id/addcopy" element={<NewAvailableCopy />} /> */}
           <Route path="/authors/:id" element={<AuthorPage />} />
           <Route path="/authors" element={<AllAuthors />} />
           <Route path="/allbooks" element={<AllAvailableBooks />} />
@@ -68,7 +69,7 @@ export default function App() {
           <Route path="/books/:authorid/addbook" element={<NewBook />} />
 
            {/* Available Copy */}
-          <Route path="/admin/newavailablecopy" element={<NewAvailableCopy />} />
+          <Route path="/books/:id/addcopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
 
            {/* Users */}

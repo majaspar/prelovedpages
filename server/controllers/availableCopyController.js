@@ -24,21 +24,40 @@ const oneCopy = asyncHandler(async (req, res) => {
   res.json(copy)
 })
 
-// /api/copies/add/
+// /api/copies/:id/addcopy/
 const addCopy = async (req, res) => {
 
   try {
-    const { bookModelId, authorid, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN } = req.body;
+    
+    const { 
+      id, 
+      author, 
+      photo, 
+      thisCopyPublishedYear,
+      publishingHouse, 
+      thisCopyDescription, 
+      isAvailable, 
+      price, 
+      ISBN } = req.body;
 
-    const theAuthor = await Author.findOne({ _id: authorid })
-      .populate().exec()
+    const theBookModel = await Book.findById(req.params.id)
+    const theAuthor = await Author.findById(author)
 
-    const theBookModel = await Book.findOne({ _id: bookModelId })
-      .populate().exec()
+    // const theBookModel = await Book.findOne({ _id: bookModelId })
+    //   .populate().exec()
 
     const newAvailableCopy = new AvailableCopy({
-      bookModel: bookModelId, author: authorid, photo, publishingHouse, thisCopyDescription, isAvailable, price, ISBN
+      bookModel: id, 
+      author, 
+      photo, 
+      publishingHouse, 
+      thisCopyPublishedYear,
+      thisCopyDescription, 
+      isAvailable, 
+      price, 
+      ISBN
     })
+
     await newAvailableCopy.save()
     console.log('Available Copy added successfully!')
 
@@ -47,11 +66,9 @@ const addCopy = async (req, res) => {
 
     console.log('The Author saved successfully!')
     theBookModel.availableCopies.push(newAvailableCopy);
+
     await theBookModel.save()
     console.log('The Book Model saved successfully!')
-
-
-
 
   } catch (error) {
     console.log(error)

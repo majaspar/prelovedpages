@@ -37,6 +37,44 @@ export async function deleteAuthor(id) {
 }
 
 
+// Available Copies
+export async function getCopiesData() {
+  return await api
+    .get("/api/copies")
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching authors data:", error));
+}
+
+// export async function getAuthorData(id) {
+//   return await api
+//     .get(`/api/authors/${id}`)
+//     .then((response) => response.data)
+//     .catch((error) => console.error("Error fetching author data:", error));
+// }
+
+export async function createCopy(newCopy) {
+  return api.post(`/api/copies/:id/addcopy`, newCopy)
+  .then((response) => response.data)
+  .then(console.log(response.data))
+  .catch((error) => console.error("Error creating new copy:", error));
+}
+
+// export async function updateAuthor(updatedAuthor) {
+//   return await api
+//     .patch(`/api/authors/${id}/update`, updatedAuthor)
+//     .catch((error) =>
+//       console.error("Error while updating a book model:", error)
+//     );
+// }
+
+// export async function deleteAuthor(id) {
+//   return api
+//     .delete(`/api/authors/${id}/delete`, id)
+//     .then((res) => console.log(res))
+//     .catch((error) => console.error("Error deleting book data:", error));
+// }
+
+
 // BookModel
 export async function fetchBookModelsData() {
   return api

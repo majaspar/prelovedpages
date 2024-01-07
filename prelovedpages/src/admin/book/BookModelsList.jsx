@@ -7,6 +7,7 @@ import Loading from '../../components/Loading'
 import Error from '../../components/Error'
 import { fetchBookModelsData } from '../../api/fetchData'
 import EditIcon from '@mui/icons-material/Edit'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export default function BookModelsList() {
 
@@ -32,6 +33,7 @@ export default function BookModelsList() {
             <tr>
               <th>Edit</th>
               <th>Delete</th>
+              <th>Add Copy</th>
               <th>Title</th>
               <th>Author</th>
               <th>Year</th>
@@ -55,6 +57,7 @@ export default function BookModelsList() {
                   </Link>
                 </td>
                 <td className='BookModelsList__td--delete center'> <DeleteModal id={book._id} /></td>
+                <td><Link to={`/books/${book._id}/addcopy`}><AddCircleOutlineIcon/></Link></td>
                 <td className='BookModelsList__td--title'><Link to={`/books/${book._id}`}>{book.title}</Link></td>
                 <td><Link to={`/authors/${book.author._id}`}>{book.author.firstName} {book.author.lastName}</Link></td>
                 <td className='center'>{book.publishedYear}</td>
