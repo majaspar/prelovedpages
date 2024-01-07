@@ -12,13 +12,14 @@ import UpdateBookModelForm from "./UpdateBookModelForm";
 export default function UpdateBookModel() {
 
   
+  const {id} = useParams()
 
    
   const { data: book, error, isLoading, isError } = useQuery({
-    queryKey: ["bookmodels"],
+    queryKey: ["bookmodels", id],
     queryFn: () => fetchBookModelData(id)
   })  
- console.log(book)
+ console.log('Book in UpdateModel: ', book)
 
 
     return <div>

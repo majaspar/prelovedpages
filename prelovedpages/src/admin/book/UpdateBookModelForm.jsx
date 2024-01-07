@@ -10,23 +10,23 @@ import api from "axios";
 import { fetchBookModelData } from "../../api/fetchData";
 import { useForm } from "react-hook-form";
 
-export default function UpdateBookModelForm({}) {
+export default function UpdateBookModelForm({initialValue}) {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
 
 
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishedYear, setPublishedYear] = useState();
-  const [synopsis, setSynopsis] = useState("");
-  const [cover, setCover] = useState("");
-  const [isFeatured, setIsFeatured] = useState(false);
-  const [isPartOfSeries, setIsPartOfSeries] = useState(false);
-  const [series, setSeries] = useState(null);
-  const [volume, setVolume] = useState(null);
-  const [genre, setGenre] = useState([]);
+  const [title, setTitle] = useState(initialValue?.title || '');
+  const [author, setAuthor] = useState(initialValue?.author._id);
+  const [publishedYear, setPublishedYear] = useState(initialValue?.publishedYear);
+  const [synopsis, setSynopsis] = useState(initialValue?.synopsis);
+  const [cover, setCover] = useState(initialValue?.cover);
+  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured);
+  const [isPartOfSeries, setIsPartOfSeries] = useState(initialValue?.isPartOfSeries);
+  const [series, setSeries] = useState(initialValue?.series);
+  const [volume, setVolume] = useState(initialValue?.volume);
+  const [genre, setGenre] = useState(initialValue?.genre);
 
   // Genre Checkboxes
   const handleGenreChange = (e) => {
@@ -223,7 +223,7 @@ export default function UpdateBookModelForm({}) {
           ) : (
             <></>
           )}
-
+        <div className="mt1">Genre: <span className="ml3">{genre?.join(', ')}</span></div>
           <div className="NewBook__genre--wrapper mt1 flex">
             <label>Genre:</label>
             <div className="NewBook__genre">

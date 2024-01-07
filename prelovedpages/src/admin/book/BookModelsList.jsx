@@ -14,8 +14,7 @@ export default function BookModelsList() {
   const { data: bookModels, error, isLoading, isError } = useQuery({
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelsData()
-  })  
- console.log(bookModels)
+  }) 
  
   if (isError) {
     return <div className='mt2 margins'><Error message={isError.message} /></div>
