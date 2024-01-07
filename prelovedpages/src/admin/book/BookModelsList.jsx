@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteModal from './DeleteModal'
 import SectionTitle from '../../components/SectionTitle'
+import DeleteModal from './DeleteModal'
 import Loading from '../../components/Loading'
 import Error from '../../components/Error'
 import { fetchBookModelsData } from '../../api/fetchData'
+import EditIcon from '@mui/icons-material/Edit'
 
 export default function BookModelsList() {
 

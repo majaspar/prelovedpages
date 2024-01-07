@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query'
 import SectionTitle from '../../components/SectionTitle'
 import DeleteAuthor from './DeleteAuthor';
-import axios from 'axios'
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
-import EditIcon from '@mui/icons-material/Edit';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { getAuthorsData } from '../../api/fetchData'
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function AuthorsList() {
 
@@ -19,11 +18,12 @@ export default function AuthorsList() {
     
       if (isError) {
         return <div className='mt2 margins'><Error message={isError.message} /></div>
-      }
-    
+      } 
+      
       if (isLoading) {
         return <div className='mt2 margins'><Loading /></div>
       }
+
     return (
         <>
             <SectionTitle title="List of Authors" link="/admin" btn="Go to Admin Dashboard" />
@@ -46,7 +46,7 @@ export default function AuthorsList() {
             </tr>
           </thead>
           <tbody>
-            {authors?.map((author) => {
+            {!authors.length ? <Loading/> : authors?.map((author) => {
               return <tr key={author._id}>
                 <td><Link to={`/authors/${author._id}`}>{author.firstName}</Link></td>
                 <td><Link to={`/authors/${author._id}`}>{author.lastName}</Link></td>

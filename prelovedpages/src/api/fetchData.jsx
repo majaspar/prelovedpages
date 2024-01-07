@@ -15,6 +15,12 @@ export async function getAuthorData(id) {
     .catch((error) => console.error("Error fetching author data:", error));
 }
 
+export async function createAuthor(newAuthor) {
+  return api.post(`/api/authors/add`, newAuthor)
+  .then((response) => response.data)
+  .catch((error) => console.error("Error fetching author data:", error));
+}
+
 export async function updateAuthor(updatedAuthor) {
   return await api
     .patch(`/api/authors/${id}/update`, updatedAuthor)

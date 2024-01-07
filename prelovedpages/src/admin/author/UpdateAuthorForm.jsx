@@ -1,60 +1,52 @@
 import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../Admin.css";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
-import { createAuthor } from "../../api/fetchData";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
+import UpdateAuthorForm from "./UpdateAuthorForm";
+import api from "axios";
 
-export default function NewAuthor() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [born, setBorn] = useState();
-  const [originalLanguage, setOriginalLanguage] = useState("");
-  const [country, setCountry] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [photoSource, setPhotoSource] = useState("");
 
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+export default function UpdateAuthorForm() {
 
-  const addAuthorMutation = useMutation({
-    mutationFn: createAuthor,
-    onSuccess: () => {
-      queryClient.invalidateQueries("authors");
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  //add book model form submit
-  const postAuthorData = () => {
-    addAuthorMutation.mutate({
-      firstName,
-      lastName,
-      originalLanguage,
-      born,
-      photo,
-      photoSource,
-      country,
-    });
-    navigate("/admin/authorslist");
-  };
-
-  if (addAuthorMutation.isLoading) {
-    return <Loading />;
-  }
-
-  if (addAuthorMutation.isError) {
-    return <Error message={addAuthorMutation.error.message} />;
-  }
+    const { id } = useParams();
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+    const updateAuthorMutation = useMutation({
+        mutationFn: async (updatedAuthor) => {
+          return await api
+          .patch(`/api/authors/${id}/update`, updatedAuthor)
+          .catch((error) =>
+            console.error("Error while updating a book model:", error)
+          );
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries('authors')
+          navigate('/admin/authorslist')
+        }
+      })
+      const updateAuthorData = () => {
+        updateAuthorMutation.mutate({
+          firstName, lastName, born, photo, photoSource, originalLanguage, country
+        })
+      };
+    
+      if (updateAuthorMutation.isLoading) {
+        return <Loading/>
+      }
+    
+      if (updateAuthorMutation.isError) {
+        return <Error message={updateAuthorMutation.error.message}/>
+      }
 
   return (
     <>
       <SectionTitle
-        title="Create an author"
-        link="/admin"
-        btn="Go to Admin Dashboard"
+        title="Update an author"
+        link="/admin/authorslist"
+        btn="Go back"
       />
       <section className="admin mt2 margins">
         <div className="form">
@@ -65,6 +57,7 @@ export default function NewAuthor() {
             <input
               required
               type="text"
+              value={firstName}
               id="firstName"
               placeholder="Enter first name"
               onChange={(e) => setFirstName(e.target.value)}
@@ -78,6 +71,7 @@ export default function NewAuthor() {
             <input
               required
               type="text"
+              value={lastName}
               id="lastName"
               placeholder="Enter last name"
               onChange={(e) => setLastName(e.target.value)}
@@ -91,7 +85,8 @@ export default function NewAuthor() {
             <input
               required
               type="number"
-              id="lastName"
+              id="born"
+              value={born}
               placeholder="Enter date"
               onChange={(e) => setBorn(e.target.value)}
             />
@@ -104,6 +99,7 @@ export default function NewAuthor() {
             <input
               type="text"
               id="originalLanguage"
+              value={originalLanguage}
               placeholder="Enter original language"
               onChange={(e) => setOriginalLanguage(e.target.value)}
             />
@@ -116,6 +112,7 @@ export default function NewAuthor() {
             <input
               type="text"
               id="country"
+              value={country}
               placeholder="Where do/did they live?"
               onChange={(e) => setCountry(e.target.value)}
             />
@@ -128,6 +125,7 @@ export default function NewAuthor() {
             <input
               type="text"
               id="photo"
+              value={photo}
               placeholder="Enter link"
               onChange={(e) => setPhoto(e.target.value)}
             />
@@ -140,12 +138,13 @@ export default function NewAuthor() {
             <input
               type="text"
               id="photoSource"
+              value={photoSource}
               placeholder="Enter source"
               onChange={(e) => setPhotoSource(e.target.value)}
             />
           </p>
 
-          <button onClick={postAuthorData} type="submit" className="btn mt1">
+          <button onClick={updateAuthorData} type="submit" className="btn mt1">
             Add Author
           </button>
         </div>
