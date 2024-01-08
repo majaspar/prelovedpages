@@ -159,7 +159,7 @@ export default function UpdateAuthor() {
           </p>
 
           <button onClick={updateAuthorData} type="submit" className="btn mt1">
-            Add Author
+            Update Author
           </button>
         </div>
       </section>

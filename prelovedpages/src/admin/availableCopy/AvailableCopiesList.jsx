@@ -4,6 +4,8 @@ import { getCopiesData } from "../../api/fetchData";
 import { useQuery } from "@tanstack/react-query";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import EditIcon from '@mui/icons-material/Edit';
 
 export default function AvailableCopiesList() {
   const {
@@ -14,7 +16,7 @@ export default function AvailableCopiesList() {
     queryKey: ["availablecopies"],
     queryFn: () => getCopiesData(),
   });
-  console.log(copies)
+  console.log(copies);
 
   if (isError) {
     return (
@@ -36,18 +38,52 @@ export default function AvailableCopiesList() {
     <>
       <SectionTitle
         title="List of Available Copies"
-        link="/admin"
-        btn="Go to Admin Dashboard"
+        link="/admin/authorslist"
+        btn="List of Authors"
       />
       <section className="margins">
-        List of Available Copies
-        <ul>
-         
-          {copies?.map((copy) => {
-               return <li key={copy._id}> {copy.bookModel} </li>;
+        <table>
+          <thead>
+            <tr>
+              <th>Img</th>
+              <th>Price</th>
+              <th>Condition</th>
+              <th>Description</th>
+              <th>Publisher</th>
+              <th>ISBN</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {!copies.length ? (
+              <Loading />
+            ) : (
+              copies?.map((copy) => {
+                return (
+                  <tr key={copy._id}>
+                    <td>
+                      {" "}
+                      <img height="100" src={copy.photo} />
+                    </td>
+
+                    <td>£{copy.price.toFixed(2)} </td>
+                    <td>{copy.condition}</td>
+                    <td>Description</td>
+                    <td>{copy.publishingHouse} </td>
+                    <td> {copy.ISBN}</td>
+                    <td>
+                      <AddCircleOutlineIcon />
+                    </td>
+                    <td>
+                      <EditIcon />
+                    </td>
+                  </tr>
+                );
               })
-           }
-        </ul>
+            )}
+          </tbody>
+        </table>
       </section>
     </>
   );

@@ -7,7 +7,11 @@ const AvailableCopySchema = new Schema ({
     photo: [{ type: String }],
     thisCopyPublishedYear:  { type: Number },
     publishingHouse:  { type: String },
-    thisCopyDescription: { type: String },
+    condition: { 
+        type: String,
+        enum: ['New', 'Like New', 'Very good', 'Good', 'Acceptable']
+    },
+    conditionDescriprion: { type: String },
     isAvailable: { type: Boolean },
     price: { type: Number },
     ISBN: { type: Number },

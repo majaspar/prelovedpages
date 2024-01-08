@@ -30,12 +30,12 @@ const addCopy = async (req, res) => {
   try {
     
     const { 
-      id, 
+      bookModel, 
       author, 
       photo, 
       thisCopyPublishedYear,
       publishingHouse, 
-      thisCopyDescription, 
+      condition, conditionDescriprion,
       isAvailable, 
       price, 
       ISBN } = req.body;
@@ -47,12 +47,13 @@ const addCopy = async (req, res) => {
     //   .populate().exec()
 
     const newAvailableCopy = new AvailableCopy({
-      bookModel: id, 
+      bookModel, 
       author, 
       photo, 
       publishingHouse, 
       thisCopyPublishedYear,
-      thisCopyDescription, 
+      condition,
+      conditionDescriprion, 
       isAvailable, 
       price, 
       ISBN
@@ -66,6 +67,7 @@ const addCopy = async (req, res) => {
 
     console.log('The Author saved successfully!')
     theBookModel.availableCopies.push(newAvailableCopy);
+    theBookModel.isAvailable = true
 
     await theBookModel.save()
     console.log('The Book Model saved successfully!')
@@ -75,9 +77,19 @@ const addCopy = async (req, res) => {
   }
 
 }
+// /api/copies/:id/delete
+const deleteCopy = async(req, res) => {
+  try {
+    const copy = await AvailableCopy.findByIdAndDelete(req.params.id)
+    console.log('Copy deleted successfully.')
+    res.status(201)
 
+  } catch (error) {
+    console.log(error)    
+  }
+}
 
-module.exports = { addCopy, oneCopy, getCopies }
+module.exports = { addCopy, oneCopy, getCopies, deleteCopy }
 
 // const theAuthor = await Author.findById(req.params.id)
 

@@ -2,56 +2,79 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
-import { createCopy, fetchBookModelData } from "../../api/fetchData";
+import { fetchBookModelData } from "../../api/fetchData";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import api from "axios";
 export default function NewAvailableCopy() {
   const { id } = useParams();
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: bookData, isLoading, isError } = useQuery({
+  const {
+    data: bookData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["bookmodels"],
-    queryFn: () => fetchBookModelData(id)
-  })
-  console.log(bookData)
+    queryFn: () => fetchBookModelData(id),
+  });
+  console.log(bookData);
 
   const [bookModel, setBookModel] = useState(id);
   const [author, setAuthor] = useState(bookData?.author._id);
   const [photo, setPhoto] = useState([]);
   const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState();
   const [publishingHouse, setPublishingHouse] = useState("");
-  const [thisCopyDescription, setThisCopyDescription] = useState("");
+  const [condition, setCondition] = useState("");
+  const [conditionDescription, setConditionDescription] = useState("");
   const [isAvailable, setIsAvailable] = useState(true);
   const [price, setPrice] = useState();
   const [ISBN, setISBN] = useState();
 
   const addCopyMutation = useMutation({
-    mutationFn: createCopy,
+    mutationFn: async (newCopy) => {
+      return api.post(`/api/copies/${id}/addcopy`, newCopy);
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries("availablecopies");
-    }
+      queryClient.invalidateQueries([
+        "availablecopies",
+        "authors",
+        "bookmodels",
+      ]);
+      navigate("/admin/availablecopieslist");
+    },
   });
 
   const postAvailableCopyData = () => {
     addCopyMutation.mutate({
       bookModel,
-      author, 
+      author,
       thisCopyPublishedYear,
       publishingHouse,
-      thisCopyDescription,
+      condition,
+      conditionDescription,
       photo,
       isAvailable,
       price,
       ISBN,
     });
-    navigate("/admin/availablecopieslist");
-  }
+    // console.log(
+    //   bookModel,
+    //   author, ', ',
+    //   thisCopyPublishedYear, ', ',
+    //   publishingHouse, ', ',
+    //   condition, ', ',
+    //   photo, ', ',
+    //   isAvailable, ', ',
+    //   price, ', ',
+    //   ISBN,)
+  };
   //   console.log( bookModel,
   //     author, thisCopyPublishedYear,
   //     publishingHouse,
-  //     thisCopyDescription,
+  //     condition,
   //     photo,
   //     isAvailable,
   //     price,
@@ -64,6 +87,8 @@ export default function NewAvailableCopy() {
   if (addCopyMutation.isError) {
     return <Error message={addCopyMutation.error.message} />;
   }
+
+  //6580da01fcc2a3cb995ed7bb "6580d70a4e6f3ff298309f0c" ,  2020 ,  Head of Zeus ,  This paperback copy is in a very good condition, no damage to the cover or the pages, but it has some small creases on the spine. https://plp.lenaesposito.co.uk/covers/seagate.jpg, 9781789545180
   return (
     <>
       <SectionTitle
@@ -84,10 +109,10 @@ export default function NewAvailableCopy() {
               id="publishingHouse"
               onChange={(e) => setBookModel(e.target.value)}
             />
-          </p>         
+          </p>
           <p>
             <label className="mr1" htmlFor="author">
-             Author:
+              Author:
             </label>
             <input
               required
@@ -99,19 +124,19 @@ export default function NewAvailableCopy() {
           </p>
           <p>
             <label className="mr1" htmlFor="photo">
-             Photos separated with ',':
+              Photos separated with ',':
             </label>
             <input
               required
               type="text"
               id="photo"
               placeholder="Enter photo url"
-              onChange={(e) => setPhoto((e.target.value.split(',')))}
+              onChange={(e) => setPhoto(e.target.value.split(","))}
             />
-          </p>           
+          </p>
           <p>
             <label className="mr1" htmlFor="prithisCopyPublishedYearce">
-             Copy Published Date:
+              Copy Published Date:
             </label>
             <input
               required
@@ -120,10 +145,10 @@ export default function NewAvailableCopy() {
               placeholder="Enter year"
               onChange={(e) => setThisCopyPublishedYear(e.target.value)}
             />
-          </p>         
+          </p>
           <p>
             <label className="mr1" htmlFor="publishingHouse">
-             Publishing house:
+              Publishing house:
             </label>
             <input
               required
@@ -132,37 +157,49 @@ export default function NewAvailableCopy() {
               placeholder="Enter publishing house"
               onChange={(e) => setPublishingHouse(e.target.value)}
             />
-          </p>          
+          </p>
           <p>
-            <label className="mr1" htmlFor="thisCopyDescription">
-             Description:
+            <label className="mr1" htmlFor="condition">
+              Condition:
             </label>
             <input
               required
               type="text"
-              id="thisCopyDescription"
-              placeholder="Enter description"
-              onChange={(e) => setThisCopyDescription(e.target.value)}
+              id="condition"
+              placeholder="Enter condition"
+              onChange={(e) => setCondition(e.target.value)}
             />
-          </p>        
+          </p>
+          <p>
+            <label className="mr1" htmlFor="conditionDescriprion">
+              Description:
+            </label>
+            <input
+              required
+              type="text"
+              id="conditionDescriprion"
+              placeholder="Enter description"
+              onChange={(e) => setConditionDescription(e.target.value)}
+            />
+          </p>
           <p className="mt1">
-          <label className="mr1" htmlFor="isAvailable">
-            Is it available?
-          </label>
-          <select
-            required
-            name="isAvailable"
-            id="isAvailable"
-            defaultValue={true}
-            onChange={(e) => setIsAvailable(e.target.value)}
-          >
-            <option value={true}>Yes</option>
-            <option value={false}>No</option>
-          </select>
-        </p>          
+            <label className="mr1" htmlFor="isAvailable">
+              Is it available?
+            </label>
+            <select
+              required
+              name="isAvailable"
+              id="isAvailable"
+              defaultValue={true}
+              onChange={(e) => setIsAvailable(e.target.value)}
+            >
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </select>
+          </p>
           <p>
             <label className="mr1" htmlFor="price">
-             Price:
+              Price:
             </label>
             <input
               required
@@ -171,10 +208,10 @@ export default function NewAvailableCopy() {
               placeholder="Enter price"
               onChange={(e) => setPrice(e.target.value)}
             />
-          </p>     
+          </p>
           <p>
             <label className="mr1" htmlFor="ISBN">
-            ISBN:
+              ISBN:
             </label>
             <input
               required
@@ -184,7 +221,11 @@ export default function NewAvailableCopy() {
               onChange={(e) => setISBN(e.target.value)}
             />
           </p>
-          <button onClick={postAvailableCopyData} type="submit" className="btn mt1">
+          <button
+            onClick={postAvailableCopyData}
+            type="submit"
+            className="btn mt1"
+          >
             Add Copy
           </button>
         </div>

@@ -53,7 +53,7 @@ export async function getCopiesData() {
 // }
 
 export async function createCopy(newCopy) {
-  return api.post(`/api/copies/:id/addcopy`, newCopy)
+  return api.post(`/api/copies/${id}/addcopy`, newCopy)
   .then((response) => response.data)
   .then(console.log(response.data))
   .catch((error) => console.error("Error creating new copy:", error));
@@ -67,12 +67,12 @@ export async function createCopy(newCopy) {
 //     );
 // }
 
-// export async function deleteAuthor(id) {
-//   return api
-//     .delete(`/api/authors/${id}/delete`, id)
-//     .then((res) => console.log(res))
-//     .catch((error) => console.error("Error deleting book data:", error));
-// }
+export async function deleteCopy(id) {
+  return api
+    .delete(`/api/copies/${id}/delete`, id)
+    .then((res) => console.log(res))
+    .catch((error) => console.error("Error deleting book data:", error));
+}
 
 
 // BookModel

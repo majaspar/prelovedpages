@@ -6,8 +6,8 @@ import DeleteAuthor from './DeleteAuthor';
 import Error from '../../components/Error';
 import Loading from '../../components/Loading';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { getAuthorsData } from '../../api/fetchData'
 import EditIcon from '@mui/icons-material/Edit';
+import { getAuthorsData } from '../../api/fetchData'
 
 export default function AuthorsList() {
 
@@ -66,7 +66,7 @@ export default function AuthorsList() {
                 <td style={{paddingLeft: '1rem', width: '100%'}}><ol>{author.writtenBooks.map((book) => {
                     return <li key={book._id}><Link to={`/books/${book._id}`}>{book.title}</Link></li>
                 } )}</ol></td>
-                <td><p>{author.availableCopies}</p></td>
+                <td><p>{author.availableCopies.join(', ')}</p></td>
                 <td><p className='td-scroll'>{author.photo}</p></td>
                 <td><p>{author.photoSource}</p></td>
                 <td>{author._id}</td>
