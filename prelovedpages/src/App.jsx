@@ -18,6 +18,7 @@ import UsersList from './admin/user/UsersList';
 import BookModelsList from './admin/book/BookModelsList';
 import UpdateBookModel from './admin/book/UpdateBookModel';
 import AvailableCopiesList from './admin/availableCopy/AvailableCopiesList';
+import UpdateAvailableCopy from './admin/availableCopy/UpdateAvailableCopy';
 import Styles from './admin/Styles';
 
 {/* Pages */ }
@@ -71,6 +72,7 @@ export default function App() {
            {/* Available Copy */}
           <Route path="/books/:id/addcopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
+          <Route path="/copies/:id/update" element={<UpdateAvailableCopy />} />
 
            {/* Users */}
           <Route path="/admin/userslist" element={<UsersList />} />

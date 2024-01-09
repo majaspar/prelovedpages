@@ -21,9 +21,9 @@ export async function createAuthor(newAuthor) {
   .catch((error) => console.error("Error fetching author data:", error));
 }
 
-export async function updateAuthor(updatedAuthor) {
+export async function updateAuthor(updatedCopy) {
   return await api
-    .patch(`/api/authors/${id}/update`, updatedAuthor)
+    .patch(`/api/authors/${id}/update`, updatedCopy)
     .catch((error) =>
       console.error("Error while updating a book model:", error)
     );
@@ -42,30 +42,31 @@ export async function getCopiesData() {
   return await api
     .get("/api/copies")
     .then((response) => response.data)
-    .catch((error) => console.error("Error fetching authors data:", error));
+    .catch((error) => console.error("Error fetching copies data:", error));
 }
 
-// export async function getAuthorData(id) {
-//   return await api
-//     .get(`/api/authors/${id}`)
-//     .then((response) => response.data)
-//     .catch((error) => console.error("Error fetching author data:", error));
-// }
+export async function getCopyData(id) {
+  return await api
+    .get(`/api/copies/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching copy data:", error));
+}
 
-export async function createCopy(newCopy) {
+export async function createCopy({newCopy, id}) {
   return api.post(`/api/copies/${id}/addcopy`, newCopy)
   .then((response) => response.data)
   .then(console.log(response.data))
   .catch((error) => console.error("Error creating new copy:", error));
 }
 
-// export async function updateAuthor(updatedAuthor) {
-//   return await api
-//     .patch(`/api/authors/${id}/update`, updatedAuthor)
-//     .catch((error) =>
-//       console.error("Error while updating a book model:", error)
-//     );
-// }
+export async function updateCopy(updatedCopy) {
+  return await api
+    .patch(`/api/copies/${id}/update`, updatedCopy)
+    .then((res) => console.log(res))
+    .catch((error) =>
+      console.error("Error while updating an available copy:", error)
+    );
+}
 
 export async function deleteCopy(id) {
   return api

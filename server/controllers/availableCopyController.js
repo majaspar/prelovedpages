@@ -1,8 +1,8 @@
-const Book = require('../models/Book')
-const Author = require('../models/Author')
-const AvailableCopy = require('../models/AvailableCopy')
+const Book = require("../models/Book");
+const Author = require("../models/Author");
+const AvailableCopy = require("../models/AvailableCopy");
 
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require("express-async-handler");
 // /api/authors/
 // const allAuthors = asyncHandler(async (req, res) => {
 //     const authors = await Author.find({}).sort({ createdAt: -1 })
@@ -11,85 +11,115 @@ const asyncHandler = require('express-async-handler')
 
 // /api/copies/
 const getCopies = asyncHandler(async (req, res) => {
-  const allCopies = await AvailableCopy.find({}).sort({ createdAt: -1 })
-  res.json(allCopies)
-})
+  const allCopies = await AvailableCopy.find({}).sort({ createdAt: -1 });
+  res.json(allCopies);
+});
 
 // /api/copies/:copyid/
 const oneCopy = asyncHandler(async (req, res) => {
   const copy = await AvailableCopy.findById(req.params.copyid)
-    .populate('bookModel')
-    .populate('author')
-    .exec()
-  res.json(copy)
-})
+    .populate("bookModel")
+    .populate("author")
+    .exec();
+  res.json(copy);
+});
 
 // /api/copies/:id/addcopy/
 const addCopy = async (req, res) => {
-
   try {
-    
-    const { 
-      bookModel, 
-      author, 
-      photo, 
+    const {
+      bookModel,
+      author,
+      photo,
       thisCopyPublishedYear,
-      publishingHouse, 
-      condition, conditionDescriprion,
-      isAvailable, 
-      price, 
-      ISBN } = req.body;
+      publishingHouse,
+      condition,
+      conditionDescription,
+      isAvailable,
+      price,
+      Isbn,
+    } = req.body;
 
-    const theBookModel = await Book.findById(req.params.id)
-    const theAuthor = await Author.findById(author)
-
-    // const theBookModel = await Book.findOne({ _id: bookModelId })
-    //   .populate().exec()
+    const theBookModel = await Book.findById(req.params.id);
+    const theAuthor = await Author.findById(author);
 
     const newAvailableCopy = new AvailableCopy({
-      bookModel, 
-      author, 
-      photo, 
-      publishingHouse, 
+      bookModel,
+      author,
+      photo,
+      publishingHouse,
       thisCopyPublishedYear,
       condition,
-      conditionDescriprion, 
-      isAvailable, 
-      price, 
-      ISBN
-    })
+      conditionDescription,
+      isAvailable,
+      price,
+      Isbn,
+    });
 
-    await newAvailableCopy.save()
-    console.log('Available Copy added successfully!')
+    await newAvailableCopy.save();
+    console.log("Available Copy added successfully!");
 
     theAuthor.availableCopies.push(newAvailableCopy);
-    await theAuthor.save()
+    await theAuthor.save();
 
-    console.log('The Author saved successfully!')
+    console.log("The Author saved successfully!");
     theBookModel.availableCopies.push(newAvailableCopy);
-    theBookModel.isAvailable = true
+    theBookModel.isAvailable = true;
 
-    await theBookModel.save()
-    console.log('The Book Model saved successfully!')
-
+    await theBookModel.save();
+    console.log("The Book Model saved successfully!");
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
+};
 
-}
-// /api/copies/:id/delete
-const deleteCopy = async(req, res) => {
+//  /api/copies/:id/update
+const updateCopy = async (req, res) => {
   try {
-    const copy = await AvailableCopy.findByIdAndDelete(req.params.id)
-    console.log('Copy deleted successfully.')
-    res.status(201)
+    const copy = await AvailableCopy.findByIdAndUpdate(req.params.id);
 
+    const {
+      bookModel,
+      author,
+      photo,
+      publishingHouse,
+      thisCopyPublishedYear,
+      condition,
+      conditionDescription,
+      isAvailable,
+      price,
+      Isbn,
+    } = req.body;
+
+    copy.bookModel = bookModel;
+    copy.author = author;
+    copy.photo = photo;
+    copy.publishingHouse = publishingHouse;
+    copy.thisCopyPublishedYear = thisCopyPublishedYear;
+    copy.condition = condition;
+    copy.conditionDescription = conditionDescription;
+    copy.isAvailable = isAvailable;
+    copy.price = price;
+    copy.Isbn = Isbn;
+
+    await copy.save();
   } catch (error) {
-    console.log(error)    
+    console.log(error);
   }
-}
+};
 
-module.exports = { addCopy, oneCopy, getCopies, deleteCopy }
+// /api/copies/:id/delete
+const deleteCopy = async (req, res) => {
+  try {
+    const copy = await AvailableCopy.findByIdAndDelete(req.params.id);
+    console.log("Copy deleted successfully.");
+    res.status(201);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { addCopy, updateCopy, oneCopy, getCopies, deleteCopy };
 
 // const theAuthor = await Author.findById(req.params.id)
 
@@ -108,4 +138,3 @@ module.exports = { addCopy, oneCopy, getCopies, deleteCopy }
 // await theAuthor.save()
 
 // console.log('Book Model added successfully!')
-

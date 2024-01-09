@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
 import { fetchBookModelData } from "../../api/fetchData";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import api from "axios";
+
 export default function NewAvailableCopy() {
   const { id } = useParams();
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const {
-    data: bookData,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: bookData } = useQuery({
     queryKey: ["bookmodels"],
     queryFn: () => fetchBookModelData(id),
   });
-  console.log(bookData);
+  useEffect(() => {
+    bookData ? console.log(bookData.author._id) : console.log("Too late");
+  }, [bookData]);
 
   const [bookModel, setBookModel] = useState(id);
   const [author, setAuthor] = useState(bookData?.author._id);
@@ -31,19 +30,23 @@ export default function NewAvailableCopy() {
   const [conditionDescription, setConditionDescription] = useState("");
   const [isAvailable, setIsAvailable] = useState(true);
   const [price, setPrice] = useState();
-  const [ISBN, setISBN] = useState();
+  const [Isbn, setIsbn] = useState();
+
+  const handleAddCopy = async (newCopy) => {
+    return await api
+      .post(`/api/copies/${id}/addcopy`, newCopy)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.error("Error fetching copy data:", error));
+  };
 
   const addCopyMutation = useMutation({
-    mutationFn: async (newCopy) => {
-      return api.post(`/api/copies/${id}/addcopy`, newCopy);
-    },
+    mutationFn: handleAddCopy,
     onSuccess: () => {
       queryClient.invalidateQueries([
         "availablecopies",
         "authors",
         "bookmodels",
       ]);
-      navigate("/admin/availablecopieslist");
     },
   });
 
@@ -58,8 +61,10 @@ export default function NewAvailableCopy() {
       photo,
       isAvailable,
       price,
-      ISBN,
+      Isbn,
     });
+    navigate("/admin/availablecopieslist");
+    navigate(0);
     // console.log(
     //   bookModel,
     //   author, ', ',
@@ -69,17 +74,9 @@ export default function NewAvailableCopy() {
     //   photo, ', ',
     //   isAvailable, ', ',
     //   price, ', ',
-    //   ISBN,)
+    //   Isbn,)
   };
-  //   console.log( bookModel,
-  //     author, thisCopyPublishedYear,
-  //     publishingHouse,
-  //     condition,
-  //     photo,
-  //     isAvailable,
-  //     price,
-  //   ISBN)
-  // };
+
   if (addCopyMutation.isLoading) {
     return <Loading />;
   }
@@ -88,7 +85,6 @@ export default function NewAvailableCopy() {
     return <Error message={addCopyMutation.error.message} />;
   }
 
-  //6580da01fcc2a3cb995ed7bb "6580d70a4e6f3ff298309f0c" ,  2020 ,  Head of Zeus ,  This paperback copy is in a very good condition, no damage to the cover or the pages, but it has some small creases on the spine. https://plp.lenaesposito.co.uk/covers/seagate.jpg, 9781789545180
   return (
     <>
       <SectionTitle
@@ -135,7 +131,7 @@ export default function NewAvailableCopy() {
             />
           </p>
           <p>
-            <label className="mr1" htmlFor="prithisCopyPublishedYearce">
+            <label className="mr1" htmlFor="thisCopyPublishedYear">
               Copy Published Date:
             </label>
             <input
@@ -163,7 +159,6 @@ export default function NewAvailableCopy() {
               Condition:
             </label>
             <input
-              required
               type="text"
               id="condition"
               placeholder="Enter condition"
@@ -171,13 +166,12 @@ export default function NewAvailableCopy() {
             />
           </p>
           <p>
-            <label className="mr1" htmlFor="conditionDescriprion">
+            <label className="mr1" htmlFor="conditionDescription">
               Description:
             </label>
             <input
-              required
               type="text"
-              id="conditionDescriprion"
+              id="conditionDescription"
               placeholder="Enter description"
               onChange={(e) => setConditionDescription(e.target.value)}
             />
@@ -210,15 +204,15 @@ export default function NewAvailableCopy() {
             />
           </p>
           <p>
-            <label className="mr1" htmlFor="ISBN">
+            <label className="mr1" htmlFor="Isbn">
               ISBN:
             </label>
             <input
               required
               type="number"
-              id="ISBN"
-              placeholder="Enter ISBN"
-              onChange={(e) => setISBN(e.target.value)}
+              id="Isbn"
+              placeholder="Enter Isbn"
+              onChange={(e) => setIsbn(e.target.value)}
             />
           </p>
           <button

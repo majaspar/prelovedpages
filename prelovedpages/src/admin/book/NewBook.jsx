@@ -38,10 +38,7 @@ export default function NewBook() {
     }
   };
   const handleAddBookModel = async (newBookModel) => {
-    return api
-      .post(`/api/books/${authorid}/addbook`, newBookModel)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error("Error fetching author data:", error));
+    return await api.post(`/api/books/${authorid}/addbook`, newBookModel);
   };
   const addBookModelMutation = useMutation({
     mutationFn: handleAddBookModel,
@@ -67,7 +64,7 @@ export default function NewBook() {
       volume,
       genre,
     })
-    navigate('/admin/bookmodelslist')
+      navigate("/admin/bookmodelslist");
   };
 
   if (addBookModelMutation.isLoading) {
@@ -111,7 +108,7 @@ export default function NewBook() {
 
         <p>
           <label className="mr1" htmlFor="publishedYear">
-            Year:{" "}
+            Year:
           </label>
           <input
             required
@@ -124,7 +121,7 @@ export default function NewBook() {
 
         <p className="mt1 flex">
           <label className="mr1" htmlFor="originalLanguage">
-            Synopsis:{" "}
+            Synopsis:
           </label>
           <textarea
             type="text"
@@ -136,7 +133,7 @@ export default function NewBook() {
 
         <p>
           <label className="mr1" htmlFor="cover">
-            Cover:{" "}
+            Cover:
           </label>
           <input
             type="text"
@@ -182,7 +179,7 @@ export default function NewBook() {
           <div className="ml2 mt1">
             <p>
               <label className="mr1" htmlFor="series">
-                Series:{" "}
+                Series:
               </label>
               <input
                 type="text"
@@ -194,7 +191,7 @@ export default function NewBook() {
             {series !== null && (
               <p>
                 <label className="mr1" htmlFor="volume">
-                  Volume:{" "}
+                  Volume:
                 </label>
                 <input
                   required

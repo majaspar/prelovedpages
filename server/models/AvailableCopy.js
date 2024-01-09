@@ -1,23 +1,26 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AvailableCopySchema = new Schema ({
-    bookModel: { type: Schema.Types.ObjectId, ref: 'Book' },
-    author: { type: Schema.Types.ObjectId, ref: 'Author' },
-    photo: [{ type: String }],
-    thisCopyPublishedYear:  { type: Number },
-    publishingHouse:  { type: String },
-    condition: { 
-        type: String,
-        enum: ['New', 'Like New', 'Very good', 'Good', 'Acceptable']
+const AvailableCopySchema = new Schema(
+  {
+    bookModel: { type: Schema.Types.ObjectId, ref: "Book" },
+    author: { type: Schema.Types.ObjectId, ref: "Author" },
+    photo: [{ type: String, required: false }],
+    thisCopyPublishedYear: { type: Number, required: false },
+    publishingHouse: { type: String, required: false },
+    condition: {
+      type: String,
+      enum: ["New", "Like New", "Very Good", "Good", "Acceptable"],
+      required: false,
     },
-    conditionDescriprion: { type: String },
+    conditionDescription: { type: String, required: false },
     isAvailable: { type: Boolean },
-    price: { type: Number },
-    ISBN: { type: Number },
-}, {
+    price: { type: Number, required: false },
+    Isbn: { type: Number, required: false },
+  },
+  {
     timestamps: true,
-})
+  }
+);
 
-
-module.exports = mongoose.model('AvailableCopy', AvailableCopySchema);
+module.exports = mongoose.model("AvailableCopy", AvailableCopySchema);
