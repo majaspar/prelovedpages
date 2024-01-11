@@ -10,6 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 export default function BookModelsList() {
+  
   const {
     data: bookModels,
     isLoading,
@@ -68,21 +69,22 @@ export default function BookModelsList() {
             {bookModels?.map((book) => {
               return (
                 <tr key={book._id}>
+                  {console.log(book)}
                   <td className="BookModelsList__td--edit center">
                     <Link to={`/admin/books/${book._id}/update`}>
                       <EditIcon />
                     </Link>
                   </td>
                   <td className="BookModelsList__td--delete center">
-                    {" "}
-                    <DeleteModal id={book._id} />
+                    <DeleteModal id={book._id} author={book.author._id}/>
+                  
                   </td>
                   <td>
                     <Link to={`/admin/books/${book._id}/addcopy`}>
                       <AddCircleOutlineIcon />
                     </Link>
                   </td>
-                  <td className="center">{book.isAvailable ? "Yes" : "No"}</td>
+                  <td className="center">{book.availableCopies.length === 0 ? "No" : "Yes"}</td>
                   <td className="BookModelsList__td--title">
                     <Link to={`/books/${book._id}`}>{book.title}</Link>
                   </td>

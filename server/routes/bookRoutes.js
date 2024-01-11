@@ -9,7 +9,7 @@ router.route('/:id').get(getBook);
 
 // CRUD    /api/books
 router.route('/:id/addbook').post(addBook);
-router.route('/:id/delete').delete(deleteBook);
+router.route('/:authorid/:id/delete').delete(deleteBook);
 router.route('/:id/update').patch(updateBook);
 
 module.exports = router;

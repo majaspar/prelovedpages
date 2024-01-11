@@ -6,22 +6,32 @@ import { Modal, Fade, Backdrop } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../../components/Loading";
 import { deleteBookModel } from "../../api/fetchData";
+import api from 'axios'
 
-export default function DeleteModal({ id }) {
+export default function DeleteModal({ id, author }) {
   const navigate = useNavigate();
+  const [authorid, setAuthorid] = useState("");
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const handleOpen = () => setOpenDeleteModal(true);
+  const handleOpen = () => {
+    setOpenDeleteModal(true);
+    setAuthorid(author);
+  };
   const handleClose = () => setOpenDeleteModal(false);
 
   const handleDelete = async (id) => {
-    deleteBookModel(id)
-    handleClose();
+    
+      return api
+        .delete(`/api/books/${authorid}/${id}/delete`, id)
+        .then((res) => console.log(res))
+        .catch((error) => console.error("Error deleting book data:", error))
+    
+    .then(handleClose())
   };
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: handleDelete,
     onSuccess: () => {
-        queryClient.invalidateQueries("bookmodels");
+      queryClient.invalidateQueries("bookmodels");
     },
   });
 
@@ -49,7 +59,14 @@ export default function DeleteModal({ id }) {
         <Fade in={openDeleteModal}>
           <div className="DeleteModal center">
             <h4 className="center mb2">
-              Are you sure You want to delete this Book Model?
+              Are you sure You want to delete Book Model {id} by author id
+              <input
+                type="text"
+                name='authorid'
+                id='authorid'
+                value={authorid}
+                onChange={(e) => setAuthorid(e.target.value)}
+              />
             </h4>
 
             <button
