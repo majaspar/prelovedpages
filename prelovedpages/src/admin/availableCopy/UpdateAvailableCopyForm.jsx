@@ -1,95 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
-import { fetchBookModelData } from "../../api/fetchData";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import api from "axios";
 
-export default function NewAvailableCopy() {
+export default function UpdateAvailableCopyForm({ initialValue }) {
   const { id } = useParams();
-
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data: bookData } = useQuery({
-    queryKey: ["bookmodels"],
-    queryFn: () => fetchBookModelData(id),
-  });
-  useEffect(() => {
-    bookData ? console.log(bookData.author._id) : console.log("Too late");
-  }, [bookData]);
+  const [bookModel, setBookModel] = useState(initialValue?.bookModel._id || "");
+  const [author, setAuthor] = useState(initialValue?.author._id || "");
+  const [photo, setPhoto] = useState(initialValue?.photo || []);
+  const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState(
+    initialValue?.thisCopyPublishedYear || ""
+  );
+  const [publishingHouse, setPublishingHouse] = useState(
+    initialValue?.publishingHouse || ""
+  );
+  const [condition, setCondition] = useState(initialValue?.condition || "");
+  const [conditionDescription, setConditionDescription] = useState(
+    initialValue?.conditionDescription || ""
+  );
+  const [isAvailable, setIsAvailable] = useState(
+    initialValue?.isAvailable || true
+  );
+  const [price, setPrice] = useState(initialValue?.price || null);
+  const [Isbn, setIsbn] = useState(initialValue?.Isbn || null);
 
-  const [bookModel, setBookModel] = useState(id);
-  const [author, setAuthor] = useState(bookData?.author._id);
-  const [photo, setPhoto] = useState([]);
-  const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState();
-  const [publishingHouse, setPublishingHouse] = useState("");
-  const [condition, setCondition] = useState("");
-  const [conditionDescription, setConditionDescription] = useState("");
-  const [isAvailable, setIsAvailable] = useState(true);
-  const [price, setPrice] = useState();
-  const [Isbn, setIsbn] = useState();
-
-  const handleAddCopy = async ({id, newCopy}) => {
-    return await api
-      .post(`/api/copies/${id}/addcopy`, newCopy)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.error("Error fetching copy data:", error));
+  const handleUpdateCopy = async (updatedCopy) => {
+    api
+      .patch(`/api/copies/${id}/update`, updatedCopy)
+      .catch((error) =>
+        console.error("Error while updating a book model:", error)
+      );
   };
 
-  const addCopyMutation = useMutation({
-    mutationFn: handleAddCopy,
+  const updateCopyMutation = useMutation({
+    mutationFn: handleUpdateCopy,
     onSuccess: () => {
-      queryClient.invalidateQueries([
-        "availablecopies",
-        "authors",
-        "bookmodels",
-      ]);
+      queryClient.invalidateQueries("availablecopies");
+      navigate("/admin/availablecopieslist");
     },
   });
 
-  const postAvailableCopyData = () => {
-    addCopyMutation.mutate({
+  const updateAvailableCopyData = () => {
+    updateCopyMutation.mutate({
       bookModel,
       author,
-      thisCopyPublishedYear,
+      photo,
       publishingHouse,
+      thisCopyPublishedYear,
       condition,
       conditionDescription,
-      photo,
       isAvailable,
       price,
       Isbn,
     });
-    navigate("/admin/availablecopieslist");
-    navigate(0);
-    // console.log(
-    //   bookModel,
-    //   author, ', ',
-    //   thisCopyPublishedYear, ', ',
-    //   publishingHouse, ', ',
-    //   condition, ', ',
-    //   photo, ', ',
-    //   isAvailable, ', ',
-    //   price, ', ',
-    //   Isbn,)
-  };
+  }
 
-  if (addCopyMutation.isLoading) {
+  if (updateCopyMutation.isLoading) {
     return <Loading />;
   }
 
-  if (addCopyMutation.isError) {
-    return <Error message={addCopyMutation.error.message} />;
+  if (updateCopyMutation.isError) {
+    return <Error message={updateCopyMutation.error.message} />;
   }
-
   return (
     <>
       <SectionTitle
-        title="Add New Copy"
-        btn="Go to All Copies"
+        title="Update Available Copy"
+        btn="Go to Copies List"
         link="/admin/availablecopieslist"
       />
       <section className="margins mt2 admin">
@@ -102,7 +85,7 @@ export default function NewAvailableCopy() {
               required
               type="text"
               value={bookModel}
-              id="publishingHouse"
+              id="bookModel"
               onChange={(e) => setBookModel(e.target.value)}
             />
           </p>
@@ -126,7 +109,7 @@ export default function NewAvailableCopy() {
               required
               type="text"
               id="photo"
-              placeholder="Enter photo url"
+              value={photo.join(", ")}
               onChange={(e) => setPhoto(e.target.value.split(","))}
             />
           </p>
@@ -137,8 +120,8 @@ export default function NewAvailableCopy() {
             <input
               required
               type="number"
+              value={thisCopyPublishedYear}
               id="thisCopyPublishedYear"
-              placeholder="Enter year"
               onChange={(e) => setThisCopyPublishedYear(e.target.value)}
             />
           </p>
@@ -150,7 +133,7 @@ export default function NewAvailableCopy() {
               required
               type="text"
               id="publishingHouse"
-              placeholder="Enter publishing house"
+              value={publishingHouse}
               onChange={(e) => setPublishingHouse(e.target.value)}
             />
           </p>
@@ -158,12 +141,19 @@ export default function NewAvailableCopy() {
             <label className="mr1" htmlFor="condition">
               Condition:
             </label>
-            <input
-              type="text"
+            <select
+              required
+              name="condition"
               id="condition"
-              placeholder="Enter condition"
+              value={condition}
               onChange={(e) => setCondition(e.target.value)}
-            />
+            >
+              <option value="New">New</option>
+              <option value="Like New">Like New</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Good">Good</option>
+              <option value="Acceptable">Acceptable</option>
+            </select>
           </p>
           <p>
             <label className="mr1" htmlFor="conditionDescription">
@@ -172,11 +162,11 @@ export default function NewAvailableCopy() {
             <input
               type="text"
               id="conditionDescription"
-              placeholder="Enter description"
+              value={conditionDescription}
               onChange={(e) => setConditionDescription(e.target.value)}
             />
           </p>
-          <p className="mt1">
+          <p className="">
             <label className="mr1" htmlFor="isAvailable">
               Is it available?
             </label>
@@ -184,7 +174,7 @@ export default function NewAvailableCopy() {
               required
               name="isAvailable"
               id="isAvailable"
-              defaultValue={true}
+              value={isAvailable}
               onChange={(e) => setIsAvailable(e.target.value)}
             >
               <option value={true}>Yes</option>
@@ -199,6 +189,7 @@ export default function NewAvailableCopy() {
               required
               type="number"
               id="price"
+              value={price}
               placeholder="Enter price"
               onChange={(e) => setPrice(e.target.value)}
             />
@@ -211,16 +202,16 @@ export default function NewAvailableCopy() {
               required
               type="number"
               id="Isbn"
-              placeholder="Enter Isbn"
+              value={Isbn}
               onChange={(e) => setIsbn(e.target.value)}
             />
           </p>
           <button
-            onClick={postAvailableCopyData}
+            onClick={updateAvailableCopyData}
             type="submit"
             className="btn mt1"
           >
-            Add Copy
+            Update
           </button>
         </div>
       </section>

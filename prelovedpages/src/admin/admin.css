@@ -4,12 +4,15 @@
     background-color: var(--clr-grey-light);
     cursor: pointer;
 }
+.form {
+    width: 100%;
+}
 
 .admin .form input,
 .admin .form textarea {
     padding: 0.2rem;
     border-bottom: 1px solid rgba(var(--clr-grey-light-rgb), 0.6);
-    max-width: 100%;
+    width: 70vw;
     margin-bottom: 0.5rem;
 }
 
@@ -25,6 +28,7 @@
 
 .admin .form textarea {
     border: 1px solid rgba(var(--clr-grey-light-rgb), 0.6);
+    height: 200px;
 }
 
 /*****************************/

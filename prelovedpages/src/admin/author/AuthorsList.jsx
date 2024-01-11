@@ -51,12 +51,12 @@ export default function AuthorsList() {
                 <td><Link to={`/authors/${author._id}`}>{author.firstName}</Link></td>
                 <td><Link to={`/authors/${author._id}`}>{author.lastName}</Link></td>
                 <td>
-                  <Link to={`/authors/${author._id}/update`}>
+                  <Link to={`/admin/authors/${author._id}/update`}>
                     <EditIcon/>
                     </Link>
                 </td>
                 <td>
-                  <Link to={`/books/${author._id}/addbook`}>
+                  <Link to={`/admin/books/${author._id}/addbook`}>
                   <AddCircleOutlineIcon/>
                     </Link>
                 </td>

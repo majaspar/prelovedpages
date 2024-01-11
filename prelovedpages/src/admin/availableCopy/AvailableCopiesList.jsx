@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "../../components/SectionTitle";
-import { getCopiesData } from "../../api/fetchData";
+import { getCopiesData, fetchBookModelData } from "../../api/fetchData";
 import { useQuery } from "@tanstack/react-query";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
@@ -9,17 +9,20 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 
 export default function AvailableCopiesList() {
+
+
+// Available Copies Data 
   const {
     data: copies,
     isLoading,
-    isError,
+    error,
   } = useQuery({
     queryKey: ["availablecopies"],
     queryFn: () => getCopiesData(),
   });
-  console.log(copies);
 
-  if (isError) {
+  console.log(copies)
+  if (error) {
     return (
       <div className="mt2 margins">
         <Error message={isError.message} />
@@ -39,20 +42,19 @@ export default function AvailableCopiesList() {
     <>
       <SectionTitle
         title="List of Available Copies"
-        link="/admin/authorslist"
-        btn="List of Authors"
+        link="/admin"
+        btn="Go to Admin Dashboard"
       />
       <section className="margins">
         <table>
           <thead>
             <tr>
               <th>Img</th>
-              <th>ID</th>
+              <th>Copy Id/Author/BM</th>
               <th>Price</th>
               <th>Condition<br/>
               Description</th>
-              <th>Publisher</th>
-              <th>Isbn</th>
+              <th>Publisher/ Isbn</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -65,23 +67,24 @@ export default function AvailableCopiesList() {
                 return (
                   <tr key={copy._id}>
                     <td>
-                      <img height="100" src={copy.photo || ""} />
+                      <img height="100" src={copy.photo[0] || ""} />
                     </td>
-                    <td>{copy._id}</td>
+                    <td><Link to={`/copies/${copy._id}`}>Copy: {copy._id}</Link><hr/>
+                    <Link to={`/authors/${copy.author}`}>A: {copy.author}</Link><hr/>
+                    <Link to={`/books/${copy.bookModel}`}>BM: {copy.bookModel}</Link></td>
 
                     <td>
-                      £
                       {!copy.price === null || undefined
-                        ? copy.price.toFixed(2)
-                        : "no data"}{" "}
+                        ?  <span>£{copy.price.toFixed(2)}</span>
+                        : <span>no data</span>}
                     </td>
-                    <td>{copy.condition || ""} <br/>
+                    <td>{copy.condition || ""} <hr/>
                     {copy.conditionDescription || ""}</td>
                     
-                    <td>{copy.publishingHouse || ""} </td>
-                    <td> {copy.Isbn || ""}</td>
+                    <td>{copy.publishingHouse || ""} <hr/> 
+                    {copy.Isbn || ""}</td>
                     <td>
-                      <Link to={`/copies/${copy._id}/update`}><EditIcon /></Link>
+                      <Link to={`/admin/copies/${copy._id}/update`}><EditIcon /></Link>
                     </td>
                     <td>
                       <DeleteIcon />

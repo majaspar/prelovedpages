@@ -15,9 +15,9 @@ const getCopies = asyncHandler(async (req, res) => {
   res.json(allCopies);
 });
 
-// /api/copies/:copyid/
+// /api/copies/:id/
 const oneCopy = asyncHandler(async (req, res) => {
-  const copy = await AvailableCopy.findById(req.params.copyid)
+  const copy = await AvailableCopy.findById(req.params.id)
     .populate("bookModel")
     .populate("author")
     .exec();

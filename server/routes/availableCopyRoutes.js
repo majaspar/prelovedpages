@@ -5,7 +5,7 @@ const { addCopy, updateCopy, deleteCopy, getCopies, oneCopy } = require('../cont
 
 // Pages    /api/copies
 router.route('/').get(getCopies);
-router.route('/:copyid').get(oneCopy);
+router.route('/:id').get(oneCopy);
 
 router.route('/:id/addcopy').post(addCopy);
 router.route('/:id/update').patch(updateCopy);

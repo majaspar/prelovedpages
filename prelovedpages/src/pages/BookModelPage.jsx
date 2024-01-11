@@ -77,10 +77,10 @@ export default function BookModelPage() {
         )}
       </section>
       <div className="margins">
-        <Link to={`/books/${book._id}/update`}>
+        <Link to={`/admin/books/${book._id}/update`}>
           <button className="btn mt1">Edit Book Model</button>
         </Link>
-        <Link to={`/books/${book._id}/addcopy`}>
+        <Link to={`/admin/books/${book._id}/addcopy`}>
           <button className="btn mt1">Add a Copy</button>
         </Link>
       </div>

@@ -52,13 +52,14 @@ const updateAuthor = async (req, res) => {
    try {
       const updatedAuthor = await Author.findByIdAndUpdate(req.params.id)
 
-      const { firstName, 
+      const { 
+         firstName, 
          lastName, 
-         originalLanguage, 
          born, 
-         country, 
          photo, 
-         photoSource } = req.body;
+         photoSource,
+         originalLanguage, 
+         country } = req.body;
 
          updatedAuthor.firstName = firstName, 
          updatedAuthor.lastName = lastName, 

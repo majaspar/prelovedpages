@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "../Admin.css";
+import React, { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
 import SectionTitle from "../../components/SectionTitle";
@@ -17,15 +16,15 @@ export default function UpdateBookModelForm({ initialValue }) {
   const [publishedYear, setPublishedYear] = useState(
     initialValue?.publishedYear
   );
-  const [synopsis, setSynopsis] = useState(initialValue?.synopsis);
-  const [cover, setCover] = useState(initialValue?.cover);
-  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured);
+  const [synopsis, setSynopsis] = useState(initialValue?.synopsis || "");
+  const [cover, setCover] = useState(initialValue?.cover || "");
+  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured || "");
   const [isPartOfSeries, setIsPartOfSeries] = useState(
-    initialValue?.isPartOfSeries
+    initialValue?.isPartOfSeries || ""
   );
-  const [series, setSeries] = useState(initialValue?.series);
-  const [volume, setVolume] = useState(initialValue?.volume);
-  const [genre, setGenre] = useState(initialValue?.genre);
+  const [series, setSeries] = useState(initialValue?.series || null);
+  const [volume, setVolume] = useState(initialValue?.volume || null);
+  const [genre, setGenre] = useState(initialValue?.genre || []);
 
   // Genre Checkboxes
   const handleGenreChange = (e) => {
@@ -391,7 +390,7 @@ export default function UpdateBookModelForm({ initialValue }) {
             type="submit"
             className="btn mt3"
           >
-            Edit Book Model
+            Update
           </button>
         </div>
 

@@ -46,8 +46,7 @@ export default function App() {
           {/* Pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:id" element={<BookModelPage />} />
-          <Route path="/books/:id/:copyid" element={<AvailableCopyPage />} />
-          {/* <Route path="/books/:id/addcopy" element={<NewAvailableCopy />} /> */}
+          <Route path="/copies/:id" element={<AvailableCopyPage />} />
           <Route path="/authors/:id" element={<AuthorPage />} />
           <Route path="/authors" element={<AllAuthors />} />
           <Route path="/allbooks" element={<AllAvailableBooks />} />
@@ -62,17 +61,17 @@ export default function App() {
           {/* Author */}
           <Route path="/admin/authorslist" element={<AuthorsList />} />
           <Route path="/admin/newauthor" element={<NewAuthor />} />
-          <Route path="/authors/:id/update" element={<UpdateAuthor />} />
+          <Route path="/admin/authors/:id/update" element={<UpdateAuthor />} />
  
            {/* BookModel */}
           <Route path="/admin/bookmodelslist" element={<BookModelsList />} />
-          <Route path="/books/:id/update" element={<UpdateBookModel />} />
-          <Route path="/books/:authorid/addbook" element={<NewBook />} />
+          <Route path="/admin/books/:id/update" element={<UpdateBookModel />} />
+          <Route path="/admin/books/:authorid/addbook" element={<NewBook />} />
 
            {/* Available Copy */}
-          <Route path="/books/:id/addcopy" element={<NewAvailableCopy />} />
+          <Route path="/admin/books/:id/addcopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
-          <Route path="/copies/:id/update" element={<UpdateAvailableCopy />} />
+          <Route path="/admin/copies/:id/update" element={<UpdateAvailableCopy />} />
 
            {/* Users */}
           <Route path="/admin/userslist" element={<UsersList />} />

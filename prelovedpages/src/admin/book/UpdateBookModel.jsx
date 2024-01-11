@@ -8,27 +8,30 @@ import { fetchBookModelData } from "../../api/fetchData";
 import UpdateBookModelForm from "./UpdateBookModelForm";
 
 export default function UpdateBookModel() {
+  const { id } = useParams();
 
-  
-  const {id} = useParams()
-
-  const { data: book, error, isLoading, isError } = useQuery({
+  const {
+    data: book,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["bookmodels", id],
-    queryFn: () => fetchBookModelData(id)
-  })
+    queryFn: () => fetchBookModelData(id),
+  });
 
- console.log('Book fetched in UpdateBookModel: ', book)
+  console.log("Book fetched in UpdateBookModel: ", book);
 
- if (isLoading) {
-  return <Loading />;
-}
+  if (isLoading) {
+    return <Loading />;
+  }
 
-if (isError) {
-  return <Error message={isError.message} />;
-}
+  if (isError) {
+    return <Error message={isError.message} />;
+  }
 
-    return <div>
-      <UpdateBookModelForm initialValue={book}/>
-      </div>
- 
+  return (
+    <div>
+      <UpdateBookModelForm initialValue={book} />
+    </div>
+  );
 }

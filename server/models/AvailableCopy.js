@@ -10,8 +10,7 @@ const AvailableCopySchema = new Schema(
     publishingHouse: { type: String, required: false },
     condition: {
       type: String,
-      enum: ["New", "Like New", "Very Good", "Good", "Acceptable"],
-      required: false,
+      enum: ["New", "Like New", "Very Good", "Good", "Acceptable"]
     },
     conditionDescription: { type: String, required: false },
     isAvailable: { type: Boolean },

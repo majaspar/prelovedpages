@@ -18,7 +18,7 @@ export async function getAuthorData(id) {
 export async function createAuthor(newAuthor) {
   return api.post(`/api/authors/add`, newAuthor)
   .then((response) => response.data)
-  .catch((error) => console.error("Error fetching author data:", error));
+  .catch((error) => console.error("Error creating author: ", error));
 }
 
 export async function updateAuthor(updatedCopy) {
