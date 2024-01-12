@@ -1,102 +1,70 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
+import { fetchBookModelData } from "../../api/fetchData";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import api from "axios";
 
-
-// const { id } = useParams();
-// const navigate = useNavigate();
-// const queryClient = useQueryClient();
-
-// const [bookModel, setBookModel] = useState(id);
-// const [author, setAuthor] = useState(initialValue?.author._id || "");
-// const [photo, setPhoto] = useState(initialValue?.photo || []);
-// const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState(
-//   initialValue?.thisCopyPublishedYear || null
-// );
-// const [publishingHouse, setPublishingHouse] = useState(
-//   initialValue?.publishingHouse || ""
-// );
-// const [condition, setCondition] = useState(initialValue?.condition || "");
-// const [conditionDescription, setConditionDescription] = useState(
-//   initialValue?.conditionDescription || ""
-// );
-// const [isAvailable, setIsAvailable] = useState(
-//   initialValue?.isAvailable || true
-// );
-// const [price, setPrice] = useState(initialValue?.price || null);
-// const [Isbn, setIsbn] = useState(initialValue?.Isbn || null);
-
-export default function UpdateAvailableCopyForm({ initialValue }) {
+export default function NewAvailableCopyForm({ initialValue }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const [bookModel, setBookModel] = useState(initialValue?.bookModel._id || "");
+  const [bookModel, setBookModel] = useState(id);
   const [author, setAuthor] = useState(initialValue?.author._id || "");
-  const [photo, setPhoto] = useState(initialValue?.photo || []);
-  const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState(
-    initialValue?.thisCopyPublishedYear || ""
-  );
-  const [publishingHouse, setPublishingHouse] = useState(
-    initialValue?.publishingHouse || ""
-  );
-  const [condition, setCondition] = useState(initialValue?.condition || "");
-  const [conditionDescription, setConditionDescription] = useState(
-    initialValue?.conditionDescription || ""
-  );
-  const [isAvailable, setIsAvailable] = useState(
-    initialValue?.isAvailable || true
-  );
-  const [price, setPrice] = useState(initialValue?.price || null);
-  const [Isbn, setIsbn] = useState(initialValue?.Isbn || null);
+  const [photo, setPhoto] = useState([]);
+  const [thisCopyPublishedYear, setThisCopyPublishedYear] = useState(null);
+  const [publishingHouse, setPublishingHouse] = useState("");
+  const [condition, setCondition] = useState("");
+  const [conditionDescription, setConditionDescription] = useState("");
+  const [isAvailable, setIsAvailable] = useState(true);
+  const [price, setPrice] = useState(null);
+  const [Isbn, setIsbn] = useState(null);
 
-  const handleUpdateCopy = async (updatedCopy) => {
-    api
-      .patch(`/api/copies/${id}/update`, updatedCopy)
-      .catch((error) =>
-        console.error("Error while updating a book model:", error)
-      );
-  };
+  const handleAddCopy = async () => {};
 
-  const updateCopyMutation = useMutation({
-    mutationFn: handleUpdateCopy,
+  const addCopyMutation = useMutation({
+    mutationFn: async (newCopy) => {
+      return api
+        .post(`/api/copies/${id}/addcopy`, newCopy)
+        .catch((error) => console.error("Error fetching copy data:", error))
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries("availablecopies");
-      navigate("/admin/availablecopieslist");
+      queryClient.invalidateQueries("availablecopies")
     },
   });
 
-  const updateAvailableCopyData = () => {
-    updateCopyMutation.mutate({
+  const postAvailableCopyData = () => {
+    addCopyMutation.mutate({
       bookModel,
       author,
-      photo,
-      publishingHouse,
       thisCopyPublishedYear,
+      publishingHouse,
       condition,
       conditionDescription,
+      photo,
       isAvailable,
       price,
       Isbn,
     });
-  }
+    navigate("/admin/bookmodelslist");
+  };
 
-  if (updateCopyMutation.isLoading) {
+  if (addCopyMutation.isLoading) {
     return <Loading />;
   }
 
-  if (updateCopyMutation.isError) {
-    return <Error message={updateCopyMutation.error.message} />;
+  if (addCopyMutation.isError) {
+    return <Error message={addCopyMutation.error.message} />;
   }
+
   return (
     <>
       <SectionTitle
-        title="Update Available Copy"
-        btn="Go to Copies List"
+        title="Add New Copy"
+        btn="Go to All Copies"
         link="/admin/availablecopieslist"
       />
       <section className="margins mt2 admin">
@@ -109,7 +77,7 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               required
               type="text"
               value={bookModel}
-              id="bookModel"
+              id="publishingHouse"
               onChange={(e) => setBookModel(e.target.value)}
             />
           </p>
@@ -133,7 +101,7 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               required
               type="text"
               id="photo"
-              value={photo.join(", ")}
+              placeholder="Enter photo url"
               onChange={(e) => setPhoto(e.target.value.split(","))}
             />
           </p>
@@ -142,10 +110,9 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               Copy Published Date:
             </label>
             <input
-              required
               type="number"
-              value={thisCopyPublishedYear}
               id="thisCopyPublishedYear"
+              placeholder="Enter year"
               onChange={(e) => setThisCopyPublishedYear(e.target.value)}
             />
           </p>
@@ -154,10 +121,9 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               Publishing house:
             </label>
             <input
-              required
               type="text"
               id="publishingHouse"
-              value={publishingHouse}
+              placeholder="Enter publishing house"
               onChange={(e) => setPublishingHouse(e.target.value)}
             />
           </p>
@@ -166,10 +132,8 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               Condition:
             </label>
             <select
-              required
               name="condition"
               id="condition"
-              value={condition}
               onChange={(e) => setCondition(e.target.value)}
             >
               <option value="New">New</option>
@@ -186,19 +150,18 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
             <input
               type="text"
               id="conditionDescription"
-              value={conditionDescription}
+              placeholder="Enter description"
               onChange={(e) => setConditionDescription(e.target.value)}
             />
           </p>
-          <p className="">
+          <p className="mt1">
             <label className="mr1" htmlFor="isAvailable">
               Is it available?
             </label>
             <select
-              required
               name="isAvailable"
               id="isAvailable"
-              value={isAvailable}
+              defaultValue={true}
               onChange={(e) => setIsAvailable(e.target.value)}
             >
               <option value={true}>Yes</option>
@@ -210,10 +173,8 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               Price:
             </label>
             <input
-              required
               type="number"
               id="price"
-              value={price}
               placeholder="Enter price"
               onChange={(e) => setPrice(e.target.value)}
             />
@@ -223,19 +184,18 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
               ISBN:
             </label>
             <input
-              required
               type="number"
               id="Isbn"
-              value={Isbn}
+              placeholder="Enter Isbn"
               onChange={(e) => setIsbn(e.target.value)}
             />
           </p>
           <button
-            onClick={updateAvailableCopyData}
+            onClick={postAvailableCopyData}
             type="submit"
             className="btn mt1"
           >
-            Update
+            Add Copy
           </button>
         </div>
       </section>

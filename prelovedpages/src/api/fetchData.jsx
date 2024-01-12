@@ -96,19 +96,3 @@ export async function createBookModel(newBookModel) {
   .then((response) => response.data)
   .catch((error) => console.error("Error fetching author data:", error));
 }
-
-
-export async function updateBookModel(updatedBookModel) {
-  return await api
-    .patch(`/api/books/${id}/update`, updatedBookModel)
-    .catch((error) =>
-      console.error("Error while updating a book model:", error)
-    );
-}
-
-export async function deleteBookModel(id) {
-  return api
-    .delete(`/api/books/${id}/delete`, id)
-    .then((res) => console.log(res))
-    .catch((error) => console.error("Error deleting book data:", error));
-}

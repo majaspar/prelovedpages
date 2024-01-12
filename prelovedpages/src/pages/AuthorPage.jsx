@@ -9,14 +9,6 @@ import Zoom from '@mui/material/Zoom';
 
 export default function AuthorPage() {
     const { id } = useParams()
-
-    // Click button to open create book
-    // const [addBook, openAddBook] = useState(false)
-    // let checkState = addBook ? 'show' : ''
-    // const showNewBookForm = () => {
-    //     openAddBook(!addBook)
-    // }
-
     const [author, setAuthor] = useState({});
 
     useEffect(() => {
@@ -36,15 +28,16 @@ export default function AuthorPage() {
         <SectionTitle title={`${author.firstName} ${author.lastName}`} link="/authors" btn="Go Back" />
 
         <section className='AuthorPage margins mt2'>
+           
+          <figure><img src={author.photo} alt="" /> <figcaption>{author.photoSource}</figcaption> </figure> 
             <h4 className='mt1 mb1'>Books available by this author:</h4>
-
-
+            
             {author.writtenBooks ? (
                 <ul className='AuthorPage__writtenBooks--ul flex'>
                     {author.writtenBooks.map((book) => (
                         <li className='AuthorPage__writtenBooks--li' key={book._id}>
                             <Tooltip TransitionComponent={Zoom} title={book.title} followCursor={true}>
-                                <Link to={`/books/${book._id}`}><img src={book.cover} alt={`${book.title} cover`} className="AuthorPage__book-cover--img" /></Link>
+                                <Link to={`/books/${book._id}`}><img src={book.cover} alt={`${book._id} cover`} className="AuthorPage__book-cover--img" /></Link>
                             </Tooltip>
                         </li>
                     ))}

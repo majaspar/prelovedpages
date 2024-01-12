@@ -66,10 +66,9 @@ export default function BookModelsList() {
             </tr>
           </thead>
           <tbody>
-            {bookModels?.map((book) => {
+            { !bookModels.length ? <Loading/> : bookModels?.map((book) => {
               return (
                 <tr key={book._id}>
-                  {console.log(book)}
                   <td className="BookModelsList__td--edit center">
                     <Link to={`/admin/books/${book._id}/update`}>
                       <EditIcon />
@@ -110,7 +109,7 @@ export default function BookModelsList() {
                   <td className="center">{book._id}</td>
                   <td className="center"><ul>
                     {book.availableCopies?.map((c) => {
-                      return <li><Link to={`/copies/${c}`}>{c}</Link></li>
+                      return <li key={c}><Link to={`/copies/${c}`}>{c}</Link></li>
                     })}</ul>
                   </td>
                 </tr>

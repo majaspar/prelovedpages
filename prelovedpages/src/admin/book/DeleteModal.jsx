@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 import { Modal, Fade, Backdrop } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Loading from "../../components/Loading";
-import { deleteBookModel } from "../../api/fetchData";
-import api from 'axios'
+import api from "axios";
 
 export default function DeleteModal({ id, author }) {
   const navigate = useNavigate();
@@ -19,13 +18,11 @@ export default function DeleteModal({ id, author }) {
   const handleClose = () => setOpenDeleteModal(false);
 
   const handleDelete = async (id) => {
-    
-      return api
-        .delete(`/api/books/${authorid}/${id}/delete`, id)
-        .then((res) => console.log(res))
-        .catch((error) => console.error("Error deleting book data:", error))
-    
-    .then(handleClose())
+    return api
+      .delete(`/api/books/${authorid}/${id}/delete`, id)
+      .then((res) => console.log(res))
+      .catch((error) => console.error("Error deleting book data:", error))
+      .then(handleClose());
   };
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
@@ -37,7 +34,6 @@ export default function DeleteModal({ id, author }) {
 
   const remove = async () => {
     await mutateAsync(id);
-    queryClient.invalidateQueries("bookmodels");
   };
 
   return (
@@ -62,8 +58,8 @@ export default function DeleteModal({ id, author }) {
               Are you sure You want to delete Book Model {id} by author id
               <input
                 type="text"
-                name='authorid'
-                id='authorid'
+                name="authorid"
+                id="authorid"
                 value={authorid}
                 onChange={(e) => setAuthorid(e.target.value)}
               />

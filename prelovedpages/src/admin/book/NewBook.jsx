@@ -38,15 +38,16 @@ export default function NewBook() {
     }
   };
   const handleAddBookModel = async (newBookModel) => {
-    return await api.post(`/api/books/${authorid}/addbook`, newBookModel);
+    return await api
+      .post(`/api/books/${authorid}/addbook`, newBookModel)
+      .then((response) => response.data)
+      .catch((error) => console.error("Error fetching author data:", error));
   };
+
   const addBookModelMutation = useMutation({
     mutationFn: handleAddBookModel,
     onSuccess: () => {
       queryClient.invalidateQueries("bookmodels");
-    },
-    onError: (error) => {
-      console.log(error);
     },
   });
 
@@ -63,8 +64,8 @@ export default function NewBook() {
       series,
       volume,
       genre,
-    })
-      navigate("/admin/bookmodelslist");
+    });
+    navigate("/admin/bookmodelslist");
   };
 
   if (addBookModelMutation.isLoading) {

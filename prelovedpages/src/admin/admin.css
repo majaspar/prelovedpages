@@ -32,6 +32,14 @@
 }
 
 /*****************************/
+/***        Dashboard      ***/
+/*****************************/
+.AdminDashboard {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+/*****************************/
 /***        AuthorPage     ***/
 /*****************************/
 .AuthorPage__writtenBooks--ul {

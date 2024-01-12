@@ -22,13 +22,6 @@ export default function AvailableCopiesList() {
   });
 
   console.log(copies)
-  if (error) {
-    return (
-      <div className="mt2 margins">
-        <Error message={isError.message} />
-      </div>
-    );
-  }
 
   if (isLoading) {
     return (
@@ -37,6 +30,14 @@ export default function AvailableCopiesList() {
       </div>
     );
   }
+  if (error) {
+    return (
+      <div className="mt2 margins">
+        <Error message={error.message} />
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -74,9 +75,7 @@ export default function AvailableCopiesList() {
                     <Link to={`/books/${copy.bookModel}`}>BM: {copy.bookModel}</Link></td>
 
                     <td>
-                      {!copy.price === null || undefined
-                        ?  <span>£{copy.price.toFixed(2)}</span>
-                        : <span>no data</span>}
+                     {copy.price ? <span>£{copy.price.toFixed(2)}</span>: ''}
                     </td>
                     <td>{copy.condition || ""} <hr/>
                     {copy.conditionDescription || ""}</td>

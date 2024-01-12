@@ -12,15 +12,15 @@ export default function UpdateBookModelForm({ initialValue }) {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState(initialValue?.title || "");
-  const [author, setAuthor] = useState(initialValue?.author._id);
+  const [author, setAuthor] = useState(initialValue?.author._id || "");
   const [publishedYear, setPublishedYear] = useState(
-    initialValue?.publishedYear
+    initialValue?.publishedYear || null
   );
   const [synopsis, setSynopsis] = useState(initialValue?.synopsis || "");
   const [cover, setCover] = useState(initialValue?.cover || "");
-  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured || "");
+  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured || false);
   const [isPartOfSeries, setIsPartOfSeries] = useState(
-    initialValue?.isPartOfSeries || ""
+    initialValue?.isPartOfSeries || false
   );
   const [series, setSeries] = useState(initialValue?.series || null);
   const [volume, setVolume] = useState(initialValue?.volume || null);
