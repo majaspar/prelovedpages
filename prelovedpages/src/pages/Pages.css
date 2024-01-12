@@ -24,7 +24,6 @@ border: 1px solid red;
 height: 350px;
 }
 
-
 /***********************************/
 /***     AvailableCopies         ***/
 /***********************************/
@@ -37,7 +36,7 @@ height: 350px;
 .AvailableCopies__wrapper li {}
 
 .AvailableCopies__wrapper img {
-    height: 200px;
+    height: 260px;
     border: 1px solid transparent;
 }
 

@@ -68,10 +68,10 @@ export default function AvailableCopiesList() {
                 return (
                   <tr key={copy._id}>
                     <td>
-                      <img height="100" src={copy.photo[0] || ""} />
+                      <img height="50" src={copy.photo[0] || ""} alt={`photograph of available copy of ${copy.bookModel.title}`}/>
                     </td>
-                    <td><Link to={`/copies/${copy._id}`}>Copy: {copy._id}</Link><hr/>
-                    <Link to={`/authors/${copy.author}`}>A: {copy.author}</Link><hr/>
+                    <td className="td-scroll"><Link to={`/copies/${copy._id}`}>Copy: {copy._id}</Link>, 
+                    <Link to={`/authors/${copy.author}`}>A: {copy.author}</Link>, 
                     <Link to={`/books/${copy.bookModel}`}>BM: {copy.bookModel}</Link></td>
 
                     <td>

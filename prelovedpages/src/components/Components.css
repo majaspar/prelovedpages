@@ -310,3 +310,28 @@ article.LatestBook:last-of-type {
     color: var(--clr-white);
 
 }
+
+/**************************/
+/***        Copy        ***/
+/**************************/
+
+.Copy {
+    gap: 2rem;
+}
+.Copy__details--wrapper {
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.Copy__details--wrapper p {
+    display: flex;
+
+}
+.Copy__details--title {
+    display: inline-block;
+    min-width: 120px;   
+    color: rgba(var(--clr-grey-light-rgb), 0.8);
+}
+.Copy__details--data {
+    font-size: 110%;
+}

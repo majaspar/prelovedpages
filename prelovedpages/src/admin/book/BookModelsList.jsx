@@ -97,7 +97,7 @@ export default function BookModelsList() {
                     <p>{book.synopsis}</p>
                   </td>
                   <td className="BookModelsList__td--cover">
-                    <p>{book.cover}</p>
+                    <img height="50" src={book.cover}/>
                   </td>
                   <td className="center">
                     {book.isPartOfSeries ? "Yes" : "No"}

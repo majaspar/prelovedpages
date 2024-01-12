@@ -37,7 +37,7 @@ export default function AuthorPage() {
                     {author.writtenBooks.map((book) => (
                         <li className='AuthorPage__writtenBooks--li' key={book._id}>
                             <Tooltip TransitionComponent={Zoom} title={book.title} followCursor={true}>
-                                <Link to={`/books/${book._id}`}><img src={book.cover} alt={`${book._id} cover`} className="AuthorPage__book-cover--img" /></Link>
+                                <Link to={`/books/${book._id}`}><img src={book.cover} alt={`${book.title}`} className="AuthorPage__book-cover--img" /></Link>
                             </Tooltip>
                         </li>
                     ))}

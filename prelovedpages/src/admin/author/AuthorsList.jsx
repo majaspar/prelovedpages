@@ -67,7 +67,7 @@ export default function AuthorsList() {
                     return <li key={book._id}><Link to={`/books/${book._id}`}>{book.title}</Link></li>
                 } )}</ol></td>
                 <td><p>{author.availableCopies.join(', ')}</p></td>
-                <td><p className='td-scroll'>{author.photo}</p></td>
+                <td><p className=''><img height="50" src={author.photo} alt={`Photograph of ${author.firstName} ${author.lastName}`}/></p></td>
                 <td><p>{author.photoSource}</p></td>
                 <td>{author._id}</td>
 

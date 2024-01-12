@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
+import Copy from "../components/Copy";
 import cover from "../../../copies/24001.jpg";
 import { fetchBookModelData } from "../api/fetchData";
 
@@ -51,6 +52,17 @@ export default function BookModelPage() {
               </h4>
             </Link>
             <hr />
+            <p className="mb1">
+              {book.isAvailable ? (
+                <span style={{ color: "green", fontWeight: "bold" }}>
+                  Currently in stock
+                </span>
+              ) : (
+                <span style={{ color: "red", fontWeight: "bold" }}>
+                  Currently out of stock
+                </span>
+              )}
+            </p>
             <p className="mb1">Publication date: {book.publishedYear}</p>
 
             <p className="mb1">
@@ -64,13 +76,6 @@ export default function BookModelPage() {
             </p>
             <p className="mb1">Genre: {book.genre.join(", ")}</p>
             <p className="mb1">{book.synopsis}</p>
-            <p className="mb1">
-              {book.isAvailable ? (
-                <span>{book.availableCopies}</span>
-              ) : (
-                <span>There are no copies available at the moment.</span>
-              )}
-            </p>
           </div>
         ) : (
           <Loading />
@@ -80,25 +85,27 @@ export default function BookModelPage() {
         <Link to={`/admin/books/${book._id}/update`}>
           <button className="btn mt1">Edit Book Model</button>
         </Link>
-        <Link to={`/admin/books/${book._id}/addcopy`}>
+        <Link className="ml1" to={`/admin/books/${book._id}/addcopy`}>
           <button className="btn mt1">Add a Copy</button>
         </Link>
       </div>
       <hr className="margins mt2 mb2" />
-      <section className="margins">
-        <h2 className="mb2">Available Copies</h2>
-        <ul className="AvailableCopies__wrapper">
-          <li>
-            <Link to="/availableCopyId">
-              <img src={cover} alt="" />
-            </Link>
-          </li>
-
-          <li>
-            <img src={cover} alt="" />
-          </li>
-        </ul>
-      </section>
+      {book.isAvailable && (
+        <section className="margins">
+          <h2 className="mb2">Available Copies</h2>
+          <ul className="AvailableCopies__wrapper">
+            {book.availableCopies.map((copy) => {
+              return (
+                <li>
+                  <Copy copyid={copy} />
+                <hr className="mt2 mb2"/>
+                </li>
+                
+              );
+            })}
+          </ul>
+        </section>
+      )}
     </>
   );
 }
