@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import Copy from "../components/Copy";
-import cover from "../../../copies/24001.jpg";
 import { fetchBookModelData } from "../api/fetchData";
 
 //import { useNavigate } from "react-router";

@@ -11,7 +11,21 @@ border: 1px solid red;
 .AuthorPage__writtenBooks--li:hover {
 border: 1px solid red;
 }
-
+.AllAuthors__list--wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.AllAuthors__list--author {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+}
+.AllAuthors__list--author img {
+    border-radius: 50%;
+    width: 100px;
+}
 /***********************************/
 /***        BookModelPage        ***/
 /***********************************/
