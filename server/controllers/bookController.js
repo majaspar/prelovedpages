@@ -19,6 +19,33 @@ const getBooks = asyncHandler(async (req, res) => {
   res.json(bookModels);
 });
 
+//Genre   /api/books/fiction
+
+const getFiction = async (req, res) => {
+  try {
+    const fictionBooks = await Book.find({ genre: { $in: ["Fiction"] } })
+      .populate("author")
+      .exec();
+    res.json(fictionBooks);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Genre   /api/books/genre
+
+const getAllGenre = async (req, res) => {
+  try {
+    const { genre } = req.params;
+    const thisGenreBooks = await Book.find({ genre: { $in: [genre] } })
+      .populate("author")
+      .exec();
+    res.json(thisGenreBooks);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // Pages    /api/books/:id/addbook
 const addBook = async (req, res) => {
   try {
@@ -66,9 +93,9 @@ const addBook = async (req, res) => {
 //delete /api/books/:id/delete
 const deleteBook = async (req, res) => {
   try {
-    const authorid = req.params.authorid
+    const authorid = req.params.authorid;
     const bookid = req.params.id;
-    
+
     const theAuthor = await Author.findById(authorid);
     theAuthor.writtenBooks.pop(bookid);
     theAuthor.save();
@@ -119,4 +146,12 @@ const updateBook = async (req, res) => {
   }
 };
 
-module.exports = { addBook, getBooks, getBook, deleteBook, updateBook };
+module.exports = {
+  addBook,
+  getBooks,
+  getBook,
+  deleteBook,
+  updateBook,
+  getFiction,
+  getAllGenre,
+};

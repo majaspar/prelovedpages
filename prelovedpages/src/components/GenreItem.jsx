@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-export default function Category({name, link}) {
+export default function GenreItem({name, link}) {
   return (
     <Link to={link}>
-    <div className='Category'>
+    <div className='GenreItem'>
         {name}
 
     </div>

@@ -96,3 +96,19 @@ export async function createBookModel(newBookModel) {
   .then((response) => response.data)
   .catch((error) => console.error("Error fetching author data:", error));
 }
+
+
+// Genre
+export async function fetchFictionBooks() {
+  return api
+    .get("/api/books/genre/fiction")
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching fiction books:", error));
+}
+
+export async function fetchAllGenre(genre) {
+  return api
+    .get(`/api/books/genre/all/${genre}`)
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching all genre books:", error));
+}

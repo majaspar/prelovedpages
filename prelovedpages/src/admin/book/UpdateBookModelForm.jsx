@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Error from "../../components/Error";
@@ -18,7 +18,9 @@ export default function UpdateBookModelForm({ initialValue }) {
   );
   const [synopsis, setSynopsis] = useState(initialValue?.synopsis || "");
   const [cover, setCover] = useState(initialValue?.cover || "");
-  const [isFeatured, setIsFeatured] = useState(initialValue?.isFeatured || false);
+  const [isFeatured, setIsFeatured] = useState(
+    initialValue?.isFeatured || false
+  );
   const [isPartOfSeries, setIsPartOfSeries] = useState(
     initialValue?.isPartOfSeries || false
   );
@@ -285,6 +287,18 @@ export default function UpdateBookModelForm({ initialValue }) {
                 />
                 <label className="mr2" htmlFor="fantasy">
                   Fantasy
+                </label>
+              </div>
+              <div className="genre__item flex">
+                <input
+                  type="checkbox"
+                  id="middlegrade"
+                  name="genre"
+                  value="Middle Grade"
+                  onChange={handleGenreChange}
+                />
+                <label className="mr2" htmlFor="middlegrade">
+                  Middle Grade
                 </label>
               </div>
               <div className="genre__item flex">

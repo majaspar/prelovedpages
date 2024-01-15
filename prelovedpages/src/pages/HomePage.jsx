@@ -1,7 +1,7 @@
 import Hero from "../components/Hero"
 import SectionTitle from '../components/SectionTitle'
 import LatestBooks from '../components/LatestBooks'
-import CategoriesGrid from '../components/CategoriesGrid'
+import GenreGrid from '../components/GenreGrid'
 import PopularAuthors from '../components/PopularAuthors'
 
 export default function HomePage() {
@@ -11,7 +11,7 @@ export default function HomePage() {
     <SectionTitle title="Latest books" link="/latest" btn="Browse" />
     <LatestBooks />
     <SectionTitle title="Popular genre" link="/genre" btn="Explore" />
-    <CategoriesGrid />
+    <GenreGrid />
     <SectionTitle title="Popular authors" link="/authors" btn="See All" />
     <PopularAuthors />
 

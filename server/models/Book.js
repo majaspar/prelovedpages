@@ -16,7 +16,7 @@ const BookSchema = new Schema({
         enum: ['Romance', 'Fiction',
             'Thriller', 'Fantasy',
             'Science Fiction',
-            'Horror', 'Foreign',
+            'Horror', 'Foreign', 'Middle Grade',
             'Mystery', 'Contemporary',
             'Young Adult', 'Childrens',
             'Historical Fiction', 'Non-Fiction']

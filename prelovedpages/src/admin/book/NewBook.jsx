@@ -274,6 +274,18 @@ export default function NewBook() {
             <div className="genre__item flex">
               <input
                 type="checkbox"
+                id="middlegrade"
+                name="genre"
+                value="Middle Grade"
+                onChange={handleGenreChange}
+              />
+              <label className="mr2" htmlFor="middlegrade">
+                Middle Grade
+              </label>
+            </div>
+            <div className="genre__item flex">
+              <input
+                type="checkbox"
                 id="sciencefiction"
                 name="genre"
                 value="Science Fiction"

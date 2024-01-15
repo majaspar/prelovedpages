@@ -29,7 +29,7 @@ import HomePage from './pages/HomePage';
 import AllAuthors from './pages/AllAuthors';
 import AuthorPage from './pages/AuthorPage';
 import AllAvailableBooks from './pages/AllAvailableBooks';
-import Categories from './pages/Categories';
+import GenrePage from './pages/GenrePage';
 
 
 export default function App() {
@@ -50,7 +50,7 @@ export default function App() {
           <Route path="/authors/:id" element={<AuthorPage />} />
           <Route path="/authors" element={<AllAuthors />} />
           <Route path="/allbooks" element={<AllAvailableBooks />} />
-          <Route path="/genre" element={<Categories />} />
+          <Route path="/genre" element={<GenrePage />} />
 
           <Route path="*" element={<FourOhFour />} />
 
