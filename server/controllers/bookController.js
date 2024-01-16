@@ -2,13 +2,17 @@ const Book = require("../models/Book");
 const Author = require("../models/Author");
 const asyncHandler = require("express-async-handler");
 
-// Pages    /api/books/:id
-const getBook = asyncHandler(async (req, res) => {
-  const bookModel = await Book.findById(req.params.id)
-    .populate("author")
-    .exec();
-  res.json(bookModel);
-});
+// Pages    /api/books/book/:id
+const getBook = async (req, res) => {
+  try {
+    const bookModel = await Book.findById(req.params.id)
+      .populate("author")
+      .exec();
+    res.json(bookModel);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // Pages    /api/books/
 const getBooks = asyncHandler(async (req, res) => {
@@ -19,18 +23,32 @@ const getBooks = asyncHandler(async (req, res) => {
   res.json(bookModels);
 });
 
-//Genre   /api/books/fiction
-
-const getFiction = async (req, res) => {
+// Pages    /api/books/latest
+const getLatest = async (req, res) => {
   try {
-    const fictionBooks = await Book.find({ genre: { $in: ["Fiction"] } })
+    const latestBooks = await Book.find({})
+      .limit(20)
+      .sort({ updatedAt: -1 })
       .populate("author")
       .exec();
-    res.json(fictionBooks);
+    res.json(latestBooks);
   } catch (error) {
     console.log(error);
   }
-};
+}
+
+const getLatestComponent = async (req, res) => {
+  try {
+    const latestBooks = await Book.find({})
+      .limit(10)
+      .sort({ updatedAt: -1 })
+      .populate("author")
+      .exec();
+    res.json(latestBooks);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //Genre   /api/books/genre
 
@@ -149,9 +167,9 @@ const updateBook = async (req, res) => {
 module.exports = {
   addBook,
   getBooks,
-  getBook,
+  getBook, 
+  getLatest, getLatestComponent, 
   deleteBook,
   updateBook,
-  getFiction,
   getAllGenre,
 };

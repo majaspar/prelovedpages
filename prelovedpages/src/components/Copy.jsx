@@ -1,5 +1,4 @@
 import React from "react";
-import api from "axios";
 import "./Components.css";
 import { getCopyData } from "../api/fetchData";
 import { useQuery } from "@tanstack/react-query";
@@ -15,8 +14,6 @@ export default function Copy({ copyid }) {
     queryKey: ["availablecopies", copyid],
     queryFn: () => getCopyData(copyid),
   });
-
-  console.log("Book fetched in UpdateBookModel: ", copy);
 
   if (isLoading) {
     return <Loading />;
@@ -36,28 +33,28 @@ export default function Copy({ copyid }) {
       </div>
       <div className="Copy__details--wrapper flex">
         <p>
-          <span className="Copy__details--title">Condition:</span>{" "}
-          <span className="Copy__details--data" style={{fontWeight: 'bold'}}>{copy.condition}</span>
+          <span className="details--title">Condition:</span>{" "}
+          <span className="details--data" style={{fontWeight: 'bold'}}>{copy.condition}</span>
         </p>
         <p>
-          <span className="Copy__details--title"></span>
-          <span className="Copy__details--data">
+          <span className="details--title"></span>
+          <span className="details--data">
             {copy.conditionDescription}
           </span>
         </p>
         <p>
-          <span className="Copy__details--title">This edition:</span>{" "}
-          <span className="Copy__details--data">
+          <span className="details--title">This edition:</span>{" "}
+          <span className="details--data">
             {copy.thisCopyPublishedYear}
           </span>
         </p>
         <p>
-          <span className="Copy__details--title">ISBN:</span>{" "}
-          <span className="Copy__details--data">{copy.Isbn}</span>
+          <span className="details--title">ISBN:</span>{" "}
+          <span className="details--data">{copy.Isbn}</span>
         </p>
         <p>
-          <span className="Copy__details--title">Price:</span>{" "}
-          <span className="Copy__details--data" style={{fontWeight: 'bold'}}>£{copy.price.toFixed(2)}</span>
+          <span className="details--title">Price:</span>{" "}
+          <span className="details--data" style={{fontWeight: 'bold'}}>£{copy.price.toFixed(2)}</span>
         </p>
         <button className="btn">Buy this copy</button>
       </div>

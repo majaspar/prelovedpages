@@ -4,6 +4,7 @@ import { getCopiesData, fetchBookModelData } from "../../api/fetchData";
 import { useQuery } from "@tanstack/react-query";
 import Error from "../../components/Error";
 import Loading from "../../components/Loading";
+import Links from "../Links";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
@@ -46,6 +47,7 @@ export default function AvailableCopiesList() {
         link="/admin"
         btn="Go to Admin Dashboard"
       />
+      <Links/>
       <section className="margins">
         <table>
           <thead>
@@ -62,7 +64,7 @@ export default function AvailableCopiesList() {
           </thead>
           <tbody>
             {!copies.length ? (
-              <Loading />
+              'Loading...'
             ) : (
               copies?.map((copy) => {
                 return (

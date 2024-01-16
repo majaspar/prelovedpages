@@ -22,7 +22,6 @@ import UpdateAvailableCopy from './admin/availableCopy/UpdateAvailableCopy';
 import Styles from './admin/Styles';
 
 {/* Pages */ }
-import AvailableCopyPage from './pages/AvailableCopyPage';
 import BookModelPage from './pages/BookModelPage';
 import FourOhFour from './pages/FourOhFour';
 import HomePage from './pages/HomePage';
@@ -30,6 +29,8 @@ import AllAuthors from './pages/AllAuthors';
 import AuthorPage from './pages/AuthorPage';
 import AllAvailableBooks from './pages/AllAvailableBooks';
 import GenrePage from './pages/GenrePage';
+import GenreItemPage from './pages/GenreItemPage';
+import LatestBooksPage from './pages/LatestBooksPage';
 
 
 export default function App() {
@@ -46,13 +47,15 @@ export default function App() {
           {/* Pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:id" element={<BookModelPage />} />
-          <Route path="/copies/:id" element={<AvailableCopyPage />} />
           <Route path="/authors/:id" element={<AuthorPage />} />
           <Route path="/authors" element={<AllAuthors />} />
-          <Route path="/allbooks" element={<AllAvailableBooks />} />
-          <Route path="/genre" element={<GenrePage />} />
-
+          <Route path="/books" element={<AllAvailableBooks />} />
+          <Route path="/latest" element={<LatestBooksPage />} />
           <Route path="*" element={<FourOhFour />} />
+
+          {/* Genre */}
+          <Route path="/genre" element={<GenrePage />} />
+          <Route path="/genre/:genre" element={<GenreItemPage />} />
 
           {/* Admin */}
 
@@ -72,6 +75,7 @@ export default function App() {
           <Route path="/admin/books/:id/addcopy" element={<NewAvailableCopy />} />
           <Route path="/admin/availablecopieslist" element={<AvailableCopiesList />} />
           <Route path="/admin/copies/:id/update" element={<UpdateAvailableCopy />} />
+
 
            {/* Users */}
           <Route path="/admin/userslist" element={<UsersList />} />

@@ -47,8 +47,6 @@ height: 350px;
     flex-wrap: wrap;
     gap: 0.7rem;
 }
-.AvailableCopies__wrapper li {}
-
 .AvailableCopies__wrapper img {
     height: 260px;
     border: 1px solid transparent;
@@ -60,15 +58,11 @@ height: 350px;
 }
 
 /***********************************/
-/***        AvailableCopyPage        ***/
+/***      AllAvailableBooks      ***/
 /***********************************/
 
-.AvailableCopyPage {
-}
-.AvailableCopyPage_wrapper {
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-.AvailableCopyPage img {
-height: 350px;
+.AllBooks__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    row-gap: 1rem;
 }

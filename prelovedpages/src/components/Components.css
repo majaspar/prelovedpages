@@ -316,11 +316,20 @@ article.LatestBook:last-of-type {
 .Copy__details--wrapper p {
   display: flex;
 }
-.Copy__details--title {
+.details--title {
   display: inline-block;
   min-width: 120px;
   color: rgba(var(--clr-grey-light-rgb), 0.8);
 }
-.Copy__details--data {
+.details--data {
   font-size: 110%;
+}
+
+/*********************************/
+/***    LatestBookComponent    ***/
+/*********************************/
+.LatestBookComponent ul {
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
 }

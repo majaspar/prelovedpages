@@ -6,12 +6,15 @@ const {
   deleteBook,
   getBooks,
   getBook,
-  getFiction, getAllGenre
+  getLatest,getLatestComponent,
+  getAllGenre,
 } = require("../controllers/bookController");
 
 // Pages    /api/books
 router.route("/").get(getBooks);
-router.route("/:id").get(getBook);
+router.route("/book/:id").get(getBook);
+router.route("/latest").get(getLatest);
+router.route("/latestcomponent").get(getLatestComponent);
 
 // CRUD    /api/books
 router.route("/:id/addbook").post(addBook);
@@ -21,5 +24,4 @@ router.route("/:id/update").patch(updateBook);
 //GENRE      /api/books/genre/fiction
 
 router.route("/genre/all/:genre").get(getAllGenre);
-router.route("/genre/fiction").get(getFiction);
 module.exports = router;

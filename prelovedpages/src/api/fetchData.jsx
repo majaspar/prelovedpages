@@ -86,7 +86,7 @@ export async function fetchBookModelsData() {
 
 export async function fetchBookModelData(id) {
   return api
-    .get(`/api/books/${id}`)
+    .get(`/api/books/book/${id}`)
     .then((response) => response.data)
     .catch((error) => console.error("Error fetching book model data:", error));
 }
@@ -97,15 +97,23 @@ export async function createBookModel(newBookModel) {
   .catch((error) => console.error("Error fetching author data:", error));
 }
 
-
-// Genre
-export async function fetchFictionBooks() {
+//Latest Page
+export async function fetchLatestBooks() {
   return api
-    .get("/api/books/genre/fiction")
+    .get("/api/books/latest")
     .then((response) => response.data)
-    .catch((error) => console.error("Error fetching fiction books:", error));
+    .catch((error) => console.error("Error fetching book models data:", error));
 }
 
+//Latest Component
+export async function fetchLatestBooksComponent() {
+  return api
+    .get("/api/books/latestcomponent")
+    .then((response) => response.data)
+    .catch((error) => console.error("Error fetching book models data:", error));
+}
+
+// Genre
 export async function fetchAllGenre(genre) {
   return api
     .get(`/api/books/genre/all/${genre}`)

@@ -1,12 +1,54 @@
-import React from 'react'
-import axios from 'axios'
-import { Link, useParams } from "react-router-dom"
+import React from "react";
+import "./Pages.css";
+import { Link, useParams } from "react-router-dom";
+import SectionTitle from "../components/SectionTitle";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+import { fetchBookModelsData } from "../api/fetchData";
 
 export default function AllAvailableBooks() {
-  return (
-    <div><h1>AllAvailableBooks</h1>
+  const {
+    data: books,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["bookmodels"],
+    queryFn: () => fetchBookModelsData(),
+  });
 
-        Page with Book Model cover Photos that have available copies
-    </div>
-  )
+  console.log(books);
+
+  if (isError) {
+    return (
+      <div className="mt2 margins">
+        <Error message={isError.message} />
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="mt2 margins">
+        <Loading />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <SectionTitle title="All Books" link="/" btn="Go Back" />
+      <div className="AllBooks__grid margins mt2">
+        {books.map((book) => {
+          return book.availableCopies.length !== 0 ? (
+            <Link to={`/books/${book._id}`}>
+              <img height="250" src={book.cover} alt={book.title} />
+            </Link>
+          ) : (
+            ""
+          );
+        })}
+      </div>
+    </>
+  );
 }

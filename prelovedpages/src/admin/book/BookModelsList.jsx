@@ -5,6 +5,7 @@ import SectionTitle from "../../components/SectionTitle";
 import DeleteModal from "./DeleteModal";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
+import Links from "../Links";
 import { fetchBookModelsData } from "../../api/fetchData";
 import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -43,6 +44,7 @@ export default function BookModelsList() {
         link="/admin"
         btn="Go to Admin Dashboard"
       />
+      <Links/>
       <section className="BookModelsList table__wrapper margins">
         <table>
           <thead>

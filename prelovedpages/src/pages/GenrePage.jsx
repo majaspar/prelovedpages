@@ -6,20 +6,20 @@ export default function GenrePage() {
     <>
       <SectionTitle title="Browse by Genre" link="/" btn="Go back" />
       <section className="margins mt2">
-        <GenreBox genre="Fiction" key="fiction" />
-        <GenreBox genre="Romance" key="romance" />
-        <GenreBox genre="Young Adult" key="youngadult" />
-        <GenreBox genre="Fantasy" key="fantasy" />
-        <GenreBox genre="Science Fiction" key="sciencefiction" />
-        <GenreBox genre="Thriller" key="thriller" />
-        <GenreBox genre="Horror" key="horror" />
-        <GenreBox genre="Historical Fiction" key="historicalfiction" />
-        <GenreBox genre="Foreign" key="foreign" />
-        <GenreBox genre="Mystery" key="mystery" />
-        <GenreBox genre="Contemporary" key="contemporary" />
-        <GenreBox genre="Middle Grade" key="middlegrade" />
-        <GenreBox genre="Childrens" key="childrens" />
-        <GenreBox genre="Non-Fiction" key="nonfiction" />
+        <GenreBox genre="Fiction" qkey="fiction" />
+        <GenreBox genre="Romance" qkey="romance" />
+        <GenreBox genre="Young Adult" qkey="youngadult" />
+        <GenreBox genre="Fantasy" qkey="fantasy" />
+        <GenreBox genre="Science Fiction" qkey="sciencefiction" />
+        <GenreBox genre="Thriller" qkey="thriller" />
+        <GenreBox genre="Horror" qkey="horror" />
+        <GenreBox genre="Historical Fiction" qkey="historicalfiction" />
+        <GenreBox genre="Foreign" qkey="foreign" />
+        <GenreBox genre="Mystery" qkey="mystery" />
+        <GenreBox genre="Contemporary" qkey="contemporary" />
+        <GenreBox genre="Middle Grade" qkey="middlegrade" />
+        <GenreBox genre="Childrens" qkey="childrens" />
+        <GenreBox genre="Non-Fiction" qkey="nonfiction" />
       </section>
     </>
   );

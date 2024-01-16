@@ -4,7 +4,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading";
 import Copy from "../components/Copy";
 import { fetchBookModelData } from "../api/fetchData";
-
+import SectionTitle from "../components/SectionTitle";
+import LatestBookComponent from "../components/LatestBookComponent";
 //import { useNavigate } from "react-router";
 
 export default function BookModelPage() {
@@ -37,6 +38,7 @@ export default function BookModelPage() {
 
   return (
     <>
+      <SectionTitle title={book.title} btn="Go to All Books" link='/books'/>
       <section className="BookModelPage flex mt2 margins">
         <div className="">
           <img src={book.cover} alt="" />
@@ -44,13 +46,6 @@ export default function BookModelPage() {
 
         {book.author ? (
           <div className="">
-            <h2 className="">{book.title}</h2>
-            <Link to={`/authors/${book.author._id}`}>
-              <h4>
-                {book.author.firstName} {book.author.lastName}
-              </h4>
-            </Link>
-            <hr />
             <p className="mb1">
               {book.isAvailable ? (
                 <span style={{ color: "green", fontWeight: "bold" }}>
@@ -62,18 +57,46 @@ export default function BookModelPage() {
                 </span>
               )}
             </p>
-            <p className="mb1">Publication date: {book.publishedYear}</p>
-
-            <p className="mb1">
-              {book.isPartOfSeries ? (
-                <span>
-                  {book.series}, book {book.volume}
-                </span>
-              ) : (
-                "A standalone novel"
-              )}
+            <Link to={`/authors/${book.author._id}`}></Link>
+            <p>
+              {" "}
+              <span className="details--title">author:</span>
+              <span className="details--data">
+                <Link to={`/authors/${book.author._id}`}>
+                  {book.author.firstName} {book.author.lastName}
+                </Link>
+              </span>
             </p>
-            <p className="mb1">Genre: {book.genre.join(", ")}</p>
+            <p>
+              <span className="details--title">Published: </span>
+              <span className="details--data">{book.publishedYear}</span>
+            </p>
+              {book.isPartOfSeries ? (
+                <div>
+                  <p>
+                    <span className="details--title">Series: </span>
+                    <span className="details--data">{book.series}</span>
+                  </p>
+                  <p>
+                    <span className="details--title">Volume: </span>
+                    <span className="details--data">{book.volume}</span>
+                  </p>
+                </div>
+              ) : (
+                ''
+              )}
+            <div className="mb1 flex">
+              <p className="details--title">Genre: </p>
+              <p className="details--data">
+                {book.genre.map((genre) => {
+                  return (
+                    <span className="mr1" key={genre.replace(' ', '')}>
+                      <Link to={`/genre/${genre}`}>{genre}</Link>
+                    </span>
+                  );
+                })}
+              </p>
+            </div>
             <p className="mb1">{book.synopsis}</p>
           </div>
         ) : (
@@ -95,16 +118,16 @@ export default function BookModelPage() {
           <ul className="AvailableCopies__wrapper">
             {book.availableCopies.map((copy) => {
               return (
-                <li>
+                <li key={book._id}>
                   <Copy copyid={copy} />
-                <hr className="mt2 mb2"/>
+                  <hr className="mt2 mb2" />
                 </li>
-                
               );
             })}
           </ul>
         </section>
       )}
+      <LatestBookComponent/>
     </>
   );
 }
