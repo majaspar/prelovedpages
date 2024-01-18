@@ -29,10 +29,10 @@ export default function NewAvailableCopyForm({ initialValue }) {
     mutationFn: async (newCopy) => {
       return api
         .post(`/api/copies/${id}/addcopy`, newCopy)
-        .catch((error) => console.error("Error fetching copy data:", error))
+        .catch((error) => console.error("Error fetching copy data:", error));
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("availablecopies")
+      queryClient.invalidateQueries("availablecopies");
     },
   });
 
@@ -67,7 +67,7 @@ export default function NewAvailableCopyForm({ initialValue }) {
         btn="Go to All Copies"
         link="/admin/availablecopieslist"
       />
-      <section className="margins mt2 admin">
+      <section className="margins mt-8 admin">
         <div className="form">
           <p>
             <label className="mr1" htmlFor="bookModel">
@@ -154,7 +154,7 @@ export default function NewAvailableCopyForm({ initialValue }) {
               onChange={(e) => setConditionDescription(e.target.value)}
             />
           </p>
-          <p className="mt1">
+          <p className="mt-4">
             <label className="mr1" htmlFor="isAvailable">
               Is it available?
             </label>
@@ -193,7 +193,7 @@ export default function NewAvailableCopyForm({ initialValue }) {
           <button
             onClick={postAvailableCopyData}
             type="submit"
-            className="btn mt1"
+            className="btn mt-4"
           >
             Add Copy
           </button>

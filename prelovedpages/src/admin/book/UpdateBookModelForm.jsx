@@ -84,7 +84,7 @@ export default function UpdateBookModelForm({ initialValue }) {
         link="/admin/bookmodelslist"
         btn="Go back"
       />
-      <section className="admin margins mt2">
+      <section className="admin margins mt-8">
         <div className="form">
           <p>
             <label className="mr1" htmlFor="title">
@@ -127,7 +127,7 @@ export default function UpdateBookModelForm({ initialValue }) {
             />
           </p>
 
-          <p className="mt1 flex">
+          <p className="mt-4 flex">
             <label className="mr1" htmlFor="synopsis">
               Synopsis:
             </label>
@@ -155,7 +155,7 @@ export default function UpdateBookModelForm({ initialValue }) {
             />
           </p>
 
-          <p className="mt1">
+          <p className="mt-4">
             <label className="mr1" htmlFor="isFeatured">
               Is featured?
             </label>
@@ -171,7 +171,7 @@ export default function UpdateBookModelForm({ initialValue }) {
             </select>
           </p>
 
-          <p className="mt1">
+          <p className="mt-4">
             <label className="mr1" htmlFor="isPartOfSeries">
               Is it a series?
             </label>
@@ -187,11 +187,11 @@ export default function UpdateBookModelForm({ initialValue }) {
             </select>
           </p>
 
-          {/* <p className='mt1'><span className="mr3">Genre:</span>
+          {/* <p className='mt-4'><span className="mr3">Genre:</span>
         {book ? book.genre : ''} </p> */}
 
           {isPartOfSeries ? (
-            <div className="ml2 mt1">
+            <div className="ml2 mt-4">
               <p>
                 <label className="mr1" htmlFor="series">
                   Series:
@@ -223,10 +223,10 @@ export default function UpdateBookModelForm({ initialValue }) {
           ) : (
             <></>
           )}
-          <div className="mt1">
+          <div className="mt-4">
             Genre: <span className="ml3">{genre?.join(", ")}</span>
           </div>
-          <div className="NewBook__genre--wrapper mt1 flex">
+          <div className="NewBook__genre--wrapper mt-4 flex">
             <label>Genre:</label>
             <div className="NewBook__genre">
               <div className="genre__item flex">
@@ -402,7 +402,7 @@ export default function UpdateBookModelForm({ initialValue }) {
           <button
             onClick={() => updateBookData()}
             type="submit"
-            className="btn mt3"
+            className="btn mt-12"
           >
             Update
           </button>

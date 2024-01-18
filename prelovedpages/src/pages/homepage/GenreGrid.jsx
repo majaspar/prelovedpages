@@ -1,5 +1,5 @@
-import "./Components.css";
-import GenreItem from "./GenreItem";
+import "../../components/Components.css";
+import GenreItem from "../../components/GenreItem";
 
 export default function GenreGrid() {
   return (

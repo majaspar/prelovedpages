@@ -22,7 +22,7 @@ export default function AuthorsList() {
 
   if (isError) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Error message={isError.message} />
       </div>
     );
@@ -30,7 +30,7 @@ export default function AuthorsList() {
 
   if (isLoading) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Loading />
       </div>
     );
@@ -45,7 +45,7 @@ export default function AuthorsList() {
       />
 
       <Links />
-      <section className="BookModelsList table__wrapper margins">
+      <section className="BookModelsList overflow-x-scroll pb-8 h-[65vh] margins">
         <table>
           <thead>
             <tr>
@@ -119,7 +119,7 @@ export default function AuthorsList() {
                     <td>
                       <p className="">
                         <img
-                          height="50"
+                          className="h-10"
                           src={author.photo}
                           alt={`Photograph of ${author.firstName} ${author.lastName}`}
                         />

@@ -16,7 +16,7 @@ export default function LatestBooksPage() {
   });
   if (isError) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Error message={isError.message} />
       </div>
     );
@@ -24,7 +24,7 @@ export default function LatestBooksPage() {
 
   if (isLoading) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Loading />
       </div>
     );
@@ -33,7 +33,7 @@ export default function LatestBooksPage() {
     <>
       <SectionTitle title="Latest Books" btn="Go Back" link="/" />
 
-      <section className="margins mt2">
+      <section className="margins mt-8">
         {latest?.map((book) => {
           return book.availableCopies !== 0 ? <div>{book.title}</div> : "";
         })}

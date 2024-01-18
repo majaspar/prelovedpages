@@ -10,13 +10,13 @@ import 'swiper/css/autoplay'
 import 'swiper/css/navigation'
 
 
-import slide_image_1 from '../assets/cover1.jpg'
-import slide_image_2 from '../assets/cover2.jpg'
-import slide_image_3 from '../assets/cover3.jpg'
-import slide_image_4 from '../assets/cover4.jpg'
-import slide_image_5 from '../assets/cover5.jpg'
-import slide_image_6 from '../assets/cover6.jpg'
-import slide_image_7 from '../assets/cover7.jpg'
+import slide_image_1 from '../../assets/cover1.jpg'
+import slide_image_2 from '../../assets/cover2.jpg'
+import slide_image_3 from '../../assets/cover3.jpg'
+import slide_image_4 from '../../assets/cover4.jpg'
+import slide_image_5 from '../../assets/cover5.jpg'
+import slide_image_6 from '../../assets/cover6.jpg'
+import slide_image_7 from '../../assets/cover7.jpg'
 
 export default function FeaturedBooks() {
     return (

@@ -112,10 +112,6 @@
     cursor: pointer;
 }
 
-.table__wrapper {
-    overflow-x: scroll;
-    padding-bottom: 2rem;
-}
 
 table {
     border: 1px solid var(--clr-grey-light);

@@ -14,14 +14,14 @@ export default function DeleteAuthor({ id }) {
   const handleClose = () => setOpenDeleteModal(false);
 
   const handleDelete = async (id) => {
-    deleteAuthor(id)
+    deleteAuthor(id);
     handleClose();
   };
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: handleDelete,
     onSuccess: () => {
-        queryClient.invalidateQueries("authors");
+      queryClient.invalidateQueries("authors");
     },
   });
 
@@ -48,7 +48,7 @@ export default function DeleteAuthor({ id }) {
       >
         <Fade in={openDeleteModal}>
           <div className="DeleteModal center">
-            <h4 className="center mb2">
+            <h4 className="center mb-8">
               Are you sure You want to delete this Book Model?
             </h4>
 

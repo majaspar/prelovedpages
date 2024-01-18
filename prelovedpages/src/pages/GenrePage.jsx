@@ -1,11 +1,38 @@
 import SectionTitle from "../components/SectionTitle";
-import GenreBox from "../components/GenreBox";
+import GenreBox from "./homepage/GenreBox";
+import { Link } from "react-router-dom";
 
 export default function GenrePage() {
+  const genreList = [
+    "fiction",
+    "romance",
+    "youngadult",
+    "fantasy",
+    "sciencefiction",
+    "thriller",
+    "horror",
+    "historicalfiction",
+    "contemporary",
+    "nonfiction",
+    "middlegrade",
+    "childrens",
+    "contemporary",
+    "mystery",
+    "foreign",
+  ];
   return (
     <>
       <SectionTitle title="Browse by Genre" link="/" btn="Go back" />
-      <section className="margins mt2">
+      <article className="margins">
+        {genreList.map((g) => {
+          return (
+            <Link to={`/genre#${g}`}>
+              <button className="btn">{g}</button>
+            </Link>
+          );
+        })}
+      </article>
+      <section className="margins mt-8">
         <GenreBox genre="Fiction" qkey="fiction" />
         <GenreBox genre="Romance" qkey="romance" />
         <GenreBox genre="Young Adult" qkey="youngadult" />

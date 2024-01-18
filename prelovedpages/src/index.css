@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+img {
+    max-width: none;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--clr-purple-dark);
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: Var(--clr-grey-dark);
+    font-weight: normal;
+}
+h4 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: rgba(var(--clr-grey-light-rgb), 0.8);
+}
+h5 {
+    font-size: 1.2rem;
+    color: rgba(var(--clr-grey-light-rgb), 0.8);
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
+/***********************************/
+/***        BookModelPage        ***/
+/***********************************/
+
+.BookModelPage img {
+    height: 350px;
+    }

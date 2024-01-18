@@ -21,7 +21,7 @@ export default function AllAvailableBooks() {
 
   if (isError) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Error message={isError.message} />
       </div>
     );
@@ -29,7 +29,7 @@ export default function AllAvailableBooks() {
 
   if (isLoading) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Loading />
       </div>
     );
@@ -38,11 +38,11 @@ export default function AllAvailableBooks() {
   return (
     <>
       <SectionTitle title="All Books" link="/" btn="Go Back" />
-      <div className="AllBooks__grid margins mt2">
+      <div className="AllBooks__grid margins mt-8">
         {books.map((book) => {
           return book.availableCopies.length !== 0 ? (
             <Link to={`/books/${book._id}`}>
-              <img height="250" src={book.cover} alt={book.title} />
+              <img className="h-[250px]" src={book.cover} alt={book.title} />
             </Link>
           ) : (
             ""

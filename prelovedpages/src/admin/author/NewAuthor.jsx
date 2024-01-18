@@ -56,7 +56,7 @@ export default function NewAuthor() {
         link="/admin"
         btn="Go to Admin Dashboard"
       />
-      <section className="admin mt2 margins">
+      <section className="admin mt-8 margins">
         <div className="form">
           <p>
             <label className="mr1" htmlFor="firstName">
@@ -145,7 +145,7 @@ export default function NewAuthor() {
             />
           </p>
 
-          <button onClick={postAuthorData} type="submit" className="btn mt1">
+          <button onClick={postAuthorData} type="submit" className="btn mt-4">
             Add Author
           </button>
         </div>

@@ -19,17 +19,20 @@ export default function AllAuthors() {
     <>
       <SectionTitle
         title="List of Authors"
-        link="/allbooks"
+        link="/books"
         btn="See All Books"
       />
 
-      <section className="margins mt2">
-        <div className="AllAuthors__list--wrapper">
+      <section className="margins mt-8">
+        <div className="flex flex-wrap gap-4 justify-between">
           {authors.map((author) => {
             return (
               <Link to={`/authors/${author._id}`}>
-                <div key={author._id} className="AllAuthors__list--author flex mb1">
-                  <img 
+                <div
+                  key={author._id}
+                  className="AllAuthors__list--author flex mb-4"
+                >
+                  <img
                     src={author.photo}
                     alt={` Photograph of ${author.firstName} ${author.lastName}`}
                   />

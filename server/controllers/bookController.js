@@ -35,7 +35,7 @@ const getLatest = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 const getLatestComponent = async (req, res) => {
   try {
@@ -48,16 +48,21 @@ const getLatestComponent = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 //Genre   /api/books/genre
 
 const getAllGenre = async (req, res) => {
   try {
     const { genre } = req.params;
-    const thisGenreBooks = await Book.find({ genre: { $in: [genre] } })
-      .populate("author")
-      .exec();
+    const thisGenreBooks = await Book.aggregate([
+      {$match: {genre: { $in: [genre] }}}, // filter the results
+      {$sample: {size: 10}} // You want to get 5 docs
+    ])
+    // .find({ genre: { $in: [genre] } })
+    //   .aggregate([{ $sample: { size: 20 } }])
+     // .populate("author")
+      //.exec();
     res.json(thisGenreBooks);
   } catch (error) {
     console.log(error);
@@ -167,8 +172,9 @@ const updateBook = async (req, res) => {
 module.exports = {
   addBook,
   getBooks,
-  getBook, 
-  getLatest, getLatestComponent, 
+  getBook,
+  getLatest,
+  getLatestComponent,
   deleteBook,
   updateBook,
   getAllGenre,

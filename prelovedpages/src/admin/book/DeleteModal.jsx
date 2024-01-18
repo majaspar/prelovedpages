@@ -54,7 +54,7 @@ export default function DeleteModal({ id, author }) {
       >
         <Fade in={openDeleteModal}>
           <div className="DeleteModal center">
-            <h4 className="center mb2">
+            <h4 className="center mb-8">
               Are you sure You want to delete Book Model {id} by author id
               <input
                 type="text"

@@ -11,7 +11,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 export default function BookModelsList() {
-  
   const {
     data: bookModels,
     isLoading,
@@ -23,7 +22,7 @@ export default function BookModelsList() {
 
   if (isError) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Error message={isError.message} />
       </div>
     );
@@ -31,7 +30,7 @@ export default function BookModelsList() {
 
   if (isLoading) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Loading />
       </div>
     );
@@ -44,8 +43,8 @@ export default function BookModelsList() {
         link="/admin"
         btn="Go to Admin Dashboard"
       />
-      <Links/>
-      <section className="BookModelsList table__wrapper margins">
+      <Links />
+      <section className="BookModelsList overflow-x-scroll pb-8 h-[65vh] margins">
         <table>
           <thead>
             <tr>
@@ -68,55 +67,68 @@ export default function BookModelsList() {
             </tr>
           </thead>
           <tbody>
-            { !bookModels.length ? <Loading/> : bookModels?.map((book) => {
-              return (
-                <tr key={book._id}>
-                  <td className="BookModelsList__td--edit center">
-                    <Link to={`/admin/books/${book._id}/update`}>
-                      <EditIcon />
-                    </Link>
-                  </td>
-                  <td className="BookModelsList__td--delete center">
-                    <DeleteModal id={book._id} author={book.author._id}/>
-                  
-                  </td>
-                  <td>
-                    <Link to={`/admin/books/${book._id}/addcopy`}>
-                      <AddCircleOutlineIcon />
-                    </Link>
-                  </td>
-                  <td className="center">{book.availableCopies.length === 0 ? "No" : "Yes"}</td>
-                  <td className="BookModelsList__td--title">
-                    <Link to={`/books/${book._id}`}>{book.title}</Link>
-                  </td>
-                  <td>
-                    <Link to={`/authors/${book.author._id}`}>
-                      {book.author.firstName} {book.author.lastName}
-                    </Link>
-                  </td>
-                  <td className="center">{book.publishedYear}</td>
-                  <td className="BookModelsList__td--synopsis">
-                    <p>{book.synopsis}</p>
-                  </td>
-                  <td className="BookModelsList__td--cover">
-                    <img height="50" src={book.cover}/>
-                  </td>
-                  <td className="center">
-                    {book.isPartOfSeries ? "Yes" : "No"}
-                  </td>
-                  <td>{!book.series ? "-" : book.series}</td>
-                  <td className="center">{!book.volume ? "-" : book.volume}</td>
-                  <td>{book.genre.join(", ")}</td>
-                  <td className="center">{book.isFeatured ? "Yes" : "No"}</td>
-                  <td className="center">{book._id}</td>
-                  <td className="center"><ul>
-                    {book.availableCopies?.map((c) => {
-                      return <li key={c}><Link to={`/copies/${c}`}>{c}</Link></li>
-                    })}</ul>
-                  </td>
-                </tr>
-              );
-            })}
+            {!bookModels.length ? (
+              <Loading />
+            ) : (
+              bookModels?.map((book) => {
+                return (
+                  <tr key={book._id}>
+                    <td className="BookModelsList__td--edit center">
+                      <Link to={`/admin/books/${book._id}/update`}>
+                        <EditIcon />
+                      </Link>
+                    </td>
+                    <td className="BookModelsList__td--delete center">
+                      <DeleteModal id={book._id} author={book.author._id} />
+                    </td>
+                    <td>
+                      <Link to={`/admin/books/${book._id}/addcopy`}>
+                        <AddCircleOutlineIcon />
+                      </Link>
+                    </td>
+                    <td className="center">
+                      {book.availableCopies.length === 0 ? "No" : "Yes"}
+                    </td>
+                    <td className="min-w-150">
+                      <Link to={`/books/${book._id}`}>{book.title}</Link>
+                    </td>
+                    <td>
+                      <Link to={`/authors/${book.author._id}`}>
+                        {book.author.firstName} {book.author.lastName}
+                      </Link>
+                    </td>
+                    <td className="center">{book.publishedYear}</td>
+                    <td className="BookModelsList__td--synopsis">
+                      <p>{book.synopsis}</p>
+                    </td>
+                    <td className="BookModelsList__td--cover">
+                      <img className="h-12" src={book.cover} />
+                    </td>
+                    <td className="center">
+                      {book.isPartOfSeries ? "Yes" : "No"}
+                    </td>
+                    <td>{!book.series ? "-" : book.series}</td>
+                    <td className="center">
+                      {!book.volume ? "-" : book.volume}
+                    </td>
+                    <td>{book.genre.join(", ")}</td>
+                    <td className="center">{book.isFeatured ? "Yes" : "No"}</td>
+                    <td className="center">{book._id}</td>
+                    <td className="center">
+                      <ul>
+                        {book.availableCopies?.map((c) => {
+                          return (
+                            <li key={c}>
+                              <Link to={`/copies/${c}`}>{c}</Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </section>

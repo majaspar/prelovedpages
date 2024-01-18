@@ -77,8 +77,8 @@ export default function NewBook() {
   }
 
   return (
-    <section className="admin margins mt2">
-      <h2 className="mb2">Create a Book Model</h2>
+    <section className="admin margins mt-8">
+      <h2 className="mb-8">Create a Book Model</h2>
 
       <div className="form">
         <p>
@@ -120,7 +120,7 @@ export default function NewBook() {
           />
         </p>
 
-        <p className="mt1 flex">
+        <p className="mt-4 flex">
           <label className="mr1" htmlFor="originalLanguage">
             Synopsis:
           </label>
@@ -144,7 +144,7 @@ export default function NewBook() {
           />
         </p>
 
-        <p className="mt1">
+        <p className="mt-4">
           <label className="mr1" htmlFor="isFeatured">
             Is featured?
           </label>
@@ -160,7 +160,7 @@ export default function NewBook() {
           </select>
         </p>
 
-        <p className="mt1">
+        <p className="mt-4">
           <label className="mr1" htmlFor="isPartOfSeries">
             Is it a series?
           </label>
@@ -177,7 +177,7 @@ export default function NewBook() {
         </p>
 
         {isPartOfSeries ? (
-          <div className="ml2 mt1">
+          <div className="ml2 mt-4">
             <p>
               <label className="mr1" htmlFor="series">
                 Series:
@@ -208,7 +208,7 @@ export default function NewBook() {
           <></>
         )}
 
-        <div className="NewBook__genre--wrapper mt1 flex">
+        <div className="NewBook__genre--wrapper mt-4 flex">
           <label>Genre:</label>
           <div className="NewBook__genre">
             <div className="genre__item flex">
@@ -381,7 +381,11 @@ export default function NewBook() {
             </div>
           </div>
         </div>
-        <button onClick={submitNewBookModel} type="submit" className="btn mt3">
+        <button
+          onClick={submitNewBookModel}
+          type="submit"
+          className="btn mt-12"
+        >
           Add Book Model
         </button>
       </div>

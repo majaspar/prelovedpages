@@ -1,12 +1,10 @@
-
-import { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom"
-import axios from 'axios'
-import Loading from '../components/Loading';
-import SectionTitle from '../components/SectionTitle';
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import Loading from "../components/Loading";
+import SectionTitle from "../components/SectionTitle";
 
 export default function AvailableCopyPage() {
-
   // const { copyid } = useParams()
   // const [copy, setCopy] = useState({});
 
@@ -24,13 +22,13 @@ export default function AvailableCopyPage() {
   return (
     <section>Hello</section>
     // <> {copy.photo ?
-    //   <section className='AvailableCopyPage mt2'>
+    //   <section className='AvailableCopyPage mt-8'>
     //     <SectionTitle title={`${copy.bookModel.title}`} link="/allbooks" btn="See All Books"/>
     //     <div className='AvailableCopyPage_wrapper margins flex'>
     //       <div className=''><img src={copy.photo} alt="" /></div>
     //       <div>
     //         <Link to={`/authors/${copy.author._id}`}><h4>{copy.author.firstName} {copy.author.lastName}</h4></Link>
-          
+
     //         <p></p>
     //       </div>
     //     </div>
@@ -39,5 +37,5 @@ export default function AvailableCopyPage() {
     //   <Loading />
     // }
     // </>
-  )
+  );
 }

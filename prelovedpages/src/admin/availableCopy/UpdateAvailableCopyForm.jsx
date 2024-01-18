@@ -6,7 +6,6 @@ import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import api from "axios";
 
-
 // const { id } = useParams();
 // const navigate = useNavigate();
 // const queryClient = useQueryClient();
@@ -83,7 +82,7 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
       price,
       Isbn,
     });
-  }
+  };
 
   if (updateCopyMutation.isLoading) {
     return <Loading />;
@@ -99,7 +98,7 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
         btn="Go to Copies List"
         link="/admin/availablecopieslist"
       />
-      <section className="margins mt2 admin">
+      <section className="margins mt-8 admin">
         <div className="form">
           <p>
             <label className="mr1" htmlFor="bookModel">
@@ -233,7 +232,7 @@ export default function UpdateAvailableCopyForm({ initialValue }) {
           <button
             onClick={updateAvailableCopyData}
             type="submit"
-            className="btn mt1"
+            className="btn mt-4"
           >
             Update
           </button>

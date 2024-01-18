@@ -22,7 +22,7 @@ export default function BookModelPage() {
 
   if (isError) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Error message={isError.message} />
       </div>
     );
@@ -30,7 +30,7 @@ export default function BookModelPage() {
 
   if (isLoading) {
     return (
-      <div className="mt2 margins">
+      <div className="mt-8 margins">
         <Loading />
       </div>
     );
@@ -38,15 +38,15 @@ export default function BookModelPage() {
 
   return (
     <>
-      <SectionTitle title={book.title} btn="Go to All Books" link='/books'/>
-      <section className="BookModelPage flex mt2 margins">
+      <SectionTitle title={book.title} btn="Go to All Books" link="/books" />
+      <section className="BookModelPage flex mt-8 margins gap-8">
         <div className="">
           <img src={book.cover} alt="" />
         </div>
 
         {book.author ? (
           <div className="">
-            <p className="mb1">
+            <p className="mb-4">
               {book.isAvailable ? (
                 <span style={{ color: "green", fontWeight: "bold" }}>
                   Currently in stock
@@ -71,33 +71,33 @@ export default function BookModelPage() {
               <span className="details--title">Published: </span>
               <span className="details--data">{book.publishedYear}</span>
             </p>
-              {book.isPartOfSeries ? (
-                <div>
-                  <p>
-                    <span className="details--title">Series: </span>
-                    <span className="details--data">{book.series}</span>
-                  </p>
-                  <p>
-                    <span className="details--title">Volume: </span>
-                    <span className="details--data">{book.volume}</span>
-                  </p>
-                </div>
-              ) : (
-                ''
-              )}
-            <div className="mb1 flex">
+            {book.isPartOfSeries ? (
+              <div>
+                <p>
+                  <span className="details--title">Series: </span>
+                  <span className="details--data">{book.series}</span>
+                </p>
+                <p>
+                  <span className="details--title">Volume: </span>
+                  <span className="details--data">{book.volume}</span>
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="mb-4 flex">
               <p className="details--title">Genre: </p>
               <p className="details--data">
                 {book.genre.map((genre) => {
                   return (
-                    <span className="mr1" key={genre.replace(' ', '')}>
+                    <span className="mr1" key={genre.replace(" ", "")}>
                       <Link to={`/genre/${genre}`}>{genre}</Link>
                     </span>
                   );
                 })}
               </p>
             </div>
-            <p className="mb1">{book.synopsis}</p>
+            <p className="mb-4">{book.synopsis}</p>
           </div>
         ) : (
           <Loading />
@@ -105,29 +105,29 @@ export default function BookModelPage() {
       </section>
       <div className="margins">
         <Link to={`/admin/books/${book._id}/update`}>
-          <button className="btn mt1">Edit Book Model</button>
+          <button className="btn mt-4">Edit Book Model</button>
         </Link>
         <Link className="ml1" to={`/admin/books/${book._id}/addcopy`}>
-          <button className="btn mt1">Add a Copy</button>
+          <button className="btn mt-4">Add a Copy</button>
         </Link>
       </div>
-      <hr className="margins mt2 mb2" />
+      <hr className="margins mt-8 mb-8" />
       {book.isAvailable && (
         <section className="margins">
-          <h2 className="mb2">Available Copies</h2>
+          <h2 className="mb-8">Available Copies</h2>
           <ul className="AvailableCopies__wrapper">
             {book.availableCopies.map((copy) => {
               return (
                 <li key={book._id}>
                   <Copy copyid={copy} />
-                  <hr className="mt2 mb2" />
+                  <hr className="mt-8 mb-8" />
                 </li>
               );
             })}
           </ul>
         </section>
       )}
-      <LatestBookComponent/>
+      <LatestBookComponent />
     </>
   );
 }
